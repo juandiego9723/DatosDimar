@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+	<p:panel header="Venta de Datos" styleClass="sub-header-panel" />
+	<p:panel>
+		<p:separator />
+		<p:dataTable id="tabla3" paginator="true" paginatorPosition="bottom"
+			widgetVar="dtWidgetVar" rows="10" var="datosSolicitados"
+			value="#{reportesBean.listaSolicitados}" rowKey="#{datosSolicitados.id}"
+			emptyMessage="No existen registros">
+			<p:column headerText="ID" sortBy="#{datosSolicitados.id}" filterBy="#{datosSolicitados.id}" >
+				<h:outputText value="#{datosSolicitados.id}" />
+			</p:column>
+			<p:column headerText="Tipo Dato" sortBy="#{datosSolicitados.tipoDatoId.nombre}" filterBy="#{datosSolicitados.tipoDatoId.nombre}" >
+				<h:outputText value="#{datosSolicitados.tipoDatoId.nombre}" />
+			</p:column>
+			<p:column headerText="Conjunto" sortBy="#{datosSolicitados.conjuntoDatosProcesoCargaId.id}" filterBy="#{datosSolicitados.conjuntoDatosProcesoCargaId.id}">
+				<h:outputText
+					value="#{datosSolicitados.conjuntoDatosProcesoCargaId.id}" />
+			</p:column>
+			<p:column headerText="Estado" sortBy="#{datosSolicitados.solicitudEstadoId.nombre}" filterBy="#{datosSolicitados.solicitudEstadoId.nombre}">
+				<h:outputText
+					value="#{datosSolicitados.solicitudEstadoId.nombre}" />
+			</p:column>
+			<p:column headerText="Originador del Dato" sortBy="#{datosSolicitados.conjuntoDatosProcesoCargaId.originadorDatoId}" filterBy="#{datosSolicitados.conjuntoDatosProcesoCargaId.originadorDatoId}">
+				<h:outputText
+					value="#{datosSolicitados.conjuntoDatosProcesoCargaId.originadorDatoId}" />
+			</p:column>
+		</p:dataTable>
+		<p:panel>
+			<p:commandButton value="Descargar PDF"
+				action="#{reportesBean.descargaVentaDatos()}" process="@this" />
+		</p:panel>
+	</p:panel>
+</ui:composition>

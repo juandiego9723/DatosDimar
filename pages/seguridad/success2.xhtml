@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	template="/pages/template/templateInicio.xhtml">
+	<ui:define name="body">
+	
+	
+    <h:head>
+        <title>Success</title>
+       
+
+    </h:head>
+    <h:body>
+    <div style="text-align: center;margin-top: 50px">Ha ingresado Exitosamente al Portal</div>
+    <div class="sidenavbar">
+      <div class="sidebar-header">
+        <h3 class="brand">
+          <span class="ti-unlink"></span><span>Seleccione</span>
+        </h3>
+        <label for="sidenavbar-toggle" class="ti-menu-alt"></label>
+      </div>
+      <div class="sidebar-menu">
+        <ul>
+          <li>
+            <p:graphicImage value="/resources/images/icon.png" height="24" width="24"/><a href="../datosDimar/pages/listados.xhtml"><span></span><span>Parametros</span></a>
+          </li>
+          <li>
+            <p:graphicImage value="/resources/images/icon2.png" height="24" width="24"/><a href="../datosDimar/pages/listados.xhtml"><span></span><span>Solicitudes</span></a>
+          </li>
+          <li>
+            <p:graphicImage value="/resources/images/icon3.png" height="24" width="24"/><a href="../datosDimar/pages/listados.xhtml"><span></span><span>Encuestas</span></a>
+          </li>
+          <li>
+            <p:graphicImage value="/resources/images/icon4.png" height="24" width="24"/><a href="../datosDimar/pages/listados.xhtml"><span></span><span>Reportes</span></a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="main-content">
+      <header>
+        <div class="search-wrapper">
+          <span class="ti-search">
+            <input type="search" placeholder="Search" value="" />
+          </span>
+        </div>
+        <div class="social-icons">
+          <span class="ti-bell"> </span>
+          <span class="ti-comment"> </span>
+          <div></div>
+        </div>
+      </header>
+    </div>
+    
+  <section>
+    <h1>Mapa Dimar</h1>
+    <div style="width: 100%"><iframe width="100%" height="600" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=es&amp;q=Colombia,%20Bogota+(Mi%20nombre%20de%20egocios)&amp;t=k&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe><a href="https://www.mapsdirections.info/marcar-radio-circulo-mapa/">Dimar</a></div>
+  </section>
+    </h:body>
+	</ui:define>
+</ui:composition>

@@ -1,0 +1,124 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	template="/pages/template/templateInicio.xhtml">
+	<ui:define name="body">
+
+		<h:head>
+<!-- 			<link href="/resources/theme.css" rel="stylesheet" type="text/css" /> -->
+			<meta charset="utf-8" name="viewport"
+				content="width=device-width, initial-scale=1"
+				http-equiv="X-UA-Conpatible" />
+		</h:head>
+		<h:body>
+			<h:form id="formListado">
+				<p:messages id="messages" showDetail="false" autoUpdate="true"
+					closable="true" />
+				<h2 >DESCARGAR LOS CONJUNTOS SOLICITADOS
+					POR EL FUNCIONARIO</h2>
+				<p:separator />
+				<p:outputLabel
+					value="Señor Funcionario: A continuación podrá descargar los conjuntos de Datos que Usted seleccionó. Digite el código enviado a su correo y dé clic en Buscar y posteriormente en Descargar" />
+				<p:separator />
+				<h:panelGrid id="panel1" columns="2" columnClasses="label, value">
+					<h:outputText value="Digite acá el radicado enviado a su correo:" />
+					<p:inputText value="#{conjuntoDatosProcesoCargaBean.radicadoDatos}"
+						required="true" label="Radicado">
+						<p:ajax event="change" update="@this" />
+					</p:inputText>
+
+				</h:panelGrid>
+				<p:panel>
+					<p:commandButton value="Buscar"
+						action="#{conjuntoDatosProcesoCargaBean.consultaDatosInternoDescarga()}"
+						update="tabla" process="@this" />
+				</p:panel>
+				<p:dataTable id="tabla" paginator="true" paginatorPosition="bottom"
+					widgetVar="dtWidgetVar" rows="10" var="datosSolicitados"
+					value="#{conjuntoDatosProcesoCargaBean.listaAbiertosDes}"
+					resizableColumns="false"
+                    styleClass="wrap"
+					rowKey="#{datosSolicitados.id}" emptyMessage="No existen registros">
+					<p:column headerText="ID">
+						<h:outputText value="#{datosSolicitados.id}" />
+					</p:column>
+					<p:column headerText="Tipo Dato">
+						<h:outputText value="#{datosSolicitados.tipoDatoId.nombre}" />
+					</p:column>
+					<p:column headerText="Conjunto">
+						<h:outputText
+							value="#{datosSolicitados.conjuntoDatosProcesoCargaId.id}" />
+					</p:column>
+					<p:column headerText="Tipo Conjunto">
+						<h:outputText
+							value="#{datosSolicitados.conjuntoDatosProcesoCargaId.tipoConjuntoDatosId.nombre}" />
+					</p:column>
+					<p:column headerText="Originador del Dato">
+						<h:outputText
+							value="#{datosSolicitados.conjuntoDatosProcesoCargaId.originadorDatoId}" />
+					</p:column>
+					<p:column headerText="Variable" style="width:280px">
+						<h:outputText
+							value="#{datosSolicitados.conjuntoDatosProcesoCargaId.oidVariable}" />
+					</p:column>
+					<p:column headerText="Fecha Inicial">
+						<h:outputText
+							value="#{datosSolicitados.conjuntoDatosProcesoCargaId.fechaini}">
+							<f:convertDateTime pattern="dd-MM-yyyy" />
+						</h:outputText>
+					</p:column>
+					<p:column headerText="Fecha Final">
+						<h:outputText
+							value="#{datosSolicitados.conjuntoDatosProcesoCargaId.fechafin}">
+							<f:convertDateTime pattern="dd-MM-yyyy" />
+						</h:outputText>
+					</p:column>
+					<p:column headerText="Cantidad Datos">
+						<h:outputText
+							value="#{datosSolicitados.conjuntoDatosProcesoCargaId.cantidadDatos}" >
+							<f:convertNumber maxFractionDigits="2" locale="en_US"/>
+					    </h:outputText>
+					</p:column>
+				</p:dataTable>
+
+				<p:panel>
+					<p:commandButton title="Descargar" target="_blank"
+						update=":formListado:tabla, :formListado:messages"
+						action="#{conjuntoDatosProcesoCargaBean.capturaRadicado()}"
+						oncomplete="PF('dialogoDescargar').show(); PF('dtWidgetVar').unselectAllRows();">
+
+						<f:setPropertyActionListener
+							target="#{conjuntoDatosProcesoCargaBean.conjuntoDatosProcesoCarga}"
+							value="#{conjuntoDatosProcesoCarga}" />
+					</p:commandButton>
+				</p:panel>
+			</h:form>
+			<h:form id="formDescargar">
+				<p:dialog id="dlgDescargar" header="Encuesta de Satisfacción"
+					widgetVar="dialogoDescargar" resizable="true" height="500px"
+					width="950px" showEffect="fade" hideEffect="explode" modal="true"
+					left="200px" top="100px">
+					<p:panel height="80%" width="80%">
+						<p:panelGrid columns="1" style="margin: 0 auto;">
+							<p:outputLabel
+								value="Se ha descargado satisfactoria el archivo ZIP con los conjuntos de datos solicitados. A continuación, se solicita diligenciar una breve encuesta de satisfacción la cual nos permite seguir mejorando nuestros servicios." />
+						</p:panelGrid>
+						<p:panel>
+							<div align="center">
+								<p:spacer height="10" />
+								<ui:include src="../encuestas/encuestaSatisfaccion.xhtml" />
+							</div>
+						</p:panel>
+						<p:commandButton value="Enviar Encuesta"
+							actionListener="#{encuestaBean.enviarEncuestaSatisfaccionInterno()}"
+							update=":formListado:tabla"
+							oncomplete="PF('dialogoDescargar').hide(); PF('dtWidgetVar').unselectAllRows();" />
+					</p:panel>
+				</p:dialog>
+			</h:form>
+		</h:body>
+	</ui:define>
+</ui:composition>

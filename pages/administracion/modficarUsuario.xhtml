@@ -1,0 +1,296 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	template="/pages/template/templateInicio.xhtml">
+	<ui:define name="body">
+
+		<h:head>
+<!-- 			<link href="/resources/theme.css" rel="stylesheet" type="text/css" /> -->
+			<meta charset="utf-8" name="viewport"
+				content="width=device-width, initial-scale=1"
+				http-equiv="X-UA-Conpatible" />
+		</h:head>
+		<h:form id="form1">
+			<p:messages id="messages" showDetail="false" autoUpdate="true"
+				closable="true" />
+		</h:form>
+		<h:body>
+
+
+			<h:form id="form">
+				<p:panel header="Datos Personales" style=" width: 95%;">
+					<p:panelGrid columns="2" id="panelpersona"
+						styleClass="ui-panelgrid-blank ui-fluid,panelGridCenter"
+						style=" background-color:transparent;">
+
+
+						<h:panelGrid style=" width:100%;"
+							rendered="#{usuarioBean.usutipo}">
+							<p:outputLabel for="usuariotipo" value="Tipo de usuario" />
+							<br></br>
+							<p:selectOneMenu id="usuariotipo"
+								value="#{usuarioBean.usuario.usuarioTipo.id}"
+								style="width:100%;" required="true" update="panelpersona">
+								<f:selectItem itemLabel="#{usuarioBean.usuario.usuarioTipo.id}"
+									itemValue="#{usuarioBean.usuario.usuarioTipo.nombre}"
+									noSelectionOption="false" />
+								<f:selectItems value="#{usuarioBean.listaUsuarioTipo}" var="g"
+									itemLabel="#{g.nombre}" itemValue="#{g.id}" />
+							</p:selectOneMenu>
+							<h:messages for="usuariotipo" />
+						</h:panelGrid>
+
+
+						<h:panelGrid style=" width:100%;"
+							rendered="#{usuarioBean.perotipo}">
+							<p:outputLabel for="personatipo" value="Tipo de persona" />
+							<br></br>
+							<p:selectOneMenu id="personatipo"
+								value="#{usuarioBean.usuario.persona.personaTipoId.id}"
+								style="width:100%;" required="true" update="panelpersona">
+								<f:selectItem
+									itemLabel="#{usuarioBean.usuario.persona.personaTipoId.nombre}"
+									itemValue="#{usuarioBean.usuario.persona.personaTipoId.id}"
+									noSelectionOption="false" />
+								<f:selectItems value="#{usuarioBean.listaPersonaTipo}" var="g"
+									itemLabel="#{g.nombre}" itemValue="#{g.id}" />
+							</p:selectOneMenu>
+							<h:messages for="personatipo" />
+						</h:panelGrid>
+
+						<h:panelGrid style=" width:100%;" rendered="#{usuarioBean.cedula}">
+							<p:outputLabel for="tipodoc" value="Tipo de documento" />
+							<br></br>
+							<p:selectOneMenu id="tipodoc"
+								value="#{usuarioBean.usuario.persona.tipoDocumentoId.id}"
+								style="width:100%;" required="true">
+								<f:selectItem
+									itemLabel="#{usuarioBean.usuario.persona.tipoDocumentoId.nombre}"
+									itemValue="#{usuarioBean.usuario.persona.tipoDocumentoId.id}"
+									noSelectionOption="false" />
+								<f:selectItems value="#{usuarioBean.listaTipoDocumento}" var="g"
+									itemLabel="#{g.nombre}" itemValue="#{g.id}" />
+							</p:selectOneMenu>
+							<h:messages for="tipodoc" />
+						</h:panelGrid>
+
+						<h:panelGrid style=" width:100%;"
+							rendered="#{usuarioBean.ncedula}">
+							<p:outputLabel for="cedula" value="Numero de Identifiación" />
+							<br></br>
+							<p:inputText id="cedula" style="width:100%;"
+								value="#{usuarioBean.usuario.persona.numeroDocumento}"
+								required="true" />
+							<h:messages for="cedula" />
+						</h:panelGrid>
+
+						<h:panelGrid style=" width:100%;"
+							rendered="#{usuarioBean.nombre1}">
+							<p:outputLabel for="nombre1" value="Primer Nombre" />
+							<br></br>
+							<p:inputText id="nombre1"
+								value="#{usuarioBean.usuario.persona.primerNombre}"
+								required="true" style="width:100%;" />
+							<h:messages for="nombre1" />
+						</h:panelGrid>
+
+						<h:panelGrid style=" width:100%;"
+							rendered="#{usuarioBean.nombre2}">
+							<p:outputLabel for="nombre2" value="Segundo Nombre" />
+							<br></br>
+							<p:inputText id="nombre2"
+								value="#{usuarioBean.usuario.persona.segundoNombre}"
+								required="false" style="width:100%;" />
+							<h:messages for="nombre2" />
+						</h:panelGrid>
+
+						<h:panelGrid style=" width:100%;"
+							rendered="#{usuarioBean.apellido1}">
+							<p:outputLabel for="apellido1" value="Primer Apellido"
+								style="width:100%;" />
+							<br></br>
+							<p:inputText id="apellido1"
+								value="#{usuarioBean.usuario.persona.primerApellido}"
+								required="true" style="width:100%;" />
+							<h:messages for="apellido1" />
+
+						</h:panelGrid>
+
+						<h:panelGrid style=" width:100%;"
+							rendered="#{usuarioBean.apellido2}">
+							<p:outputLabel for="apellido2" value="Segundo Apellido"
+								style="width:100%;" />
+							<br></br>
+							<p:inputText id="apellido2"
+								value="#{usuarioBean.usuario.persona.segundoApellido}"
+								required="false" style="width:100%;" />
+							<h:messages for="apellido2" />
+						</h:panelGrid>
+
+						<h:panelGrid style=" width:100%;" rendered="#{usuarioBean.fechaN}">
+							<p:outputLabel for="fecha" value="fecha Nacimiento" />
+							<br></br>
+							<p:calendar id="fecha"
+								value="#{usuarioBean.usuario.persona.fechaNacimiento}"
+								required="true" style="width:100%;" />
+							<h:messages for="fecha" />
+						</h:panelGrid>
+
+						<h:panelGrid style=" width:100%;" rendered="#{usuarioBean.gene}">
+							<p:outputLabel for="genero" value="genero" />
+							<br></br>
+							<p:selectOneMenu id="genero"
+								value="#{usuarioBean.usuario.persona.generoId.id}"
+								tyle="width:100%;" required="true">
+								<f:selectItem
+									itemLabel="#{usuarioBean.usuario.persona.generoId.nombre}"
+									itemValue="#{usuarioBean.usuario.persona.generoId.id}"
+									noSelectionOption="false" />
+								<f:selectItems value="#{usuarioBean.listaGenero}" var="g"
+									itemLabel="#{g.nombre}" itemValue="#{g.id}" />
+							</p:selectOneMenu>
+							<h:messages for="genero" />
+						</h:panelGrid>
+
+						<h:panelGrid style=" width:100%;" rendered="#{usuarioBean.nivel}">
+							<p:outputLabel for="nivelesco" value="nivelEscolaridad" />
+							<br></br>
+							<p:selectOneMenu id="nivelesco"
+								value="#{usuarioBean.usuario.persona.nivelEscolaridadId.id}"
+								required="true" style="width:100%;">
+								<f:selectItem
+									itemLabel="#{usuarioBean.usuario.persona.nivelEscolaridadId.nombre}"
+									itemValue="#{usuarioBean.usuario.persona.nivelEscolaridadId.id}"
+									noSelectionOption="false" />
+								<f:selectItems value="#{usuarioBean.listaNivelEscolaridad}"
+									var="g" itemLabel="#{g.nombre}" itemValue="#{g.id}" />
+							</p:selectOneMenu>
+							<h:messages for="nivelesco" />
+						</h:panelGrid>
+
+
+
+						<h:panelGrid style=" width:100%;" rendered="#{usuarioBean.razon}">
+							<p:outputLabel for="razon" value="Razon Social" />
+							<br></br>
+							<p:inputText id="razon"
+								value="#{usuarioBean.usuario.persona.razonSocial}"
+								required="true" style="width:100%;" />
+							<h:messages for="razon" />
+						</h:panelGrid>
+
+						<h:panelGrid style=" width:100%;" rendered="#{usuarioBean.dire}">
+							<p:outputLabel for="direccion" value="Dirección" />
+							<br></br>
+							<p:inputText id="direccion"
+								value="#{usuarioBean.usuario.persona.direccion}" required="true"
+								style="width:100%;" />
+							<h:messages for="direccion" />
+						</h:panelGrid>
+
+						<h:panelGrid style=" width:100%;" rendered="#{usuarioBean.correo}">
+							<p:outputLabel for="correo" value="Correo" />
+							<br></br>
+							<p:inputText id="correo"
+								value="#{usuarioBean.usuario.persona.correoElectronico}"
+								required="true" style="width:100%;" />
+						</h:panelGrid>
+
+						<h:panelGrid style=" width:100%;" rendered="#{usuarioBean.tel}">
+							<p:outputLabel for="telefono" value="Telefono" />
+							<br></br>
+							<p:inputText id="telefono"
+								value="#{usuarioBean.usuario.persona.telefono}"
+								style="width:100%;" required="true" />
+							<h:messages for="telefono" />
+						</h:panelGrid>
+
+						<h:panelGrid style=" width:100%;" rendered="#{usuarioBean.ciu}">
+							<p:outputLabel for="Ciudad" value="ciudad" />
+							<br></br>
+							<p:selectOneMenu id="Ciudad"
+								value="#{usuarioBean.usuario.persona.ciudadId.id}"
+								style="width:100%;" required="true">
+								<f:selectItem
+									itemLabel="#{usuarioBean.usuario.persona.ciudadId.nombre}"
+									itemValue="#{usuarioBean.usuario.persona.ciudadId.id}"
+									noSelectionOption="true" />
+								<f:selectItems value="#{usuarioBean.listaCiudad}" var="g"
+									itemLabel="#{g.nombre}" itemValue="#{g.id}" />
+							</p:selectOneMenu>
+							<h:messages for="Ciudad" />
+						</h:panelGrid>
+					</p:panelGrid>
+
+					<p:panel header="Datos Del Usuario" style=" width: 80%;">
+						<p:panelGrid columns="2" id="panelUsuario">
+
+							<h:panelGrid style=" width:100%;">
+								<p:outputLabel value="Usuario" />
+								<br></br>
+								<p:inputText id="username"
+									value="#{usuarioBean.usuario.usuario}" style="width:100%;"
+									required="true" />
+								<h:messages for="username" />
+							</h:panelGrid>
+
+							<h:panelGrid style=" width:100%;">
+								<p:outputLabel for="password" value="Password" />
+								<br></br>
+								<p:password id="password" value="#usuarioBean.usuario.password}"
+									style="width:100%;" />
+								<h:messages for="password" />
+							</h:panelGrid>
+
+							<h:panelGrid style=" width:100%;">
+								<p:outputLabel for="activo" value="usuario Activo" />
+								<br></br>
+
+								<p:selectOneMenu id="activo"
+									value="#{usuarioBean.usuario.activo}" required="true"
+									style="width:100%;">
+									<f:selectItem itemLabel="#{usuarioBean.usuario.activo}"
+										itemValue="#{usuarioBean.usuario.activo}"
+										noSelectionOption="false" />
+									<f:selectItem itemLabel="Si" itemValue="1" />
+									<f:selectItem itemLabel="No" itemValue="0" />
+								</p:selectOneMenu>
+								<h:messages for="activo" />
+							</h:panelGrid>
+
+
+
+						</p:panelGrid>
+
+					</p:panel>
+
+
+				</p:panel>
+
+
+
+
+				<br></br>
+				<br></br>
+				<p:commandButton id="modificar_btn" value="Modificar"
+					styleClass="p-mr-2" style="width: auto"
+					action="#{usuarioBean.modificarUsuario}" var="usuarioBean" />
+								&nbsp; &nbsp; &nbsp;
+				<p:commandButton id="btn_cr" value="Volver" ajax="false"
+					
+					action="/pages/administracion/administracionUsuario.xhtml?faces-redirect=true">
+				</p:commandButton>
+
+
+			</h:form>
+
+
+
+
+		</h:body>
+
+	</ui:define>
+</ui:composition>

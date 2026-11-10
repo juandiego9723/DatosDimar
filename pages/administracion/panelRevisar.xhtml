@@ -1,0 +1,155 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	template="/pages/template/templateInicio.xhtml">
+	<ui:define name="body">
+
+		<h:head>
+<!-- 			<link href="/resources/theme.css" rel="stylesheet" type="text/css" /> -->
+		</h:head>
+		<h:form id="form1">
+			<p:messages id="messages" showDetail="false" autoUpdate="true"
+				closable="true" />
+		</h:form>
+		<h:body>
+			<script type="text/javascript">
+				function handleLoginRequest(xhr, status, args) {
+					if (args.validationFailed || !args.loggedIn) {
+						jQuery('#form').effect("shake", {
+							times : 3
+						}, 100);
+					} else {
+						PF('dlg').hide();
+						$('#loginLink').fadeOut();
+					}
+				}
+			</script>
+			<h:form id="form">
+				<h:messages id="mensaje" autoUpdate="true" />
+
+				<p:panel header="Módulo de administración" footer=" "
+					id="panel">
+
+					<p:panelGrid columns="4" style="width:100%;">
+						<p:panelGrid columns="1"
+							style="width:80%; margin-left: 10%; background: #c4c4c4; text-align: center;">
+							<p:link id="usuario" href="https://cecoldo.dimar.mil.co/datosDimar/pages/tablasReferencia/genero.xhtml">
+								<h:graphicImage value="/images/usuario.png"
+									style="margin-left: 0px; " width="70px" height="70px" />
+							</p:link>
+							<p:link id="usuariotext" href="#">
+
+								<p:outputLabel value="Registrar Usuario" />
+							</p:link>
+						</p:panelGrid>
+
+
+						<p:panelGrid columns="1"
+							style="width:80%; margin-left: 10%; background: #c4c4c4; text-align: center;">
+							<p:link id="roles" href="#{panelAdministracionBean.roles}">
+
+								<h:graphicImage value="/images/roles.png"
+									style="margin-left: 0px; " width="70px" height="70px" />
+							</p:link>
+							<p:link id="rolestxt" href="#">
+
+								<p:outputLabel value="Gestionar Roles" />
+							</p:link>
+						</p:panelGrid>
+
+						<p:panelGrid columns="1"
+							style="width:80%; margin-left: 10%; background: #c4c4c4; text-align: center;">
+							<p:link href="#">
+
+								<h:graphicImage value="/images/categorias.png"
+									style="margin-left: 0px; " width="70px" height="70px" />
+							</p:link>
+							<p:link href="#">
+
+								<p:outputLabel value="Gestionar Categorias" />
+							</p:link>
+						</p:panelGrid>
+
+						<p:panelGrid columns="1"
+							style="width:80%; margin-left: 10%; background: #c4c4c4; text-align: center;">
+							<p:link href="#">
+
+								<h:graphicImage value="/images/encuesta.png"
+									style="margin-left: 0px; " width="70px" height="70px" />
+							</p:link>
+							<p:link href="#">
+
+								<p:outputLabel value="Gestionar Encuesta" />
+							</p:link>
+						</p:panelGrid>
+
+
+						<p:panelGrid columns="1"
+							style="width:80%; margin-left: 10%; background: #c4c4c4; text-align: center;">
+							<p:link href="#">
+
+								<h:graphicImage value="/images/solicitudes.png"
+									style="margin-left: 0px; " width="70px" height="70px" />
+							</p:link>
+							<p:link href="#">
+
+								<p:outputLabel value="Gestionar solicitudes" />
+							</p:link>
+						</p:panelGrid>
+
+						<p:panelGrid columns="1"
+							style="width:80%; margin-left: 10%; background: #c4c4c4; text-align: center;">
+							<p:link href="#">
+
+								<h:graphicImage value="/images/subir.png"
+									style="margin-left: 0px; " width="70px" height="70px" />
+							</p:link>
+							<p:link href="#">
+
+								<p:outputLabel value="Subir Datos" />
+							</p:link>
+						</p:panelGrid>
+
+						<p:panelGrid columns="1"
+							style="width:80%; margin-left: 10%; background: #c4c4c4; text-align: center;">
+							<p:link href="#">
+
+								<h:graphicImage value="/images/reportes.png"
+									style="margin-left: 0px; " width="70px" height="70px" />
+							</p:link>
+							<p:link href="#">
+
+								<p:outputLabel value="Reportes" />
+							</p:link>
+						</p:panelGrid>
+
+						<p:panelGrid columns="1"
+							style="width:80%; margin-left: 10%; background: #c4c4c4; text-align: center;">
+							<p:link href="#">
+
+								<h:graphicImage value="/images/auditoria.png"
+									style="margin-left: 0px; " width="70px" height="70px" />
+							</p:link>
+							<p:link href="#">
+
+								<p:outputLabel value="Auditorias" />
+							</p:link>
+						</p:panelGrid>
+
+
+
+
+
+					</p:panelGrid>
+
+				</p:panel>
+
+
+			</h:form>
+		</h:body>
+
+	</ui:define>
+</ui:composition>

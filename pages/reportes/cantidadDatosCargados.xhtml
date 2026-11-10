@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+	<p:panel header="Cantidad de Datos Cargados"
+		styleClass="sub-header-panel" />
+		<p:panelGrid id="resumen1" columns="6">
+			<p:outputLabel value="Datos Abiertos" styleClass="p-mr-2 p-mb-2" />
+			<p:outputLabel value="#{reportesBean.valAbiertos}" styleClass="p-mr-2 p-mb-2" />
+			<p:outputLabel value="Alto Nivel de Detalle" styleClass="p-mr-2 p-mb-2" />
+			<p:outputLabel value="#{reportesBean.valAltoNivel}" styleClass="p-mr-2 p-mb-2" />
+			<p:outputLabel value="Servicio de Datos" styleClass="p-mr-2 p-mb-2" />
+			<p:outputLabel value="#{reportesBean.valVenta}" styleClass="p-mr-2 p-mb-2" />
+		
+		<p:outputLabel value="%" styleClass="p-mr-2 p-mb-2" style="display: block; width:100%; text-align:center;"/>
+			<p:outputLabel value="#{reportesBean.porAbiertos}" styleClass="p-mr-2 p-mb-2" />
+			<p:outputLabel value="%" styleClass="p-mr-2 p-mb-2" style="display: block; width:100%; text-align:center;"/>
+			<p:outputLabel value="#{reportesBean.porAltoNivel}" styleClass="p-mr-2 p-mb-2" />
+			<p:outputLabel value="%" styleClass="p-mr-2 p-mb-2" style="display: block; width:100%; text-align:center;"/>
+			<p:outputLabel value="#{reportesBean.porVenta}" styleClass="p-mr-2 p-mb-2" />
+		</p:panelGrid>
+
+		<p:panel header="Registros de la Consulta"
+		styleClass="sub-header-panel" />
+	<p:panel>
+		<p:dataTable id="tabla1" paginator="true" paginatorPosition="bottom"
+			widgetVar="dtWidgetVar" rows="10" var="conjuntosCargados" filteredValue="#{reportesBean.filtrocargas}"
+			value="#{reportesBean.listaDatos}" rowKey="#{conjuntosCargados.id}"
+			emptyMessage="No existen registros">
+
+			<p:column headerText="TIPO DATO">
+				<h:outputText value="#{conjuntosCargados.tipoDatoId.nombre}" />
+			</p:column>
+			<p:column headerText="FECHA DEL PROCESO">
+				<h:outputText value="#{conjuntosCargados.fechaProceso}" />
+			</p:column>
+			<p:column headerText="CANTIDAD_DATOS">
+				<h:outputText value="#{conjuntosCargados.cantidadDatos}" />
+			</p:column>
+			<p:column headerText="FECHA_INI">
+				<h:outputText value="#{conjuntosCargados.fechaini}">
+					<f:convertDateTime pattern="dd-MM-yyyy" />
+				</h:outputText>
+			</p:column>
+			<p:column headerText="FECHA_FIN">
+				<h:outputText value="#{conjuntosCargados.fechafin}">
+					<f:convertDateTime pattern="dd-MM-yyyy" />
+				</h:outputText>
+			</p:column>
+		
+		<p:columnGroup type="footer">
+                <p:row>
+                    <p:column colspan="3" style="text-align:right" footerText="Total cargas:"/>
+                    <p:column>
+                        <f:facet name="footer">
+                            <h:outputText value="#{reportesBean.totalcargas}">
+<!--                               <f:convertNumber type="currency" currencySymbol=""/> -->
+                            </h:outputText>
+                        </f:facet>
+                    </p:column>
+                </p:row>
+                   <p:row>
+                    <p:column colspan="3" style="text-align:right" footerText="Total datos cargados:"/>
+                    <p:column>
+                        <f:facet name="footer">
+                            <h:outputText value="#{reportesBean.totaldatoscargas}">
+<!--                               <f:convertNumber type="currency" currencySymbol=""/> -->
+                            </h:outputText>
+                        </f:facet>
+                    </p:column>
+                </p:row>
+            </p:columnGroup>
+            </p:dataTable>
+		<p:panel>
+			<p:commandButton action="#{reportesBean.descargaCantidadDatos()}"
+				value="Descargar PDF de Reporte" ajax="false">
+			</p:commandButton>
+		</p:panel>
+	</p:panel>
+</ui:composition>

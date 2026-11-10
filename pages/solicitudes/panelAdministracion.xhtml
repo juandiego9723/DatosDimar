@@ -1,0 +1,196 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	template="/pages/template/templateInicio.xhtml">
+	<ui:define name="body">
+
+		<h:head>
+<!-- 			<link href="/resources/theme.css" rel="stylesheet" type="text/css" /> -->
+		</h:head>
+		<h:form id="form1">
+			<p:messages id="messages" showDetail="false" autoUpdate="true"
+				closable="true" />
+		</h:form>
+		<h:body>
+			<script type="text/javascript">
+				function handleLoginRequest(xhr, status, args) {
+					if (args.validationFailed || !args.loggedIn) {
+						jQuery('#form').effect("shake", {
+							times : 3
+						}, 100);
+					} else {
+						PF('dlg').hide();
+						$('#loginLink').fadeOut();
+					}
+				}
+			</script>
+			<h:form id="form">
+				<h:messages id="mensaje" autoUpdate="true" />
+
+				<p:panelGrid columns="4" style="width: 100%;  float: right;">
+					<p:commandButton id="login_btn" value="#{msg['panelAdmin.BotCerrSes']}"
+						styleClass="p-mr-2" style="width: auto; float: right;"
+						action="#{registrarseBeean.cerrarsesion}" var="loginBean" />
+				</p:panelGrid>
+
+				<p:panel
+					header="#{msg['panelAdmin.modAdmin']} - #{msg['panelAdmin.usuario']}: #{panelAdministracionBean.usuarioSeccion} - #{msg['panelAdmin.perfil']}: #{panelAdministracionBean.usarioRol}"
+					footer=" " id="panel">
+					<p:panelGrid columns="4" style="width:100%;">
+
+						<p:panelGrid columns="1"
+							style="width:80%; margin-left: 10%; background: #c4c4c4; text-align: center;"
+							rendered="#{panelAdministracionBean.panelusuario}">
+							<p:link id="usuario" href="#{panelAdministracionBean.usuario}">
+								<i class="pi pi-user" style="font-size: 5rem"></i>
+							</p:link>
+							<p:link id="usuariotext"
+								href="#{panelAdministracionBean.usuario}">
+
+								<p:outputLabel value="#{msg['panelAdmin.RegUsu']}" />
+
+							</p:link>
+
+						</p:panelGrid>
+
+
+						<p:panelGrid columns="1"
+							style="width:80%; margin-left: 10%; background: #c4c4c4; text-align: center;"
+							rendered="#{panelAdministracionBean.panelroles}">
+							<p:link id="roles" href="#{panelAdministracionBean.roles}">
+								<i class="pi pi-check-circle" style="font-size: 5rem"></i>
+							</p:link>
+							<p:link id="rolestxt" href="#{panelAdministracionBean.roles}">
+
+								<p:outputLabel value="#{msg['panelAdmin.GestRoles']}" />
+							</p:link>
+
+						</p:panelGrid>
+
+						<p:panelGrid columns="1"
+							style="width:80%; margin-left: 10%; background: #c4c4c4; text-align: center;"
+							rendered="#{panelAdministracionBean.panelcategorias}">
+							<p:link href="#{panelAdministracionBean.categorias}">
+
+								<i class="pi pi-folder-open" style="font-size: 5rem"></i>
+							</p:link>
+							<p:link href="#{panelAdministracionBean.categorias}">
+
+								<p:outputLabel value="#{msg['panelAdmin.GestCate']}" />
+							</p:link>
+
+						</p:panelGrid>
+
+						<p:panelGrid columns="1"
+							style="width:80%; margin-left: 10%; background: #c4c4c4; text-align: center;"
+							rendered="#{panelAdministracionBean.panelencuestas}">
+							<p:link href="#{panelAdministracionBean.encuestas}">
+
+								<i class="pi pi-chart-bar" style="font-size: 5rem"></i>
+							</p:link>
+							<p:link href="#{panelAdministracionBean.encuestas}">
+
+								<p:outputLabel value="#{msg['panelAdmin.GestEncu']}" />
+							</p:link>
+
+						</p:panelGrid>
+
+
+						<p:panelGrid columns="1"
+							style="width:80%; margin-left: 10%; background: #c4c4c4; text-align: center;"
+							rendered="#{panelAdministracionBean.panelsolicitudes}">
+							<p:link href="#{panelAdministracionBean.solicitudes}">
+
+								<i class="pi pi-inbox" style="font-size: 5rem"></i>
+							</p:link>
+							<p:link href="#{panelAdministracionBean.solicitudes}">
+
+								<p:outputLabel value="#{msg['panelAdmin.GestSoli']}" />
+							</p:link>
+
+						</p:panelGrid>
+
+						<p:panelGrid columns="1"
+							style="width:80%; margin-left: 10%; background: #c4c4c4; text-align: center;"
+							rendered="#{panelAdministracionBean.panelsubir}">
+							<p:link href="#{panelAdministracionBean.subir}">
+
+								<i class="pi pi-cloud-upload" style="font-size: 5rem"></i>
+							</p:link>
+							<p:link href="#{panelAdministracionBean.subir}">
+
+								<p:outputLabel value="#{msg['panelAdmin.SubirDatos']}" />
+							</p:link>
+
+						</p:panelGrid>
+
+						<p:panelGrid columns="1"
+							style="width:80%; margin-left: 10%; background: #c4c4c4; text-align: center;"
+							rendered="#{panelAdministracionBean.panelreportes}">
+							<p:link href="#{panelAdministracionBean.reportes}">
+
+								<i class="pi pi-file-pdf" style="font-size: 5rem"></i>
+							</p:link>
+							<p:link href="#{panelAdministracionBean.reportes}">
+
+								<p:outputLabel value="#{msg['panelAdmin.Reportes']}" />
+							</p:link>
+
+						</p:panelGrid>
+
+						<p:panelGrid columns="1"
+							style="width:80%; margin-left: 10%; background: #c4c4c4; text-align: center;"
+							rendered="#{panelAdministracionBean.panelaudotria}">
+							<p:link href="#{panelAdministracionBean.audotria}">
+
+								<i class="pi pi-clock" style="font-size: 5rem"></i>
+							</p:link>
+							<p:link href="#{panelAdministracionBean.audotria}">
+
+								<p:outputLabel value="Auditorias" />
+							</p:link>
+
+						</p:panelGrid>
+
+						<p:panelGrid columns="1"
+							style="width:80%; margin-left: 10%; background: #c4c4c4; text-align: center;"
+							rendered="#{panelAdministracionBean.revisar2}">
+							<p:link href="#{panelAdministracionBean.revisar}">
+
+								<i class="pi pi-search" style="font-size: 5rem"></i>
+							</p:link>
+							<p:link href="#{panelAdministracionBean.revisar}">
+
+								<p:outputLabel value="#{msg['panelAdmin.Revisar']}" />
+							</p:link>
+
+						</p:panelGrid>
+						
+						<p:panelGrid columns="1"
+							style="width:80%; margin-left: 10%; background: #c4c4c4; text-align: center;"
+							rendered="#{panelAdministracionBean.panelcategorias}">
+							<p:link href="#{panelAdministracionBean.solicitudExterna}">
+
+<!-- 								<i class="pi pi-folder-open" style="font-size: 5rem"></i> -->
+								<h:graphicImage><img src="https://cecoldo.dimar.mil.co/datosDimar/images/ISolicitudExterna.svg" width="80" height="80"></img></h:graphicImage>
+							</p:link>
+							<p:link href="#{panelAdministracionBean.solicitudExterna}">
+
+								<p:outputLabel value="#{msg['panelAdmin.mensaje1']}" />
+							</p:link>
+
+						</p:panelGrid>
+
+					</p:panelGrid>
+
+				</p:panel>
+
+
+			</h:form>
+		</h:body>
+
+	</ui:define>
+</ui:composition>

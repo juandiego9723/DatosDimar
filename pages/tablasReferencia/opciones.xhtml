@@ -1,0 +1,78 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	template="/pages/template/templateInicio.xhtml">
+	<ui:define name="body">
+
+		<h:head>
+<!-- 			<link href="/resources/theme.css" rel="stylesheet" type="text/css" /> -->
+			<meta charset="utf-8" name="viewport"
+				content="width=device-width, initial-scale=1"
+				http-equiv="X-UA-Conpatible" />
+		</h:head>
+		<h:form id="form1">
+			<p:messages id="messages" showDetail="false" autoUpdate="true"
+				closable="true" />
+		</h:form>
+		<h:body>
+			<h:form>
+				<p:commandButton value="Asignar Opcion"
+							
+							action="#{opcionBean.asignarOpcion()}">
+							<f:setPropertyActionListener target="#{opcionBean.opcionesXRol}"
+								value="#{usuarioXrol}" />
+						</p:commandButton>
+				<p:separator />
+			</h:form>
+
+			<h:form id="formListado">
+				<p:dataTable id="tabla" paginator="true" paginatorPosition="bottom"
+					rows="10" var="opcionXrol" value="#{opcionBean.listaOpciones}"
+					emptyMessage="No existen registros">
+
+					<p:column headerText="Rol">
+						<h:outputText value="#{opcionXrol.rolId.nombre}" />
+					</p:column>
+
+					<p:column headerText="Opcion">
+						<h:outputText value="Modulo- #{opcionXrol.opcionId.nombre}" />
+					</p:column>
+
+					<p:column headerText="MODIFICAR" style="text-align: center">
+						<p:commandButton icon="pi pi-pencil" title="Modificar"
+							
+							action="#{opcionBean.ModificarOpcion()}">
+							<f:setPropertyActionListener target="#{opcionBean.opcionesXRol}"
+								value="#{usuarioXrol}" />
+						</p:commandButton>
+					</p:column>
+
+
+
+				</p:dataTable>
+				<p:commandButton id="login_btn" value="Cerrar Sesion"
+					styleClass="p-mr-2" style="width: auto; float: right;"
+					action="#{registrarseBeean.cerrarsesion}" var="loginBean" />
+
+				<p:commandButton id="btn_cr" value="Volver" ajax="false"
+					style="width: auto; float: right;"
+					action="/pages/administracion/panelRoles.xhtml?faces-redirect=true">
+				</p:commandButton>
+
+
+			</h:form>
+
+
+
+
+
+
+
+
+		</h:body>
+
+	</ui:define>
+</ui:composition>

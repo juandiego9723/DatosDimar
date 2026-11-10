@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<p:panel header="Formulario de Intención para Aceptación de Descarga de Datos Abiertos" styleClass="sub-header-panel" />
+
+	<p:panel>
+
+		<h:panelGrid id="lic" columns="2">
+			<p:outputLabel for="fsol" value="Fecha de la Solicitud" />
+			<p:datePicker id="fsol"
+				value="#{conjuntoDatosProcesoCargaBean.fechaSol}" disabled="true" />
+
+			<h:outputText value="Medio de Solicitud" />
+			<p:inputText
+				value="#{conjuntoDatosProcesoCargaBean.medioSolicitud.nombre}"
+				disabled="true" />
+			<h:outputText value="Nombre del Licenciatario" />
+			<h:panelGroup>
+				<p:inputText id="nomlic"
+					value="#{conjuntoDatosProcesoCargaBean.licencia.nombreLicenciatario}" />
+				<p:tooltip for="nomlic" value="#{msg['licencia.msg_nomlic']}"
+					position="top" />
+			</h:panelGroup>
+			<h:outputText value="Correo del Licenciatario" />
+			<h:panelGroup>
+				<p:inputText id="email" required="true" label="email"
+					requiredMessage="Digite su correo electrónico"
+					validatorMessage="El formato del correo electrónico es inválido"
+					value="#{conjuntoDatosProcesoCargaBean.licencia.correoLicenciatario}">
+					<f:validateRegex
+						pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+				</p:inputText>
+				<p:tooltip for="email" value="#{msg['licencia.msg_emaillic']}" />
+			</h:panelGroup>
+			<h:outputText value="Teléfono del Licenciatario" />
+			<h:panelGroup>
+				<p:inputMask id="phone"
+					value="#{conjuntoDatosProcesoCargaBean.licencia.telefonoLicenciatario}"
+					mask="(999) 999-9999" validateMask="true" />
+				<p:tooltip for="phone" value="#{msg['licencia.msg_phonelic']}" />
+			</h:panelGroup>
+			<h:outputText value="Describa el uso que le dará a la Información" />
+			<h:panelGroup>
+				<p:inputTextarea id="obj"
+					value="#{conjuntoDatosProcesoCargaBean.licencia.objetivoProyecto}"
+					rows="5" cols="15" maxlength="1000" />
+				<p:tooltip for="obj" value="#{msg['licencia.msg_objproyecto']}" />
+			</h:panelGroup>
+			<p:outputLabel for="Ciudad" value="Ciudad" />
+			<h:panelGroup>
+				<p:selectOneMenu id="Ciudad"
+					value="#{conjuntoDatosProcesoCargaBean.ciudad.id}"
+					style="width:100%;" required="true">
+					<f:selectItem itemLabel="Seleccione una Ciudad" itemValue=""
+						noSelectionOption="true" />
+					<f:selectItems value="#{conjuntoDatosProcesoCargaBean.listaCiudad}"
+						var="g" itemLabel="#{g.nombre}" itemValue="#{g.id}" />
+				</p:selectOneMenu>
+			</h:panelGroup>
+		</h:panelGrid>
+	</p:panel>
+
+	<p:spacer height="10" />
+</ui:composition>

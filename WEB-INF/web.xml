@@ -1,0 +1,221 @@
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee 
+         http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+	version="4.0">
+
+	<display-name>Datos Oceanográficos Dimar</display-name>
+
+	<!-- Página de bienvenida -->
+	<welcome-file-list>
+		<welcome-file>/pages/seguridad/index.xhtml</welcome-file>
+		<welcome-file>/sigSDGOConDatos/index.xhtml</welcome-file>
+		<welcome-file>/sigSDGOAbiertos/index.xhtml</welcome-file>
+		<welcome-file>/faces/index.xhtml</welcome-file>
+	</welcome-file-list>
+
+<!--     <error-page> -->
+<!--         <location>/pages/seguridad/general-error.xhtml</location> -->
+<!--     </error-page> -->
+
+	<context-param>
+		<param-name>javax.faces.CONFIG_FILES</param-name>
+		<param-value>/WEB-INF/faces-config.xml</param-value>
+	</context-param>
+	<!-- Etapa del proyecto -->
+	<context-param>
+		<param-name>javax.faces.PROJECT_STAGE</param-name>
+		<param-value>Production</param-value>
+	</context-param>
+
+	<!-- Las páginas en Facelets deben tener extensión .xhtml -->
+	<context-param>
+		<param-name>javax.faces.DEFAULT_SUFFIX</param-name>
+		<param-value>.xhtml</param-value>
+	</context-param>
+
+	<!-- Para que JSF no considere los comentarios como contenido -->
+	<context-param>
+		<param-name>javax.faces.FACELETS_SKIP_COMMENTS</param-name>
+		<param-value>true</param-value>
+	</context-param>
+	<context-param>
+		<param-name>primefaces.PRIVATE_CAPTCHA_KEY</param-name>
+		<param-value>6Lda-F4dAAAAAPvMc673RXBWyLTYN32biWf-qYa2</param-value>
+	</context-param>
+	<context-param>
+		<param-name>primefaces.PUBLIC_CAPTCHA_KEY</param-name>
+		<param-value>6Lda-F4dAAAAAEtwSUgBpmGDzt3a0NJXYV0WxCyI</param-value>
+	</context-param>
+
+	<context-param>
+		<param-name>primefaces.THEME</param-name>
+		<param-value>cupertino</param-value>
+	</context-param>
+	
+	<context-param>
+     <param-name>primefaces.CSP</param-name>
+     <param-value>false</param-value>
+</context-param>
+
+<!--     <context-param> -->
+<!--         <param-name>primefaces.CSP_POLICY</param-name> -->
+<!--     <param-value>frame-ancestors 'none'; style-src 'self' https:  *.gstatic.com https://cecoldo.dimar.mil.co/datosDimar/pages/themedimar.css https://cecoldo.dimar.mil.co/datosDimar/themecupertino3.css https://js.arcgis.com/** https://fonts.googleapis.com/css2 https://js.arcgis.com/4.20/esri/themes/light/main.css https://js.arcgis.com/calcite-components/1.0.0-beta.61/calcite.css https://cecoldo.dimar.mil.co/**  'sha256-fjxGUY0nteC2qlcjOTaOoXprkOLwy9HzqFFfci9D38k=' 'sha256-4izaD4nagIDB80cRXA03XzJZmgR5O6a62TX1LFjputo=' 'sha256-ZlAUbb9hcsXmsfBwOut/8ndfsGsDhpPXMS52NpYU2Tw=' 'sha256-58z99ByVy7SdymDhZRA1QYViuxJroVpot5sN8df70FM=' 'sha256-7LJMpm0595y/wFjzwRuAw/Cmlz6xi0glxDFAbbwsWyg=' 'sha256-atuwmgxh67oM7HAIkmCg622N7QrmqwaI9s71irnOw+M=' 'sha256-Pkt8j98M46glrPDzrqR9I9gac/h2nvberIdQkhIGySk=' 'sha256-//PGc71WNmQVM0C9HmtpmfxJJCFXq5cUQLibU2eaa44=' 'sha256-ZNdblzqFPbsdS58odoMFfj+gyDxo20rsbulnVXk6f84=' 'sha256-6FWIojjtZwiNizws7ImlHjGH3DA5yMh5x4c+/4UVpXk=' 'sha256-GL65hX/gViKj88n0sTpfR2L6yYN3fC9U2/JNyyUifPw=' 'sha256-Ty0n8Qe50jWyIAYw8doqg6nykuu8pHWz+kev9j1Tip8=' 'sha256-GL65hX/gViKj88n0sTpfR2L6yYN3fC9U2/JNyyUifPw=' 'sha256-ICa0DhwZQJsOd/Rn0N8H6FdQ71GfNL+op2zhAQ+Y4mM=' 'sha256-ZD0chCyBaNHl+4UwQHJIHGoYhKwMeyCXGgJTKW5/67E=' 'sha256-fjxGUY0nteC2qlcjOTaOoXprkOLwy9HzqFFfci9D38k=' 'sha256-ZlAUbb9hcsXmsfBwOut/8ndfsGsDhpPXMS52NpYU2Tw=' 'sha256-58z99ByVy7SdymDhZRA1QYViuxJroVpot5sN8df70FM=' 'sha256-7LJMpm0595y/wFjzwRuAw/Cmlz6xi0glxDFAbbwsWyg=' 'sha256-atuwmgxh67oM7HAIkmCg622N7QrmqwaI9s71irnOw+M=' 'sha256-Pkt8j98M46glrPDzrqR9I9gac/h2nvberIdQkhIGySk=' 'sha256-//PGc71WNmQVM0C9HmtpmfxJJCFXq5cUQLibU2eaa44=' 'sha256-ZNdblzqFPbsdS58odoMFfj+gyDxo20rsbulnVXk6f84=' 'sha256-6FWIojjtZwiNizws7ImlHjGH3DA5yMh5x4c+/4UVpXk=' 'sha256-GL65hX/gViKj88n0sTpfR2L6yYN3fC9U2/JNyyUifPw=' 'sha256-Ty0n8Qe50jWyIAYw8doqg6nykuu8pHWz+kev9j1Tip8=' 'sha256-GL65hX/gViKj88n0sTpfR2L6yYN3fC9U2/JNyyUifPw=' 'sha256-ICa0DhwZQJsOd/Rn0N8H6FdQ71GfNL+op2zhAQ+Y4mM=' 'sha256-ZD0chCyBaNHl+4UwQHJIHGoYhKwMeyCXGgJTKW5/67E=' 'sha256-fjxGUY0nteC2qlcjOTaOoXprkOLwy9HzqFFfci9D38k=' 'sha256-fjxGUY0nteC2qlcjOTaOoXprkOLwy9HzqFFfci9D38k=' 'sha256-Bru+Y96xBiG0lXvOIaqvnEp634VZXQNGPUPOpYi3itY=' 'sha256-fjxGUY0nteC2qlcjOTaOoXprkOLwy9HzqFFfci9D38k=' 'sha256-7uk35RWzXWCplJn/WE/I9GwTiTp6VCsfJTzKz3qvs3A=' 'sha256-aUHH6pvqHJWYXrcTNFFmqcpcUX6Y4orEeNt9+OxE4aU=' 'sha256-ZqhM5xQOj0Og/l+8qEbc5F5YYumTdWvc5mtn7dECFuE=' 'sha256-O5kdCvxtGuQISuhDeR+1bk7cwvpyMTcDplBs/ZNjcNM=' 'sha256-41QlEYvmZJtyxSl/rBYFq8HdAucCN+46KAX7bLix9ZY=' 'unsafe-hashes'; img-src 'self' https:  data: dimar.mil.co  cecoldo.dimar.mil.co  https://cecoldo.dimar.mil.co/datosDimar/images  'sha256-fjxGUY0nteC2qlcjOTaOoXprkOLwy9HzqFFfci9D38k=' 'sha256-ZlAUbb9hcsXmsfBwOut/8ndfsGsDhpPXMS52NpYU2Tw=' 'sha256-58z99ByVy7SdymDhZRA1QYViuxJroVpot5sN8df70FM=' 'sha256-7LJMpm0595y/wFjzwRuAw/Cmlz6xi0glxDFAbbwsWyg=' 'sha256-atuwmgxh67oM7HAIkmCg622N7QrmqwaI9s71irnOw+M=' 'sha256-Pkt8j98M46glrPDzrqR9I9gac/h2nvberIdQkhIGySk=' 'sha256-//PGc71WNmQVM0C9HmtpmfxJJCFXq5cUQLibU2eaa44=' 'sha256-ZNdblzqFPbsdS58odoMFfj+gyDxo20rsbulnVXk6f84=' 'sha256-6FWIojjtZwiNizws7ImlHjGH3DA5yMh5x4c+/4UVpXk=' 'sha256-GL65hX/gViKj88n0sTpfR2L6yYN3fC9U2/JNyyUifPw=' 'sha256-Ty0n8Qe50jWyIAYw8doqg6nykuu8pHWz+kev9j1Tip8=' 'sha256-GL65hX/gViKj88n0sTpfR2L6yYN3fC9U2/JNyyUifPw=' 'sha256-ICa0DhwZQJsOd/Rn0N8H6FdQ71GfNL+op2zhAQ+Y4mM=' 'sha256-ZD0chCyBaNHl+4UwQHJIHGoYhKwMeyCXGgJTKW5/67E=' 'sha256-//PGc71WNmQVM0C9HmtpmfxJJCFXq5cUQLibU2eaa44='; frame-src 'self' https://www.google.com/  https://www.google.com/recaptcha/; script-src 'self' https: googleapis.com arcgis.dimar.mil.co  arcgiscecoldo.dimar.mil.co  *.google.com js.arcgis.com  *.gstatic.com  *.tile.osm.org https://js.arcgis.com/calcite-components/1.0.0-beta.61/calcite.esm.js https://js.arcgis.com/calcite-components/1.0.0-beta.56/calcite.js https://js.arcgis.com/4.20/ https://www.google.com/recaptcha/   https://csp.withgoogle.com/ https://js.arcgis.com/ https://cecoldo.dimar.mil.co https://www.google.com/recaptcha/api.js https://www.gstatic.com/recaptcha/releases/4rwLQsl5N_ccppoTAwwwMrEN/recaptcha__es.js 'sha256-6wRdeNJzEHNIsDAMAdKbdVLWIqu8b6+Bs+xVNZqplQw=' 'sha256-9XdRoo/PBKJn7JjzEa8gf9kHwGjGoYKeBAW6tZUv3ig=' 'sha256-iSb37g+3WJXrw8aNINCz5SeaoDBFV8nwROBAsdEeWxg=' 'sha256-9GSa8eNUUWStYVaKuiv9recp71tq5axZkKH04RXiALw=' 'sha256-HTUYpP+0ftNhINHBEujuPaE3WYPSLYbis9H7MLT+hGM=' 'sha256-4HRh+Zc3GxKK8hk6OH4irwUxDxCYI1Jcq5b8/QjbB5c=' 'sha256-6wRdeNJzEHNIsDAMAdKbdVLWIqu8b6+Bs+xVNZqplQw=' 'sha256-xPGICPA4FeGZ+Ew8B04R7kfd0yF8lt0GXUC5xaYC7BA=' 'sha256-HeCOHr1GcjdqAJ96xZlfeKIvzhN58kjfYIMmVdhtCp4=' 'sha256-CXEYvFORCBxjAcMAjm2cwm/M/atqOy8JjKSt+iuQ0U4=' 'sha256-40ZHmizhYkMeRLwu1uKwJgC8rKg5fc0Y1gCySccHVgs=' 'sha256-lS57Ld1pHJ+tkb3IkQ10wyJ3fL916AtZwAZZ1ziibBo=' 'sha256-xBBnt/vdUIpqk72eqSX6TQIFxu4jrEm6isplUJ6Epmc=' 'sha256-NM/mwEbGa0o1ZWErKJqPwUzSWSBnYVYuOsgcSTKPrdA=' 'sha256-fI0W5XrGtJ2IfYuRwzVxll6KYweuD5o2P6jMx1OWVyo=' 'sha256-BmNnNMGeRLE3yrufHI1/iKp16LqND663L9egdBWqlIg=' 'sha256-3wjK8O8pd/HtxcIq+GO+kJ/IwMBIsYLva6apTZ4SaTQ=' 'sha256-BeWQvka5i4oHWK+Z5Lt31dZgP2ajIY/Oxhpu3/XuiAg=' 'sha256-IPnrnFFk/g0KuNSguEMkTAwmPjMHtGRcFJjaqACvdYw=' 'sha256-0jjpgrtVLtE1hk8WFkp01UpBV+39mvSfnwUxAFTBvdY=' 'sha256-0P7gd0bD9/+RbH5527g76oc/d6IWThAbYYDIsZReB5g=' 'sha256-+OoI+kFiQzONkkLgrrLV73itpR5dkkKWmeJwHyIYM7I=' 'sha256-4e/bt6PMFI2IZegMo1Ex9J7IINStlZYBUSCwT/fTVKI=' 'sha256-LYzKH6955a0oiGpuDOAAK5XO7tNk2d10tgvDXfo92d4=' 'sha256-/vzdFXIqJ3rNp4R1SELUNQfU0kH1TLPckhWH06O7YVA=' 'sha256-RwaA/s1oDW1Aqb1Wdmol8YMyW/J/pYDVtNhrnGZw/nU=' 'sha256-ihywPcfz2cYsnv9LnI0k0WirbcMwwB0k4MUyeGmmTOc=' 'sha256-DE5bkOedhV98hMRxRqWBBAFuNB1/eqU9EKTRLIukrZw=' 'sha256-4tz7Xd6PKAW1MNNsE0J54Jw/kUsmucx+r+CKJxWWSPs=' 'sha256-qoD35EJxUVGlBLwF+NqJpVXMpoAIKI6yQi/W3wj0OT8=' 'sha256-ujFLNXYmpTItNfvmr3f/ASABtSIaJyHlgvt047enXH0=' 'sha256-n159jWg/noHSPtkiU28OUJLqwQaBKLwTlrn6UYIdd58=' 'sha256-489CM5pUGphbT1Zoq5GNNm+qd2sFVeJ4UM1qmp7nrAc=' 'sha256-Fnz64BtobcefIJcuwLkx70aRorEMvuWE6EMXM4eN+rI=' 'sha256-00Is53qpcfw+faD+QVjUtkD86yCPTevNTtlT3M3iIxU=' 'sha256-TgzV83uL1vL7jIM6ODp7j8VamN/bxRBPAzBAfDGCHcs=' 'sha256-cHvDpBAgLWE84Cd3JaE4tLyRRQZroNpOQqKI8ezq9ss=' 'sha256-E+Xij5jQ7WnC+FAsdte59D1EoQgxhbPPM+wLJ9HAc3w=' 'sha256-iSC/GQho1Nq+on5i1LgtnZpHjrroeF4MfxzifZDdSHE=' 'sha256-0CmN97Tivy1O7kY9TXdp8mgYfcNalKwrgbhjJw1+GfE=' 'sha256-MaxQGAXPCPvZX/d0pnCKHFSJh/+UvS0qJHJk0ThVIIw=' 'sha256-Rt/ivf60DIUmzh4k37yPjX3/KthvfKSeL3Dob50cm8M=' 'sha256-g3Emgm/rWil8jrragprAY6E4M82EoyGfLzA0eaDYtGw=' 'sha256-p87KiBit7m/JWvDD7P9XLA+Cgeb186S/css5fgn1hnM=' 'sha256-sbXraeaSQ+7fHvcT3p5Xt3mBApr0F6ja7PubtQE+DOA=' 'sha256-h7E18pr1EULFhf8FSTLGH1QMPAiLCNmR35AGgsJ43/E=' 'sha256-Ed7aOhnzwYDHm6V7nnSfCIV7wzXjdIu/1SzSA+m/2eA=' 'sha256-DxchnnHBazXW8hS8ESBbUVfClVFCOzqmbXp5weJ+hZs=' 'sha256-EGNjfG1jVIsRq7zxgRZKRBjkccxdO28Y4ulqhg/ZJkQ=' 'sha256-ARljLD4DBBc2MTmpy29iPeXDdYcX4qu75DciWZAesEg=' 'sha256-5UqFNkjFqwGVPhvrI01KMweR9Vx8VwQnMYDsaPRC5E0=' 'sha256-t+AbAvvvI823PumZ9ovkjfWk6vCSq0MSqXJiUXjhlxo=' 'sha256-u7UqfBbRPRBPBDdQD/jleqk9UHdSe/Se2GwPEV3Otvg=' 'sha256-jFDG07qUWwM1ofCfTbdQoI39eiwWFwBNKmbPbL9/H2c=' 'sha256-fmLHfvdTI1q4Vh/5hPRl9pJTZPnv/tse+DUvBO8IfKk=' 'sha256-B7vIKG9CJCEK8UliO9aucEaAc+vMl+UqlqFdPQwnDqE=' 'sha256-Joc0dTLk1BqVOqpujZJYhGQ+ioNEjrLMfA8aD31g0L0=' 'sha256-QAnkFPUYdE9q1kLnJv1DSBqqiRP8DIymC6emKVm0ZR4=' 'sha256-Z8mwbMa1r650Raq1uWDbNDrRx5/tscI4r+/fsSzkb1c=' 'sha256-97Rzd94g0D1NsCcA6X/9rNgZPs+B2OKeJRLMxlZRanU=' 'sha256-ICQ7RXo7jm4xXckl317RQcLYP6s83LjoK+POvQfp7Fw=' 'sha256-yQOiOsnyKwWVIgcNQjahNZi6ObD/6Lj5GBrQJwHilOM=' 'sha256-405hRvmXCs5Bl3B/OjnXFimIzDGKUut+/muEgkdkPcU=' 'sha256-Gwh3jaiRr/I9PnHZsqkKLCKumR8YIL40skeYGYceKhU=' 'sha256-ClK8JXNOZLSpST9IoXWLs4VK3j8RroYTGvNuwGImGZo=' 'sha256-cSwNIs8csX1x0u3fsrMOLUtFsefwWQ2936fZkSPylZ4=' 'sha256-TY0P9EFKixJvAhQTbf7Qjyn4/pYWXB8GFzbf9ZyL1Z8=' 'sha256-5zd0+U1b0IjcBTxAdDRhNtffVw31jD2xpBL8TpgkOpA=' 'sha256-F2nrA/Spv47f0HRcRFBNU2V2P/Cr+zp9zclUalAWXGA=' 'sha256-6XsqCXGIHYzN50t5+cO4pKdrWijNr5ZOGDqSQv26R6c=' 'sha256-Ofeeqt7X4rWgy9pImiHPXO0qMipHpN4/jdVVqM+bfNA=' 'sha256-+knrPDk5zT3RW8d8V6mkkOQ0ohwCipMdd7OZzrd6dJo=' 'sha256-jIpulob+pMsCxFZGMYQnL7a/Gjs9Gln225ME4xnzKCY=' 'sha256-ZU0FK2YrPZFzjJy5kYA+Zzgr35fSMPw96wugLpPBCbM=' 'sha256-7OJQJkYW9cxI/XDxB/2LdvvXZs7kCktgDw/2Ofbs+I8=' 'sha256-X4FuZG6DocJ8DsSePPRYeZMMUGpkTEYLdQOSXS5Z278=' 'sha256-U3v7g6GyvxArNEdM3nyvpeBEcqc035mx/NE96EAQNMw=' 'sha256-wz1Ttw7JvUZ06hACGxCfdqpnoGDFVFDW+7vrTB5lZAA=' 'sha256-pVb8J8i5Gifji6EoDV0WzsIBogAeMn0cYFSJ03ySKWg=' 'sha256-D8CWwPgEX8twQM1BabrUOGJRwCXRnPMlF4E7nicj6KE=' 'sha256-k+IzlHgTpeP/zlEN/sSBlz99UqgTj+ozpEFHq2gY9Ek=' 'sha256-DBdxmdOcFLsjoDYvBNpRA7zRBYODB7cyFNiI63Lf6is=' 'sha256-rXLsdkSminZiDNizwzO4T9p0Ok41o4WyMuvYWtpe2jU=' 'sha256-dQULi0sq6k+xOartPBzjYY4o6b6TvoUM4/xbmMYG96c=' 'sha256-c6vViN4C0p7IU0iA9bB7dPYxMU/iEETa5DFtU2++sdA=' 'sha256-wdcLjDLux92zAcPvhCkKfHxQKajWHVXsfDS7V44HqeA=' 'sha256-qyQx03sE9p+UH6m7MxU0i0LZ6HdjFjofXMBDvVO8NQ0=' 'sha256-hRS68J3kx/UBSv21sQD8gV/bYQrqAEkFMM4TeBsuQmY=' 'sha256-Posk6KjxZ3ktG3vAmuaVKMozOsMmqu/fb/P2XXM2B8A='  'sha256-gng0Rx/zf2CRQJOOCQI7jpAVNqH+DORu8TH35Uiisgg='</param-value> -->
+<!--     </context-param>  -->
+
+<!-- <context-param> -->
+<!--     <param-name>org.omnifaces.CDN_RESOURCE_HANDLER_URLS</param-name> -->
+<!--     <param-value>primefaces:jquery/jquery.js=http://code.jquery.com/jquery-1.11.0.min.js</param-value> -->
+<!-- </context-param> -->
+
+<!-- <filter> -->
+<!--   <filter-name>CspFilter</filter-name> -->
+<!--   <filter-class>datosDimar.util.Cspfilter</filter-class> -->
+<!-- </filter> -->
+<!-- <filter-mapping> -->
+<!--   <filter-name>CspFilter</filter-name> -->
+<!--   <url-pattern>/*</url-pattern> -->
+<!-- </filter-mapping> -->
+
+	<filter>
+		<filter-name>UrlRewriteFilter</filter-name>
+		<filter-class>org.tuckey.web.filters.urlrewrite.UrlRewriteFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>UrlRewriteFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+		<dispatcher>REQUEST</dispatcher>
+		<dispatcher>FORWARD</dispatcher>
+	</filter-mapping>
+
+
+
+
+
+
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+	<listener>
+		<listener-class>
+			org.springframework.web.context.request.RequestContextListener
+		</listener-class>
+	</listener>
+	<listener>
+		<listener-class>com.sun.faces.config.ConfigureListener</listener-class>
+	</listener>
+
+
+
+	<!-- Faces Controller -->
+	<servlet>
+		<servlet-name>Faces Servlet</servlet-name>
+		<servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	
+	<servlet>
+		<servlet-name>consultaDMDATAServlet</servlet-name>
+	    <servlet-class>datosDimar.servlet.ConsultaDMDATAServlet</servlet-class>
+	</servlet>
+		<servlet-mapping>
+		<servlet-name>consultaDMDATAServlet</servlet-name>
+		<url-pattern>/sigSDGOAbiertos/consultaDMDATA</url-pattern>
+		<url-pattern>/sigSDGOConDatos/consultaDMDATA</url-pattern>
+	</servlet-mapping>
+	
+		<servlet>
+		<servlet-name>ConsultaMEASUREMENTServlet</servlet-name>
+	    <servlet-class>datosDimar.servlet.ConsultaMEASUREMENTServlet</servlet-class>
+	</servlet>
+		<servlet-mapping>
+		<servlet-name>ConsultaMEASUREMENTServlet</servlet-name>
+		<url-pattern>/sigSDGOAbiertos/consultaMEASUREMENT</url-pattern>
+		<url-pattern>/sigSDGOConDatos/consultaMEASUREMENT</url-pattern>
+	</servlet-mapping>
+
+	<!-- Tipo de url -->
+	<servlet-mapping>
+		<servlet-name>Faces Servlet</servlet-name>
+		<url-pattern>/faces/*</url-pattern>
+	</servlet-mapping>
+
+	<!-- Tipo de páginas que vamos a deployar -->
+	<servlet-mapping>
+		<servlet-name>Faces Servlet</servlet-name>
+		<url-pattern>*.xhtml</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>Faces Servlet</servlet-name>
+		<url-pattern>*.jsf</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>Faces Servlet</servlet-name>
+		<url-pattern>*.faces</url-pattern>
+	</servlet-mapping>
+	
+	<!-- seguridad owasp -->
+
+<!-- 	<listener> -->
+<!-- 		<listener-class>org.owasp.csrfguard.CsrfGuardServletContextListener</listener-class> -->
+<!-- 	</listener> -->
+<!-- 	<listener> -->
+<!-- 		<listener-class>org.owasp.csrfguard.CsrfGuardHttpSessionListener</listener-class> -->
+<!-- 	</listener> -->
+
+<!-- 	<filter> -->
+<!-- 		<filter-name>CSRFGuard</filter-name> -->
+<!-- 		<filter-class>org.owasp.csrfguard.CsrfGuardFilter</filter-class> -->
+<!-- 	</filter> -->
+
+<!-- 	<filter-mapping> -->
+<!-- 		<filter-name>CSRFGuard</filter-name> -->
+<!-- 		<url-pattern>/*</url-pattern> -->
+<!-- 	</filter-mapping> -->
+
+<!-- 	<servlet> -->
+<!-- 		<servlet-name>JavaScriptServlet</servlet-name> -->
+<!-- 		<servlet-class>org.owasp.csrfguard.servlet.JavaScriptServlet</servlet-class> -->
+<!-- 		<init-param> -->
+<!-- 			<param-name>inject-into-attributes</param-name> -->
+<!-- 			<param-value>true</param-value> -->
+<!-- 		</init-param> -->
+<!-- 	</servlet> -->
+
+<!-- 	<servlet-mapping> -->
+<!-- 		<servlet-name>JavaScriptServlet</servlet-name> -->
+<!-- 		<url-pattern>/JavaScriptServlet</url-pattern> -->
+<!-- 	</servlet-mapping> -->
+
+<!-- 	<servlet> -->
+<!-- 		<display-name>CounterServlet</display-name> -->
+<!-- 		<servlet-name>CounterServlet</servlet-name> -->
+<!-- 		<servlet-class>org.owasp.csrfguard.test.CounterServlet</servlet-class> -->
+<!-- 	</servlet> -->
+	
+<!-- 	<servlet-mapping> -->
+<!-- 		<servlet-name>CounterServlet</servlet-name> -->
+<!-- 		<url-pattern>/counter</url-pattern> -->
+<!-- 	</servlet-mapping> -->
+
+	<!--<filter> Intended only for testing
+		<filter-name>CorsFilter</filter-name>
+		<filter-class>org.owasp.csrfguard.test.CORSFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>CorsFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>-->
+
+	<!-- Tiempo de la sesión -->
+	<session-config>
+		<session-timeout>120</session-timeout>
+		<cookie-config>
+			<http-only>true</http-only>
+			<secure>false</secure>
+		</cookie-config>
+		<tracking-mode>COOKIE</tracking-mode>
+	</session-config>
+</web-app>

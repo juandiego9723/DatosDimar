@@ -1,0 +1,297 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	template="/pages/template/templateInicio.xhtml">
+	<ui:define name="body">
+
+		<h:head>
+			<link href="../../themecupertino3.css" rel="stylesheet"
+				type="text/css" />
+			<meta charset="utf-8" name="viewport"
+		content="width=device-width, initial-scale=1"
+		http-equiv="X-UA-Conpatible" />
+		</h:head>
+
+		<h:body>
+		  <h:form id="form" enctype="multipart/form-data">
+		      <p:messages id="messages" showDetail="false" autoUpdate="true"
+				closable="true" />
+			<h2>
+				<h:outputText value="#{msg['REV.mensaje1']}"></h:outputText>
+			</h2>
+				
+					<h:panelGrid id="panelregistro" columns="2" cellspacing="20" border="1" rendered="#{revisionCargaDatosBean.mostrarregistros}" 
+					>
+						<f:facet name="header">
+							<h:outputText value="Revision de Datos"></h:outputText>
+						</f:facet>
+
+                  <h:outputText value="#{msg['CD.mensaje2']}:*"></h:outputText>
+                         <p:selectOneMenu id="tipodatos" value="#{revisionCargaDatosBean.tipoDato}" unselectable="true"
+                         required="#{revisionCargaDatosBean.camposrequeridos}"
+                         converter="omnifaces.SelectItemsConverter">
+                           <f:selectItem itemLabel="#{msg['SE.mensaje13']}" itemValue="" />
+						  <f:selectItems value="#{revisionCargaDatosBean.tipodatos}"
+						  var="tipodato" itemLabel="#{tipodato.nombre}" itemValue="#{tipodato}" /> 
+                         </p:selectOneMenu>
+                  <h:outputText value="#{msg['CD.mensaje3']}:*"></h:outputText>
+                         <p:selectOneMenu id="tipoinformacion" value="#{revisionCargaDatosBean.tipoConjuntoDato}" unselectable="true"
+                         required="#{revisionCargaDatosBean.camposrequeridos}"
+                         converter="omnifaces.SelectItemsConverter">
+                           <f:selectItem itemLabel="#{msg['SE.mensaje13']}" itemValue="" />
+						  <f:selectItems value="#{revisionCargaDatosBean.tipoconjuntodatos}"
+						  var="tipoconjuntodato" itemLabel="#{tipoconjuntodato.nombre}" itemValue="#{tipoconjuntodato}" /> 
+                         </p:selectOneMenu>       
+                  <h:outputText value="#{msg['CD.mensaje4']}:*"></h:outputText>
+                         <p:selectOneMenu id="tipopais" value="#{revisionCargaDatosBean.tipoPais}" unselectable="true"
+                         required="#{revisionCargaDatosBean.camposrequeridos}"
+                         converter="omnifaces.SelectItemsConverter">
+                           <f:selectItem itemLabel="#{msg['SE.mensaje13']}" itemValue="" />
+						  <f:selectItems value="#{revisionCargaDatosBean.tipopaises}" 
+						  var="tipopais" itemLabel="#{tipopais.nombre}" itemValue="#{tipopais}" /> 
+                         </p:selectOneMenu>
+                  
+                  <h:outputText value="#{msg['D.mensaje2']}:*"></h:outputText>
+                         <p:selectOneMenu id="tipodisciplina" value="#{revisionCargaDatosBean.tipodisciplina}" unselectable="true"
+                         required="#{revisionCargaDatosBean.camposrequeridos}"
+                         converter="omnifaces.SelectItemsConverter">
+                           <f:selectItem itemLabel="#{msg['SE.mensaje13']}" itemValue="" />
+						  <f:selectItems value="#{revisionCargaDatosBean.tipodisciplinas}"
+						  var="disciplina" itemLabel="#{disciplina.name}" itemValue="#{disciplina}" /> 
+						  <p:ajax listener="#{revisionCargaDatosBean.getTipovocabularios}" update="tipovocabulario"/>
+                         </p:selectOneMenu>
+                 <h:outputText value="#{msg['VOC.mensaje2']}:*"></h:outputText>
+                         <p:selectOneMenu id="tipovocabulario" value="#{revisionCargaDatosBean.tipovocabulario}" unselectable="true"
+                         required="#{revisionCargaDatosBean.camposrequeridos}"
+                         converter="omnifaces.SelectItemsConverter">
+                           <f:selectItem itemLabel="#{msg['SE.mensaje13']}" itemValue="" />
+						  <f:selectItems value="#{revisionCargaDatosBean.tipovocabularios}"
+						  var="vocabulario" itemLabel="#{vocabulario.name}" itemValue="#{vocabulario}" />
+                         </p:selectOneMenu>
+
+                <h:outputText value="#{msg['CD.mensaje5']}:*"></h:outputText> 
+                         <p:selectOneMenu required="#{revisionCargaDatosBean.camposrequeridos}"
+										value="#{revisionCargaDatosBean.tipoMeasuringdevice}"
+										id="devices"
+										converter="omnifaces.SelectItemsConverter">
+										<f:selectItem itemLabel="#{msg['SE.mensaje13']}" itemValue="" />
+										<f:selectItems value="#{revisionCargaDatosBean.measuringdevices}"
+										var="device" itemLabel="#{device.name}" itemValue="#{device}" />
+						</p:selectOneMenu>
+				<h:outputText value="#{msg['SI.mensaje3']}:*"></h:outputText>
+						<p:selectOneMenu
+										required="#{revisionCargaDatosBean.camposrequeridos}"
+										value="#{revisionCargaDatosBean.tipoVehicle}"
+										id="plataforma"
+										converter="omnifaces.SelectItemsConverter">
+										<f:selectItem itemLabel="#{msg['SE.mensaje13']}" itemValue="" />
+										<f:selectItems value="#{revisionCargaDatosBean.vehiculos}"
+										var="vehiculo" itemLabel="#{vehiculo.name}" itemValue="#{vehiculo}" />
+						</p:selectOneMenu>		                 
+			    <h:outputText value="#{msg['CD.mensaje6']}:*"></h:outputText>
+						<p:selectOneMenu
+										required="#{revisionCargaDatosBean.camposrequeridos}"
+										value="#{revisionCargaDatosBean.tipoSurveyinfo}"
+										id="proyecto"
+										converter="omnifaces.SelectItemsConverter">
+										<f:selectItem itemLabel="#{msg['SE.mensaje13']}" itemValue="" />
+										<f:selectItems value="#{revisionCargaDatosBean.proyectos}"
+										var="proyecto" itemLabel="#{proyecto.description}" itemValue="#{proyecto}" />
+						</p:selectOneMenu>
+				 <h:outputText value="#{msg['CD.mensaje7']}:*"></h:outputText>
+                         <p:pickList id="originadorList" value="#{revisionCargaDatosBean.dualoriginador}" var="originador" itemLabel="#{originador}" itemValue="#{originador}"/> 		
+				<h:outputText value="#{msg['CD.mensaje8']}:"></h:outputText>
+						<p:selectOneMenu
+										value="#{revisionCargaDatosBean.tipoCruise}"
+										id="cruceros"
+										converter="omnifaces.SelectItemsConverter">
+										<f:selectItem itemLabel="#{msg['SE.mensaje13']}" itemValue="" />
+										<f:selectItems value="#{revisionCargaDatosBean.cruise}"
+                                         var="cruise" itemLabel="#{cruise.name}" itemValue="#{cruise}" />
+						</p:selectOneMenu>
+				<h:outputText value="#{msg['CD.mensaje9']}:*"></h:outputText>
+						<p:inputText id="linkmetadato" value="#{revisionCargaDatosBean.linkmetadato}"/>	
+				<h:outputText value="#{msg['CD.mensaje10']}:*"></h:outputText>
+						<p:selectOneMenu
+										required="#{revisionCargaDatosBean.camposrequeridos}"
+										value="#{revisionCargaDatosBean.tipotarifa}"
+										id="tarifas"
+										converter="omnifaces.SelectItemsConverter">
+										<f:selectItem itemLabel="#{msg['SE.mensaje13']}" itemValue="" />
+										<f:selectItems value="#{revisionCargaDatosBean.tipotarifas}"
+                                         var="tipotarifa" itemLabel="#{tipotarifa.nombreServicio}" itemValue="#{tipotarifa}" />
+						</p:selectOneMenu>
+					<h:outputText value="#{msg['CD.mensaje11']}:*"></h:outputText>
+						<p:selectOneMenu
+										required="#{revisionCargaDatosBean.camposrequeridos}"
+										value="#{revisionCargaDatosBean.tipousuarioEdi}"
+										converter="omnifaces.SelectItemsConverter"
+										id="usuarioedi">
+										<f:selectItem itemLabel="#{msg['SE.mensaje13']}" itemValue="" />
+										<f:selectItems value="#{revisionCargaDatosBean.tipousuariosEdi}"
+                                         var="tipousuarioEdi" itemLabel="#{tipousuarioEdi.usuario}" itemValue="#{tipousuarioEdi}" />
+						</p:selectOneMenu>
+					<h:outputText value="#{msg['CD.mensaje12']}:*"></h:outputText>
+						<p:selectOneMenu
+										required="#{revisionCargaDatosBean.camposrequeridos}"
+										value="#{revisionCargaDatosBean.tipousuarioRev}"
+										converter="omnifaces.SelectItemsConverter"
+										id="usuariorev">
+										<f:selectItem itemLabel="#{msg['CD.mensaje12']}" itemValue="" />
+										<f:selectItems value="#{revisionCargaDatosBean.tipousuariosRev}"
+                                         var="tipousuarioRev" itemLabel="#{tipousuarioRev.usuario}" itemValue="#{tipousuarioRev}" />
+						</p:selectOneMenu>
+						
+						<h:outputText value="#{msg['CD.mensaje13']}:"></h:outputText>
+						<p:selectOneMenu
+										required="#{revisionCargaDatosBean.camposrequeridos}"
+										value="#{revisionCargaDatosBean.tipoestadoproceso}"
+										converter="omnifaces.SelectItemsConverter"
+										id="tipoestadoproceso">
+										<f:selectItem itemLabel="#{msg['CD.mensaje13']}" itemValue="" />
+										<f:selectItems value="#{revisionCargaDatosBean.tipoestadosproceso}"
+                                         var="tipoestadoproceso" itemLabel="#{tipoestadoproceso.nombre}" itemValue="#{tipoestadoproceso}" />
+						</p:selectOneMenu>							
+                         <h:outputText value="#{msg['CD.mensaje14']}:*"></h:outputText> 
+                         <p:column colspan="2">
+                         <p:inputText id="archivodedatos" value="#{revisionCargaDatosBean.archivodedatos}"/>
+                              <p:commandButton value="#{msg['PSDV.descargar']}" type="submit" process="@this"
+									ajax="false"
+									oncomplete="PrimeFaces.monitorDownload(start, stop)"
+									actionListener="#{revisionCargaDatosBean.descargarArchivodatos()}">
+									<p:fileDownload value="#{revisionCargaDatosBean.filedescargadatos}" />
+								</p:commandButton>
+                         </p:column>	
+                         <h:outputText value="#{msg['CD.mensaje16']}:*"></h:outputText> 
+                         <p:column colspan="2">
+                         <p:inputText id="archivodemuestra" value="#{revisionCargaDatosBean.archivodemuestra}"/>
+                              <p:commandButton value="#{msg['PSDV.descargar']}" type="submit" process="@this"
+									ajax="false"
+									oncomplete="PrimeFaces.monitorDownload(start, stop)"
+									actionListener="#{revisionCargaDatosBean.descargarArchivomuestra()}">
+									<p:fileDownload value="#{revisionCargaDatosBean.filedescargamuestra}" />
+								</p:commandButton>                         
+                         </p:column>
+                        <h:outputText value="#{msg['CD.mensaje17']} (XML):*"></h:outputText> 
+                        <p:column colspan="2">
+                        <p:inputText id="archivodemetadato" value="#{revisionCargaDatosBean.archivodemetadatos}"/>
+                               <p:commandButton value="#{msg['PSDV.descargar']}" type="submit" process="@this"
+									ajax="false"
+									oncomplete="PrimeFaces.monitorDownload(start, stop)"
+									actionListener="#{revisionCargaDatosBean.descargarArchivometadato()}">
+									<p:fileDownload value="#{revisionCargaDatosBean.filedescargametadato}" />
+								</p:commandButton> 
+                        </p:column>
+	                    <h:outputText value="#{msg['REV.mensaje2']}:*"></h:outputText> 
+                        <p:inputText id="parametros" value="#{revisionCargaDatosBean.archivoparametros}"/>
+	                    <h:outputText value="#{msg['REV.mensaje3']}:*"></h:outputText> 
+                        <p:inputText id="cantidaddatos" value="#{revisionCargaDatosBean.archivocantidaddatos}"/>
+	                    <h:outputText value="#{msg['C.mensaje6']}:*"></h:outputText> 
+                        <p:inputText id="fechamin" value="#{revisionCargaDatosBean.archivofechamin}"/>
+	                    <h:outputText value="#{msg['C.mensaje7']}:*"></h:outputText> 
+                        <p:inputText id="fechamax" value="#{revisionCargaDatosBean.archivofechamax}"/>
+                        <p:commandButton value="#{msg['REV.mensaje4']}"  action="#{revisionCargaDatosBean.editarregistro()}" 
+					     disabled="#{revisionCargaDatosBean.botonenable}"   update="@form">
+					         <p:confirm header="#{msg['REV.mensaje5']}" message="#{msg['REV.mensaje6']}" icon="pi pi-info-circle"/>
+                        </p:commandButton>	
+	
+                        <p:column styleClass="ui-grid-col-12">
+						   <center>
+
+                        <p:commandButton value="#{msg['REV.mensaje7']}"  action="#{revisionCargaDatosBean.borrarregistro()}" 
+					     disabled="#{revisionCargaDatosBean.botonenable}"   update="@form">
+					         <p:confirm header="#{msg['REV.mensaje5']}" message="#{msg['REV.mensaje8']}" icon="pi pi-info-circle"/>
+                        </p:commandButton>	
+						<p:commandButton id="cancelaredi_btn" value="#{msg['SE.mensaje45']}"  var="Cancelar"
+										action="#{revisionCargaDatosBean.cancelaredicion()}" update="@form" />									
+					        </center>
+					  </p:column> 		
+				     
+		   </h:panelGrid>
+		   
+		     <p:confirmDialog global="true" showEffect="fade" hideEffect="fade" responsive="true" width="350">
+            <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no ui-button-flat"/>
+            <p:commandButton value="#{msg['AU.mensaje14']}" type="button" styleClass="ui-confirmdialog-yes" />
+        </p:confirmDialog>
+		   
+		    <p:dataTable id="conjuntodedatos" widgetVar="dtEdicion" 
+		     styleClass="myTable" 
+		     var="conjuntodatos" value="#{revisionCargaDatosBean.listaConjuntodatos}" rowKey="#{conjuntodatos.conjuntoDatosId}" 
+		     rendered="true" allowUnsorting="true" sortMode="single"
+		     rows="10"
+		     scrollable="true"
+		     scrollWidth="99%" 
+             paginator="true"
+             paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+             currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records"
+             rowsPerPageTemplate="5,10,20,{ShowAll|'All'}"
+                     >
+            <f:facet name="header">
+                            <div class="products-table-header">
+                    <h:outputLabel value="#{msg['REV.mensaje9']}"></h:outputLabel>
+
+                    <span class="filter-container ui-input-icon-left">
+                        <i class="pi pi-search"></i>
+                        <p:inputText id="globalFilter" onkeyup="PF('dtEdicion').filter()" placeholder="Buscar"/>
+                    </span>
+
+                </div>
+            
+            	
+            </f:facet>
+
+            <p:column sortBy="#{conjuntodatos.conjuntoDatosId.id}" headerText="#{msg['REV.mensaje10']} ID" filterBy="#{conjuntodatos.conjuntoDatosId.id}">
+                <h:outputText value="#{conjuntodatos.conjuntoDatosId.id}" />
+            </p:column>
+            <p:column sortBy="#{conjuntodatos.tipoConjuntoDatosId.nombre}" headerText="#{msg['REV.mensaje11']}" filterBy="#{conjuntodatos.tipoConjuntoDatosId.nombre}">
+                <h:outputText value="#{conjuntodatos.tipoConjuntoDatosId.nombre}" />
+            </p:column>
+            <p:column sortBy="#{conjuntodatos.tipoDatoId.nombre}"  headerText="#{msg['REV.mensaje12']}" filterBy="#{conjuntodatos.tipoDatoId.nombre}">
+                <h:outputText value="#{conjuntodatos.tipoDatoId.nombre}" />
+            </p:column>
+            <p:column sortBy="#{conjuntodatos.oidProyecto}"  headerText="#{msg['CD.mensaje6']}" filterBy="#{conjuntodatos.oidProyecto}">
+                <h:outputText value="#{revisionCargaDatosBean.buscaSurveyinfo(revisionCargaDatosBean.proyectos, conjuntodatos.oidProyecto).description}" />
+            </p:column>
+             <p:column sortBy="#{conjuntodatos.cantidadDatos}" headerText="#{msg['REV.mensaje13']}" filterBy="#{conjuntodatos.cantidadDatos}">
+                <h:outputText value="#{conjuntodatos.cantidadDatos}" >
+					<f:convertNumber maxFractionDigits="2" locale="en_US"/>
+				</h:outputText>
+            </p:column>
+             <p:column width="300" sortBy="#{conjuntodatos.oidVariable}" headerText="#{msg['REV.mensaje19']}" filterBy="#{conjuntodatos.oidVariable}">
+                <h:outputText value="#{conjuntodatos.oidVariable}" >
+					<f:convertNumber maxFractionDigits="2" locale="en_US"/>
+				</h:outputText>
+            </p:column>
+            <p:column sortBy="#{conjuntodatos.fechaini}" headerText="#{msg['REV.mensaje14']}" filterBy="#{conjuntodatos.fechaini}">
+                <h:outputText value="#{conjuntodatos.fechaini}" />
+            </p:column>
+            <p:column sortBy="#{conjuntodatos.fechafin}" headerText="#{msg['REV.mensaje15']}" filterBy="#{conjuntodatos.fechafin}">
+                <h:outputText value="#{conjuntodatos.fechafin}" />
+            </p:column>
+            <p:column sortBy="#{conjuntodatos.estadoProcesoCargaDatosId.nombre}" headerText="#{msg['REV.mensaje16']}" filterBy="#{conjuntodatos.estadoProcesoCargaDatosId.nombre}">
+                <h:outputText value="#{conjuntodatos.estadoProcesoCargaDatosId.nombre}" />
+            </p:column>
+            <p:column sortBy="#{conjuntodatos.originadorDatoId}" headerText="#{msg['REV.mensaje17']}" filterBy="#{conjuntodatos.originadorDatoId}">
+                <h:outputText value="#{conjuntodatos.originadorDatoId}" />
+            </p:column>            
+            <p:column>
+              <p:commandButton value="#{msg['REV.mensaje18']}"   ajax="false" action="#{revisionCargaDatosBean.cargaRegistro(conjuntodatos)}" />
+        </p:column>
+        </p:dataTable>        
+         <p:column styleClass="ui-grid-col-12">
+		  <center>
+            <p:commandButton id="cancelar_btn" value="#{msg['SE.mensaje45']}"  var="Cancelar"
+				action="#{revisionCargaDatosBean.cancelar()}" />									
+		 </center>
+		</p:column> 
+		   
+		   
+
+				</h:form>
+		</h:body>
+
+	</ui:define>
+</ui:composition>

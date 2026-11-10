@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+   <url>
+
+      <loc>https://cecoldo-dimar.hub.arcgis.com/</loc>
+
+      <lastmod>2022-08-12</lastmod>
+
+      <changefreq>monthly</changefreq>
+
+      <priority>0.8</priority>
+
+   </url>
+
+   <url>
+
+      <loc>https://cecoldo.dimar.mil.co/datosDimar/sigSDGOAbiertos/index.xhtml</loc>
+      <lastmod>2022-08-12</lastmod>
+
+      <changefreq>weekly</changefreq>
+
+   </url>
+
+   <url>
+
+      <loc>https://cecoldo.dimar.mil.co/datosDimar/sigSDGOConDatos/index.xhtml</loc>
+
+      <lastmod>2022-08-12</lastmod>
+
+      <changefreq>weekly</changefreq>
+
+   </url>
+
+</urlset>

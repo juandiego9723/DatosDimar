@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	template="/pages/template/templateInicio.xhtml">
+	<ui:define name="body">
+		<h:head>
+<title>CSS Template</title>
+<link rel="stylesheet" href="https://cecoldo.dimar.mil.co/datosDimar/pages/themedimar.css" />
+    	    <link rel="stylesheet" media="all" href="https://cecoldo.dimar.mil.co/web/sites/default/files/css/css_WXskbdquPSoqkR8B4aW7rQe8LMZSa9tFzjCFEGloYTA.css" />
+    	    <link rel="stylesheet" media="all" href="https://cecoldo.dimar.mil.co/web/sites/default/files/css/css_2kvns-qj72UyVNwSdkMhO3fPU1t6ecngPl7ENdNRu9U.css" />
+            <link rel="stylesheet" media="all" href="https://cecoldo.dimar.mil.co/web/sites/default/files/css/css_GxDCaQKohfMpNPMIMF7YsCw9LNnv6YpJPz0CbV54c0c.css" />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+		</h:head>
+		<h:body >
+
+			<h:form id="formini" target="_blank">
+			<input type="hidden" name="csrf" value="true"></input>
+
+				<p:growl id="growl" life="2000" />
+				<p:remoteCommand id="remote2" name="pasalista"
+					actionListener="#{conjuntoDatosProcesoCargaBean.idsDatos}"
+					ajax="false" />
+
+<h:panelGrid id="containerGrid" columns="1" cellpadding="10" width="100%">
+						<p:panelGrid class="panelgrid1" columns="2" cellpadding="10" >
+							<p:link id="usuario" href="/datosDimar/pages/seguridad/login.xhtml">
+								<i class="pi pi-user" >
+								<h:outputText class="outputText1" value="Usuarios registrados"  ></h:outputText>
+								</i>
+							</p:link>					
+						</p:panelGrid>
+</h:panelGrid>
+
+			</h:form>
+			<section>
+				<div class="embed-container">
+					<iframe width="500" height="500" frameborder="0" scrolling="yes"
+						marginheight="0" marginwidth="0" title="Sinkhole_map"
+						src="IndexCondatos.html"></iframe>
+				</div>
+			</section>
+
+
+		</h:body>
+	</ui:define>
+</ui:composition>
+

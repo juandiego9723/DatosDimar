@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE urlrewrite PUBLIC "-//tuckey.org//DTD UrlRewrite 4.0//EN"
+        "http://www.tuckey.org/res/dtds/urlrewrite4.0.dtd">
+
+<!-- Configuration file for UrlRewriteFilter http://www.tuckey.org/urlrewrite/ -->
+
+<urlrewrite>
+
+    <rule>
+        <from>^/carga$</from>
+        <to type="redirect">/pages/cargaDatos/cargainicialdatos.xhtml</to>
+    </rule>
+    
+        <rule>
+        <from>^/images/dimarBanner.jpg;jsessionid$</from>
+        <to type="redirect">/pages/seguridad/login.xhtml</to>
+    </rule>
+    
+       <rule>
+        <from>/datosDimar$</from>
+        <to> /Dimar.html</to>
+    </rule>
+
+</urlrewrite>

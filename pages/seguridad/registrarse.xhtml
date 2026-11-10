@@ -1,0 +1,324 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	template="/pages/template/templateInicio2.xhtml">
+	<ui:define name="body">
+
+		<h:head>
+<!-- 			<link href="/resources/theme.css" rel="stylesheet" type="text/css" /> -->
+		</h:head>
+		<h:form requireSSL="true" id="form1">
+		<input type="hidden" name="csrf" value="true"></input>
+			<p:messages id="messages" showDetail="false" autoUpdate="true"
+				closable="true" />
+		</h:form>
+		<h:body>
+			<h:messages id="mensaje" autoUpdate="true" />
+			<p:panel header="#{bienvenida.bienvenida}" style=" width: 60%;"
+				id="panelResgistrase">
+				<p:row id="my-row-id" styleClass="my-heading-row"
+					style="font-weight:bold" >
+             		<p:outputLabel value="#{msg['regis.llenarCampos']}"> </p:outputLabel>
+				</p:row>
+				<br></br>
+
+				<h:form  requireSSL="true" id="form">
+				<input type="hidden" name="csrf" value="true"></input>
+
+					<h:panelGrid style=" width:100%;">
+						<p:outputLabel for="personatipo" value="#{msg['regis.tipoPersona']}" />
+						<br></br>
+						<p:selectOneMenu id="personatipo"
+							value="#{registrarseBeean.personaTipo.id}" style="width:100%;"
+							required="true" update="panelpersona">
+							<f:selectItem itemLabel="#{msg['regis.selecTipoPer']}"
+								itemValue="" noSelectionOption="true" />
+							<f:selectItems value="#{registrarseBeean.listaPersonaTipo}"
+								var="g" itemLabel="#{g.nombre}" itemValue="#{g.id}" />
+							<p:ajax event="change"
+								listener="#{registrarseBeean.cambioDocumento()}" update="form2"></p:ajax>
+
+						</p:selectOneMenu>
+
+						<h:messages for="personatipo" />
+
+
+					</h:panelGrid>
+				</h:form>
+
+				<h:form requireSSL="true" id="form2">
+				<input type="hidden" name="csrf" value="true"></input>
+
+					<p:panel header="#{msg['regis.datPer']}" style=" width: 95%;">
+						<p:panelGrid columns="2" id="panelpersona"
+							styleClass="ui-panelgrid-blank ui-fluid,panelGridCenter"
+							style=" background-color:transparent;"
+							rendered="#{registrarseBeean.panelpersona}">
+
+							<h:panelGrid style=" width:100%;"
+								rendered="#{registrarseBeean.cedula}">
+								<p:outputLabel for="tipodoc" value="#{msg['regis.tipoIdent']}" />
+								<br></br>
+								<p:selectOneMenu id="tipodoc"
+									value="#{registrarseBeean.tipoDocumento.id}"
+									style="width:100%;" required="true">
+									<f:selectItem itemLabel="#{msg['RG.mensaje3']}"
+										itemValue="" noSelectionOption="true" />
+									<f:selectItems value="#{registrarseBeean.listaTipoDocumento}"
+										var="g" itemLabel="#{g.nombre}" itemValue="#{g.id}" />
+								</p:selectOneMenu>
+								<h:messages for="tipodoc" />
+							</h:panelGrid>
+
+
+
+							<h:panelGrid style=" width:100%;  "
+								rendered="#{registrarseBeean.ncedula}">
+								<p:outputLabel for="cedula" value="#{msg['regis.numIdent']}" />
+								<br></br>
+								<p:inputText id="cedula" style="width:100%;"
+									value="#{registrarseBeean.persona.numeroDocumento}"
+									required="true" />
+								<h:messages for="cedula" />
+							</h:panelGrid>
+
+							<h:panelGrid style=" width:100%;"
+								rendered="#{registrarseBeean.nombre1}">
+								<p:outputLabel for="nombre1" value="#{msg['regis.primerNombre']}" />
+								<br></br>
+								<p:inputText id="nombre1"
+									value="#{registrarseBeean.persona.primerNombre}"
+									required="true" style="width:100%;" />
+								<h:messages for="nombre1" />
+							</h:panelGrid>
+
+							<h:panelGrid style=" width:100%;"
+								rendered="#{registrarseBeean.nombre2 }">
+								<p:outputLabel for="nombre2" value="#{msg['regis.segundoNombre']}" />
+								<br></br>
+								<p:inputText id="nombre2"
+									value="#{registrarseBeean.persona.segundoNombre}"
+									required="false" style="width:100%;" />
+								<h:messages for="nombre2" />
+							</h:panelGrid>
+
+							<h:panelGrid style=" width:100%;"
+								rendered="#{registrarseBeean.apellido1}">
+								<p:outputLabel for="apellido1" value="#{msg['regis.primerApellido']}"
+									style="width:100%;" />
+								<br></br>
+								<p:inputText id="apellido1"
+									value="#{registrarseBeean.persona.primerApellido}"
+									required="true" style="width:100%;" />
+								<h:messages for="apellido1" />
+
+							</h:panelGrid>
+
+							<h:panelGrid style=" width:100%;"
+								rendered="#{registrarseBeean.apellido2}">
+								<p:outputLabel for="apellido2" value="#{msg['regis.segundoApellido']}"
+									style="width:100%;" />
+								<br></br>
+								<p:inputText id="apellido2"
+									value="#{registrarseBeean.persona.segundoApellido}"
+									required="true" style="width:100%;" />
+								<h:messages for="apellido2" />
+							</h:panelGrid>
+
+							<h:panelGrid style=" width:100%;"
+								rendered="#{registrarseBeean.fechaN}">
+								<p:outputLabel for="fecha" value="#{msg['regis.fechaNacimiento']}" />
+								<br></br>
+								<p:calendar id="fecha"
+									value="#{registrarseBeean.persona.fechaNacimiento}"
+									required="true" style="width:100%;" />
+								<h:messages for="fecha" />
+							</h:panelGrid>
+
+							<h:panelGrid style=" width:100%;"
+								rendered="#{registrarseBeean.edad}">
+								<p:outputLabel for="rangoedad" value="rando de edad" />
+								<br></br>
+								<p:selectOneMenu id="rangoedad"
+									value="#{registrarseBeean.rangoEdad.id}" style="width:100%;"
+									required="true">
+									<f:selectItem itemLabel="Seleccione rango de edad" itemValue=""
+										noSelectionOption="true" />
+									<f:selectItems value="#{registrarseBeean.listaRangoEdad}"
+										var="g" itemLabel="#{g.nombre}" itemValue="#{g.id}" />
+								</p:selectOneMenu>
+								<h:messages for="rangoedad" />
+							</h:panelGrid>
+
+							<h:panelGrid style=" width:100%;"
+								rendered="#{registrarseBeean.gene}">
+								<p:outputLabel for="genero" value="#{msg['regis.genero']}" />
+								<br></br>
+								<p:selectOneMenu id="genero"
+									value="#{registrarseBeean.genero.id}" tyle="width:100%;"
+									required="true">
+									<f:selectItem itemLabel="Seleccione un genero" itemValue=""
+										noSelectionOption="true" />
+									<f:selectItems value="#{registrarseBeean.listaGenero}" var="g"
+										itemLabel="#{g.nombre}" itemValue="#{g.id}" />
+								</p:selectOneMenu>
+								<h:messages for="genero" />
+							</h:panelGrid>
+
+							<h:panelGrid style=" width:100%;"
+								rendered="#{registrarseBeean.nivel}">
+								<p:outputLabel for="nivelesco" value="#{msg['regis.nivelEscolaridad']}" />
+								<br></br>
+								<p:selectOneMenu id="nivelesco"
+									value="#{registrarseBeean.nivelEscolaridad.id}" required="true"
+									style="width:100%;">
+									<f:selectItem itemLabel="#{msg['RG.mensaje19']}"
+										itemValue="" noSelectionOption="true" />
+									<f:selectItems
+										value="#{registrarseBeean.listaNivelEscolaridad}" var="g"
+										itemLabel="#{g.nombre}" itemValue="#{g.id}" />
+								</p:selectOneMenu>
+								<h:messages for="nivelesco" />
+							</h:panelGrid>
+
+
+
+							<h:panelGrid style=" width:100%;"
+								rendered="#{registrarseBeean.razon}">
+								<p:outputLabel for="razon" value="#{msg['regis.razonSocial']}" />
+								<br></br>
+								<p:inputText id="razon"
+									value="#{registrarseBeean.persona.razonSocial}" required="true"
+									style="width:100%;" />
+								<h:messages for="razon" />
+							</h:panelGrid>
+
+							<h:panelGrid style=" width:100%;"
+								rendered="#{registrarseBeean.dire}">
+								<p:outputLabel for="direccion" value="#{msg['regis.direccion']}" />
+								<br></br>
+								<p:inputText id="direccion"
+									value="#{registrarseBeean.persona.direccion}" required="true"
+									style="width:100%;" />
+								<h:messages for="direccion" />
+							</h:panelGrid>
+
+							<h:panelGrid style=" width:100%;"
+								rendered="#{registrarseBeean.correo}">
+								<p:outputLabel for="correo" value="#{msg['regis.correo']}" />
+								<br></br>
+								<p:inputText id="correo"
+									value="#{registrarseBeean.persona.correoElectronico}"
+									required="true" style="width:100%;" />
+							</h:panelGrid>
+
+							<h:panelGrid style=" width:100%;"
+								rendered="#{registrarseBeean.tel}">
+								<p:outputLabel for="telefono" value="#{msg['regis.telefono']}" />
+								<br></br>
+								<p:inputText id="telefono"
+									value="#{registrarseBeean.persona.telefono}"
+									style="width:100%;" required="true" />
+								<h:messages for="telefono" />
+							</h:panelGrid>
+
+							<h:panelGrid style=" width:100%;"
+								rendered="#{registrarseBeean.ciu}">
+								<p:outputLabel for="Ciudad" value="#{msg['regis.ciudad']}" />
+								<br></br>
+								<p:selectOneMenu id="Ciudad"
+									value="#{registrarseBeean.ciudad.id}" style="width:100%;"
+									required="true">
+									<f:selectItem itemLabel="{msg['SE.mensaje17']}" itemValue=""
+										noSelectionOption="true" />
+									<f:selectItems value="#{registrarseBeean.listaCiudad}" var="g"
+										itemLabel="#{g.nombre}" itemValue="#{g.id}" />
+								</p:selectOneMenu>
+								<h:messages for="Ciudad" />
+							</h:panelGrid>
+
+
+						</p:panelGrid>
+					</p:panel>
+
+					<p:panel header="#{msg['regis.datosUsuario']}" style=" width: 80%;">
+						<p:panelGrid columns="2" id="panelUsuario"
+							styleClass="ui-panelgrid-blank ui-fluid,panelGridCenter"
+							rendered="#{registrarseBeean.panelUsuario}"
+							style=" background-color:transparent;">
+							<h:panelGrid style=" width:100%;">
+
+								<p:outputLabel value="#{msg['regis.usuario']}" />
+								<br></br>
+								<p:inputText id="username"
+									value="#{registrarseBeean.usuario.usuario}" style="width:100%;"
+									required="true" />
+								<h:messages for="username" />
+							</h:panelGrid>
+							<h:panelGrid style=" width:100%;">
+
+								<p:outputLabel for="password" value="#{msg['regis.contrasena']}" />
+								<br></br>
+								<p:password id="password"
+									value="#{registrarseBeean.usuario.password}" match="password2"
+									feedback="true" validatorMessage="#{msg['regis.m4contrasena']}"
+									weakLabel="#{msg['regis.m1contrasena']}" strongLabel="#{msg['regis.m3contrasena']}" goodLabel="#{msg['regis.m2contrasena']}"
+									required="true" promptLabel="#{msg['regis.mcontrasena']}"
+									style="width:100%;" />
+								<h:messages for="password" />
+							</h:panelGrid>
+							<h:panelGrid style=" width:100%;">
+
+								<p:outputLabel for="password2" value="#{msg['regis.contrasena2']}" />
+								<br></br>
+								<p:password id="password2" style="width:100%;" required="true" />
+								<h:messages for="password2" />
+							</h:panelGrid>
+
+							<h:panelGrid style=" width:100%;">
+								<p:outputLabel value="#{msg['regis.tipoUsuario']}" />
+								<br></br>
+								<p:selectOneMenu id="tipousu"
+									value="#{registrarseBeean.usuarioTipo.id}" style="width:100%;"
+									disabled="true">
+
+									<f:selectItem itemLabel="#{msg['RG.mensaje18']}" itemValue="2" />
+								</p:selectOneMenu>
+							</h:panelGrid>
+
+
+
+
+						</p:panelGrid>
+					</p:panel>
+					<p:row>
+						<p:column styleClass="ui-grid-col-12">
+							<center>
+								<p:commandButton id="login_btn" value="#{msg['regis.registrarse']}"
+									styleClass="p-mr-2" style="width: auto"
+									action="#{registrarseBeean.enviar}" var="loginBean"
+									update="panelResgistrase" />
+								&nbsp; &nbsp; &nbsp;
+								<p:commandButton id="cancelar_btn" value="#{msg['regis.cancelar']}"
+									action="#{registrarseBeean.cancelar}" />
+
+							</center>
+						</p:column>
+
+					</p:row>
+				</h:form>
+			</p:panel>
+<!--         <footer> -->
+<!-- 				<a href="https://www.dimar.mil.co/">Dimar: Portal Marítimo de -->
+<!-- 					Colombia</a> -->
+<!-- 				<div> -->
+<!-- 					<ui:include src="/pages/template/piePagina.xhtml" /> -->
+<!-- 				</div> -->
+<!-- 			</footer> -->
+		</h:body>
+
+	</ui:define>
+</ui:composition>

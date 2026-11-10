@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<faces-config xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_3.xsd"
+	version="2.3">
+	<application>
+		<el-resolver>org.springframework.web.jsf.el.SpringBeanFacesELResolver</el-resolver>
+	</application>
+	<lifecycle>
+		<phase-listener>datosDimar.util.AutorizacionListener</phase-listener>
+	</lifecycle>
+	<application>
+		<locale-config>
+			<default-locale>es</default-locale>
+			<supported-locale>en</supported-locale>
+		</locale-config>
+		<resource-bundle>
+			<base-name>org.dimar.idiomas.mensajes</base-name>
+			<var>msg</var>
+		</resource-bundle>
+	</application>
+	<navigation-rule>
+		<from-view-id>/pages/seguridad/index.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>login</from-outcome>
+			<to-view-id>/pages/seguridad/login.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>return</from-outcome>
+			<to-view-id>/pages/seguridad/login.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>/pages/seguridad/login.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>failure</from-outcome>
+			<to-view-id>/pages/seguridad/login.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>registrar</from-outcome>
+			<to-view-id>/pages/seguridad/registrarse.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>contrasena</from-outcome>
+			<to-view-id>/pages/seguridad/contrasena.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/success.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>signup</from-outcome>
+			<to-view-id>/signup.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>panel</from-outcome>
+			<to-view-id>/pages/administracion/panelAdministracion.xhtml</to-view-id>
+		</navigation-case>
+				<navigation-case>
+			<from-outcome>solicitarconsultaventa</from-outcome>
+			<to-view-id>/pages/solicitudes/solicitarConsultaDatosVenta.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<from-view-id>/pages/administracion/panelAdministracion.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>descargaDatos</from-outcome>
+			<to-view-id>/pages/solicitudes/solicitarDescargaDatosVenta.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<from-view-id>/signup.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>return</from-outcome>
+			<to-view-id>/index.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>/success.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>page</from-outcome>
+			<to-view-id>/pages/solicitudesEspeciales/solicitudExterna.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>/pages/solicitudesEspeciales/solicitudExterna.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>return</from-outcome>
+			<to-view-id>/success.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>/success.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>page</from-outcome>
+			<to-view-id>/pages/solicitudesEspeciales/solicitudInterna.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>/pages/solicitudesEspeciales/solicitudInterna.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>return</from-outcome>
+			<to-view-id>/success.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+<!-- 	<protected-views> -->
+<!--  		<url-pattern>/pages/seguridad/login.xhtml</url-pattern> -->
+<!--  		<url-pattern>/login.faces</url-pattern>  -->
+<!-- 		<url-pattern>/pages/seguridad/registrarse.xhtml.xhtml</url-pattern> -->
+<!-- 		<url-pattern>/pages/seguridad/Recuperarpass.xhtml</url-pattern> -->
+<!-- 		<url-pattern>/pages/seguridad/contrasena.xhtml</url-pattern> -->
+<!-- 		<url-pattern>/pages/seguridad/login.xhtml?faces-redirect=true</url-pattern> -->
+<!-- 	</protected-views> -->
+</faces-config>

@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	template="/pages/template/templateInicio2.xhtml">
+	<ui:define name="body">
+
+		<h:head>
+<!-- 			<link href="/resources/theme.css" rel="stylesheet" type="text/css" /> -->
+		</h:head>
+		<h:body>
+			<script type="text/javascript">
+				function handleLoginRequest(xhr, status, args) {
+					if (args.validationFailed || !args.loggedIn) {
+						jQuery('#form').effect("shake", {
+							times : 3
+						}, 100);
+					} else {
+						PF('dlg').hide();
+						$('#loginLink').fadeOut();
+					}
+				}
+			</script>
+			<h:messages id="mensaje" autoUpdate="true" />
+			<h:outputLabel value="#{bienvenida.bienvenida}" />
+			<h:form id="form">
+		
+
+					<p:panel header="Recupereación de contraseña" footer="" id="panelPass"
+						style="width:50%;">
+						<p:outputPanel> Digite los datos para restauración de la contraseña: </p:outputPanel>
+						<br></br>
+						<br></br>
+						<p:outputLabel for="username"  value="Usuario" />&nbsp; &nbsp; &nbsp;
+						<p:inputText id="username" value="#{passwordBean.usuario.usuario}" required="true" />
+						<h:messages for="username" />
+						<br></br>
+						<br></br>
+						<p:outputLabel for="password"  value="Nueva contraseña" />&nbsp; &nbsp; &nbsp;
+						<p:password id="password" value="#{passwordBean.usuario.password}" required="true" />
+						<h:messages for="password" />
+						<br></br>
+						<br></br>
+						<p:outputLabel for="passwordconfir"  value="confirme la contraseña" />&nbsp; &nbsp; &nbsp;
+						<p:password id="passwordconfir" value="#{passwordBean.confipass}" required="true" />
+						<h:messages for="passwordconfir" />
+						<br></br>
+						<br></br>
+						<p:commandButton id="login_btn" value="Ingresar"
+							styleClass="p-mr-2" style="width: auto"
+							action="#{passwordBean.recuperar}" var="loginBean" update="panelPass"  />&nbsp; &nbsp; &nbsp;
+
+						<p:commandButton id="cancelar_btn" value="Cancelar"
+							action="#{passwordBean.cancelar}" />
+					</p:panel>
+
+					
+				
+			</h:form>
+			        <footer>
+				<a href="https://www.dimar.mil.co/">Dimar: Portal Marítimo de
+					Colombia</a>
+				<div>
+					<ui:include src="/pages/template/piePagina.xhtml" />
+				</div>
+			</footer>
+		</h:body>
+
+	</ui:define>
+</ui:composition>

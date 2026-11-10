@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+	<p:panel header="Descarga de Datos" styleClass="sub-header-panel" />
+	<p:panel>
+		<p:separator />
+		<p:dataTable id="descargas" paginator="true" paginatorPosition="bottom"
+			widgetVar="dtWidgetVar" rows="10" var="descargas" filteredValue="#{reportesBean.filtrodescargas}"
+			value="#{reportesBean.listaSolicitados}" rowKey="#{descargas.id}"
+			emptyMessage="No existen registros">
+			<p:column headerText="ID" sortBy="#{descargas.id}" filterBy="#{descargas.id}" >
+				<h:outputText value="#{descargas.id}" />
+			</p:column>
+			<p:column headerText="Tipo de Dato" sortBy="#{descargas.tipoDatoId.nombre}" filterBy="#{descargas.tipoDatoId.nombre}" >
+				<h:outputText value="#{descargas.tipoDatoId.nombre}" />
+			</p:column>
+			<p:column headerText="Conjunto" sortBy="#{descargas.conjuntoDatosProcesoCargaId.id}" filterBy="#{descargas.conjuntoDatosProcesoCargaId.id}">
+				<h:outputText
+					value="#{descargas.conjuntoDatosProcesoCargaId.id}" />
+			</p:column>
+			<p:column headerText="Variable" sortBy="#{descargas.conjuntoDatosProcesoCargaId.oidVariable}" filterBy="#{descargas.conjuntoDatosProcesoCargaId.oidVariable}">
+				<h:outputText
+					value="#{descargas.conjuntoDatosProcesoCargaId.oidVariable}" />
+			</p:column>
+			<p:column headerText="Cantidad de Datos" sortBy="#{descargas.conjuntoDatosProcesoCargaId.cantidadDatos}" filterBy="#{descargas.conjuntoDatosProcesoCargaId.cantidadDatos}">
+				<h:outputText
+					value="#{descargas.conjuntoDatosProcesoCargaId.cantidadDatos}" />
+			</p:column>
+
+            <p:columnGroup type="footer">
+                <p:row>
+                    <p:column colspan="3" style="text-align:right" footerText="Total descargas:"/>
+                    <p:column>
+                        <f:facet name="footer">
+                            <h:outputText value="#{reportesBean.totaldescargas}">
+<!--                               <f:convertNumber type="currency" currencySymbol=""/> -->
+                            </h:outputText>
+                        </f:facet>
+                    </p:column>
+                </p:row>
+                   <p:row>
+                    <p:column colspan="3" style="text-align:right" footerText="Total datos descargados:"/>
+                    <p:column>
+                        <f:facet name="footer">
+                            <h:outputText value="#{reportesBean.totaldatosdescarga}">
+<!--                               <f:convertNumber type="currency" currencySymbol=""/> -->
+                            </h:outputText>
+                        </f:facet>
+                    </p:column>
+                </p:row>
+            </p:columnGroup>
+
+		</p:dataTable>
+		<p:panel>
+
+<!--               <p:commandButton value="Descargar PDF" styleClass="mr-2 mb-2" > -->
+<!--                   <p:dataExporter type="pdf" target="descargas" fileName="repdescargas"/> -->
+<!--               </p:commandButton> -->
+              
+              <p:commandButton action="#{reportesBean.descargaDescargas()}"
+				value="Descargar PDF de Reporte" ajax="false">
+			</p:commandButton>
+
+		</p:panel>
+	</p:panel>
+</ui:composition>

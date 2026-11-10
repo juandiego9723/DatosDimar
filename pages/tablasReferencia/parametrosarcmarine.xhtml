@@ -1,0 +1,151 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	template="/pages/template/templateInicio.xhtml">
+	<ui:define name="body">
+
+		<h:head>
+<!-- 			<link href="/resources/theme.css" rel="stylesheet" type="text/css" /> -->
+			<meta charset="utf-8" name="viewport"
+				content="width=device-width, initial-scale=1"
+				http-equiv="X-UA-Conpatible" />
+		</h:head>
+		<h:form id="form1">
+			<p:messages id="messages" showDetail="false" autoUpdate="true"
+				closable="true" />
+		</h:form>
+		<h:body>
+			<h:form>
+				<p:commandButton value="#{msg['PAR.mensaje1']}"
+					actionListener="#{parameterBean.limpiarParameter()}"
+					oncomplete="PF('dialogoAgregar').show();" update=":formAgregar" />
+				<p:separator />
+			</h:form>
+
+			<h:form id="formListado">
+				<p:dataTable id="tabla" paginator="true" paginatorPosition="bottom"
+					rows="10" var="parameter" value="#{parameterBean.lista}"
+					emptyMessage="#{msg['AU.mensaje1']}">
+					<p:column headerText="ID">
+						<h:outputText value="#{parameter.parameterID}" />
+					</p:column>
+					<p:column headerText="#{msg['R.mensaje5']}">
+						<h:outputText value="#{parameter.name}" />
+					</p:column>
+					<p:column headerText="#{msg['C.mensaje3']}">
+						<h:outputText value="#{parameter.description}" />
+					</p:column>
+					<p:column headerText="#{msg['PAR.mensaje2']}">
+						<h:outputText value="#{parameter.quantity}" />
+					</p:column>
+					<p:column headerText="#{msg['PAR.mensaje3']}">
+						<h:outputText value="#{parameter.unit}" />
+					</p:column>
+					<p:column headerText="#{msg['PAR.mensaje4']}">
+						<h:outputText value="#{parameter.significantDigits}" />
+					</p:column>
+
+
+					<p:column headerText="#{msg['AU.mensaje8']}" style="text-align: center">
+						<p:commandButton icon="ui-icon-pencil" title="#{msg['AU.mensaje8']}"
+							oncomplete="PF('dialogoModificar').show();"
+							update=":formModificar">
+							<f:setPropertyActionListener target="#{parameterBean.parameter}"
+								value="#{parameter}" />
+						</p:commandButton>
+					</p:column>
+					<p:column headerText="#{msg['AU.mensaje10']}" style="text-align: center">
+						<p:commandButton icon="ui-icon-trash" title="#{msg['AU.mensaje10']}"
+							oncomplete="PF('dialogoEliminar').show();" update=":formEliminar">
+							<f:setPropertyActionListener target="#{parameterBean.parameter}"
+								value="#{parameter}" />
+						</p:commandButton>
+					</p:column>
+				</p:dataTable>
+				<h:panelGrid id="containerGrid" columns="1" cellpadding="10"
+					width="100%">
+					<p:panelGrid columns="2" cellpadding="10" style="float: right;">
+						<p:commandButton id="btn_cr" value="#{msg['AU.mensaje11']}" ajax="false"
+							action="/pages/administracion/panelArcmarine.xhtml?faces-redirect=true">
+						</p:commandButton>
+					</p:panelGrid>
+				</h:panelGrid>
+			</h:form>
+
+
+			<h:form id="formAgregar">
+				<p:dialog id="dlgAgregar" header="#{msg['PAR.mensaje1']}"
+					widgetVar="dialogoAgregar" resizable="false" showEffect="fade"
+					hideEffect="explode" modal="true">
+					<p:panelGrid columns="2" style="margin: 0 auto;">
+					    <p:outputLabel value="#{msg['PAR.mensaje5']} ID:" />
+						<p:inputText value="#{parameterBean.parameter.parameterID}" />
+						<p:outputLabel value="#{msg['R.mensaje5']}:" />
+						<p:inputText value="#{parameterBean.parameter.name}" />
+						<p:outputLabel value="#{msg['C.mensaje3']}:" />
+						<p:inputText value="#{parameterBean.parameter.description}" />
+						<p:outputLabel value="#{msg['PAR.mensaje2']}:" />
+						<p:inputNumber value="#{parameterBean.parameter.quantity}" />
+						<p:outputLabel value="#{msg['PAR.mensaje3']}:" />
+						<p:inputText value="#{parameterBean.parameter.unit}" />
+						<p:outputLabel value="#{msg['PAR.mensaje4']}:" />
+						<p:inputNumber
+							value="#{parameterBean.parameter.significantDigits}" />
+					</p:panelGrid>
+					<p:commandButton value="#{msg['R.mensaje2']}"
+						actionListener="#{parameterBean.agregarParameter()}"
+						update=":formListado:tabla"
+						oncomplete="PF('dialogoAgregar').hide();" />
+					<p:commandButton value="#{msg['SE.mensaje45']}"
+						onclick="PF('dialogoAgregar').hide();" />
+				</p:dialog>
+			</h:form>
+
+			<h:form id="formModificar">
+				<p:dialog id="dlgModificar" header="#{msg['PAR.mensaje6']}"
+					widgetVar="dialogoModificar" resizable="false" showEffect="fade"
+					hideEffect="explode" modal="true">
+					<p:panelGrid columns="2" style="margin: 0 auto;">
+					     <p:outputLabel value="#{msg['PAR.mensaje5']} ID:" />
+						<p:inputText value="#{parameterBean.parameter.parameterID}" />
+						<p:outputLabel value="#{msg['R.mensaje5']}:" />
+						<p:inputText value="#{parameterBean.parameter.name}" />
+						<p:outputLabel value="#{msg['C.mensaje3']}:" />
+						<p:inputText value="#{parameterBean.parameter.description}" />
+						<p:outputLabel value="#{msg['PAR.mensaje2']}:" />
+						<p:inputNumber value="#{parameterBean.parameter.quantity}" />
+						<p:outputLabel value="#{msg['PAR.mensaje3']}:" />
+						<p:inputText value="#{parameterBean.parameter.unit}" />
+						<p:outputLabel value="#{msg['PAR.mensaje4']}:" />
+						<p:inputNumber
+							value="#{parameterBean.parameter.significantDigits}" />
+					</p:panelGrid>
+					<p:commandButton value="#{msg['R.mensaje2']}"
+						actionListener="#{parameterBean.modificarParameter()}"
+						update=":formListado:tabla"
+						oncomplete="PF('dialogoModificar').hide();" />
+					<p:commandButton value="#{msg['SE.mensaje45']}"
+						onclick="PF('dialogoModificar').hide();" />
+				</p:dialog>
+			</h:form>
+
+			<h:form id="formEliminar">
+				<p:dialog id="dlgEliminar" header="#{msg['PAR.mensaje7']}"
+					widgetVar="dialogoEliminar" resizable="false" showEffect="fade"
+					hideEffect="explode" modal="true">
+					<h:outputText value="#{msg['R.mensaje7']}" />
+					<p:commandButton value="#{msg['AU.mensaje14']}"
+						actionListener="#{parameterBean.eliminarParameter()}"
+						update=":formListado:tabla"
+						oncomplete="PF('dialogoEliminar').hide();" />
+					<p:commandButton value="No" onclick="PF('dialogoEliminar').hide();" />
+				</p:dialog>
+			</h:form>
+
+		</h:body>
+
+	</ui:define>
+</ui:composition>

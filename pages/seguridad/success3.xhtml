@@ -1,0 +1,151 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	template="/pages/template/templateInicio.xhtml">
+	<ui:define name="body">
+	
+	
+    <h:head>
+        <title>Success</title>
+       <h:outputStylesheet name="primeicons/primeicons.css" library="primefaces"/>
+
+    </h:head>
+    <h:body>
+    <div style="text-align: center;margin-top: 50px">Ha ingresado Exitosamente al Portal</div>
+<div class="sidenavbar">
+      <div class="sidebar-header">
+        <h3 class="brand">
+          <span class="ti-unlink"></span><span>Seleccione</span>
+        </h3>
+        <label for="sidenavbar-toggle" class="ti-menu-alt"></label>
+      </div>
+<div class="sidebar-menu">
+<div class="card">
+    <h:form>
+    	        <p:megaMenu orientation="vertical" autoDisplay="false">
+            <p:submenu label="Administracion">
+                <p:column>
+                    <p:submenu label="Parametros">
+                    	<p:menuitem value="  Ir a" url="../datosDimar/pages/listados.xhtml" update="messages" ajax="false" icon="pi pi-save"/>
+                        <p:menuitem value="Tipo de Dato"/>
+                        <p:menuitem value="Tipo de Documento"/>
+                        <p:menuitem value="Tipo de Respuesta"/>
+                        <p:menuitem value="Tipo de Seleccion Geográfica"/>
+                        <p:menuitem value="Tipo Persona"/>
+                        <p:menuitem value="Genero"/>
+                        <p:menuitem value="Finalidad"/>
+                    </p:submenu>
+                    </p:column>
+                  <p:column>
+                    <p:submenu label="Seguridad">
+                        <p:menuitem value="Usuarios"/>
+                        <p:menuitem value="Rol"/>
+                        <p:menuitem value="Tipo Usuario"/>
+                    </p:submenu>
+                    <p:submenu label="Ubicacion">
+                        <p:menuitem value="Pais"/>
+                        <p:menuitem value="Departamento"/>
+                        <p:menuitem value="Ciudad"/>
+                    </p:submenu>
+                </p:column>
+            </p:submenu>
+
+            <p:submenu label="Solicitudes">
+
+                <p:column>
+                    <p:submenu label="User 1">
+                        <p:menuitem value="User 1.1"/>
+                        <p:menuitem value="User 1.2" url="#"/>
+                    </p:submenu>
+                    <p:submenu label="User 2">
+                        <p:menuitem value="User 2.1" url="#"/>
+                        <p:menuitem value="User 2.2" url="#"/>
+                    </p:submenu>
+                </p:column>
+
+                <p:column>
+                    <p:submenu label="User 3">
+                        <p:menuitem value="User 3.1" url="#"/>
+                        <p:menuitem value="User 3.2" url="#"/>
+                    </p:submenu>
+                    <p:submenu label="User 4">
+                        <p:menuitem value="User 4.1" url="#"/>
+                        <p:menuitem value="User 4.2" url="#"/>
+                    </p:submenu>
+                </p:column>
+                <p:column>
+                    <p:submenu label="User 5">
+                        <p:menuitem value="User 5.1" url="#"/>
+                        <p:menuitem value="User 5.2" url="#"/>
+                    </p:submenu>
+                    <p:submenu label="User 6">
+                        <p:menuitem value="User 6.1" url="#"/>
+                        <p:menuitem value="User 6.2" url="#"/>
+                    </p:submenu>
+                </p:column>
+            </p:submenu>
+
+            <p:submenu label="Encuestas" >
+                <p:column>
+                    <p:submenu label="Event 1">
+                        <p:menuitem value="Event 1.1" url="#"/>
+                        <p:menuitem value="Event 1.2" url="#"/>
+                    </p:submenu>
+                    <p:submenu label="Event 2">
+                        <p:menuitem value="Event 2.1" url="#"/>
+                        <p:menuitem value="Event 2.2" url="#"/>
+                    </p:submenu>
+                </p:column>
+
+                <p:column>
+                    <p:submenu label="Event 3">
+                        <p:menuitem value="Event 3.1" url="#"/>
+                        <p:menuitem value="Event 3.2" url="#"/>
+                    </p:submenu>
+                    <p:submenu label="Event 4">
+                        <p:menuitem value="Event 4.1" url="#"/>
+                        <p:menuitem value="Event 4.2" url="#"/>
+                    </p:submenu>
+                </p:column>
+            </p:submenu>
+
+            <p:submenu label="Reportes">
+                <p:column>
+                    <p:submenu label="Setting 1">
+                        <p:menuitem value="Setting 1.1" url="#"/>
+                        <p:menuitem value="Setting 1.2" url="#"/>
+                    </p:submenu>
+                    <p:submenu label="Setting 2">
+                        <p:menuitem value="Setting 2.1" url="#"/>
+                        <p:menuitem value="Setting 2.2" url="#"/>
+                    </p:submenu>
+                    <p:submenu label="Setting 3">
+                        <p:menuitem value="Setting 3.1" url="#"/>
+                        <p:menuitem value="Setting 3.2" url="#"/>
+                    </p:submenu>
+                </p:column>
+
+                <p:column>
+                    <p:submenu label="Setting 4">
+                        <p:menuitem value="Setting 4.1" url="#"/>
+                        <p:menuitem value="Setting 4.2" url="#"/>
+                    </p:submenu>
+                </p:column>
+            </p:submenu>
+        </p:megaMenu>
+        </h:form>
+        </div>
+          </div>
+           </div>
+  <section>
+    <h1>Mapa Dimar</h1>
+    <div style="width: 100%"><iframe width="100%" height="600" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=es&amp;q=Colombia,%20Bogota+(Mi%20nombre%20de%20egocios)&amp;t=k&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe><a href="https://www.mapsdirections.info/marcar-radio-circulo-mapa/">Dimar</a></div>
+  </section>
+ 
+
+    </h:body>
+	</ui:define>
+</ui:composition>

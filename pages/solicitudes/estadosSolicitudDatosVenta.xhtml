@@ -1,0 +1,236 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	template="/pages/template/templateInicio.xhtml">
+	<ui:define name="body">
+
+		<h:head>
+<!-- 			<link href="/resources/theme.css" rel="stylesheet" type="text/css" /> -->
+			<meta charset="utf-8" name="viewport"
+				content="width=device-width, initial-scale=1"
+				http-equiv="X-UA-Conpatible" />
+		</h:head>
+		<h:form id="form1">
+			<p:messages id="messages" showDetail="false" autoUpdate="true"
+				closable="true" />
+		</h:form>
+		<h:body>
+
+			<h:form id="formListado">
+				<h2 >ESTADOS EN QUE SE ENCUENTRAN LOS
+					CONJUNTOS DE DATOS QUE HA SOLICITADO</h2>
+				<p:separator />
+				<p:outputLabel
+					value="Señor Usuario: A continuación se muestran los conjuntos de Datos que Usted seleccionó para la Compra / Descarga." />
+				<p:separator />
+				<p:dataTable id="tabla" paginator="true" paginatorPosition="bottom"
+					rows="10" var="datosSolicitados"
+					value="#{conjuntoDatosProcesoCargaBean.todasSolicitudes}"
+					emptyMessage="No existen registros">
+					<p:column headerText="ID">
+						<h:outputText value="#{datosSolicitados.id}" />
+					</p:column>
+					<p:column headerText="Originador del Dato">
+						<h:outputText
+							value="#{datosSolicitados.conjuntoDatosProcesoCargaId.originadorDatoId}" />
+					</p:column>
+					<p:column headerText="Variable">
+						<h:outputText value="#{datosSolicitados.conjuntoDatosProcesoCargaId.oidVariable}" />
+					</p:column>
+					<p:column headerText="Fecha Inicial">
+						<h:outputText value="#{datosSolicitados.conjuntoDatosProcesoCargaId.fechaini}"
+							pattern="dd/MM/yyyy" />
+					</p:column>
+					<p:column headerText="Fecha Final">
+						<h:outputText value="#{datosSolicitados.conjuntoDatosProcesoCargaId.fechafin}"
+							pattern="dd/MM/yyyy" />
+					</p:column>
+					<p:column headerText="Cantidad Datos">
+						<h:outputText value="#{datosSolicitados.conjuntoDatosProcesoCargaId.cantidadDatos}" />
+					</p:column>
+					<p:column headerText="SOLICITAR"
+						style="text-align: center">
+						<p:commandButton icon="ui-icon-pencil" title="Solicitar"
+							disabled="#{conjuntoDatosProcesoCargaBean.estadoSol}"
+							oncomplete="PF('dialogoSolicitar').show();">
+							<f:setPropertyActionListener
+								target="#{conjuntoDatosProcesoCargaBean.conjuntoDatosProcesoCarga}"
+								value="#{conjuntoDatosProcesoCarga}" />
+						</p:commandButton>
+					</p:column>
+					<p:column headerText="SOLICITAR DESCARGAR"
+						style="text-align: center">
+						<p:commandButton icon="ui-icon-triangle-1-s" title="Descargar"
+							disabled="#{conjuntoDatosProcesoCargaBean.estadoDesc}"
+							oncomplete="PF('dialogoSolicitar').show();">
+							<f:setPropertyActionListener
+								target="#{conjuntoDatosProcesoCargaBean.conjuntoDatosProcesoCarga}"
+								value="#{conjuntoDatosProcesoCarga}" />
+						</p:commandButton>
+					</p:column>
+					<p:column headerText="SOLICITAR LICENCIA"
+						style="text-align: center">
+						<p:commandButton icon="ui-icon-print" title="Aceptar Licencia"
+							disabled="#{conjuntoDatosProcesoCargaBean.estadoLic}"
+							oncomplete="PF('dialogoLicencia').show();">
+							<f:setPropertyActionListener
+								target="#{conjuntoDatosProcesoCargaBean.conjuntoDatosProcesoCarga}"
+								value="#{conjuntoDatosProcesoCarga}" />
+						</p:commandButton>
+					</p:column>
+					<p:column headerText="COMPRAR"
+						style="text-align: center">
+						<p:commandButton icon="ui-icon-cart" title="Comprar"
+							disabled="#{conjuntoDatosProcesoCargaBean.estadoComp}"
+							oncomplete="PF('dialogoSolicitar').show();">
+							<f:setPropertyActionListener
+								target="#{conjuntoDatosProcesoCargaBean.conjuntoDatosProcesoCarga}"
+								value="#{conjuntoDatosProcesoCarga}" />
+						</p:commandButton>
+					</p:column>
+					<p:column headerText="ELIMINAR" style="text-align: center">
+						<p:commandButton icon="ui-icon-trash" title="Eliminar"
+							oncomplete="PF('dialogoEliminar').show();" update=":formEliminar">
+							<f:setPropertyActionListener
+								target="#{conjuntoDatosProcesoCargaBean.conjuntoDatosProcesoCarga}"
+								value="#{conjuntoDatosProcesoCarga}" />
+						</p:commandButton>
+					</p:column>
+				</p:dataTable>
+			</h:form>
+
+			<h:form id="formSolicitar">
+				<p:dialog id="dlgSolicitar"
+					header="Solicitar este conjunto de datos"
+					widgetVar="dialogoSolicitar" resizable="false" showEffect="fade"
+					hideEffect="explode" modal="true">
+					<p:panelGrid columns="1" style="margin: 0 auto;">
+						<p:outputLabel
+							value="Se actualizará el estado de la solicitud a Pendiente por Licencia" />
+					</p:panelGrid>
+					<p:commandButton value="Solicitar"
+						actionListener="#{conjuntoDatosProcesoCargaBean.solicitarConjunto()}"
+						update=":formListado:tabla"
+						oncomplete="PF('dialogoSolicitar').hide();" />
+					<p:commandButton value="Cancelar"
+						onclick="PF('dialogoSolicitar').hide();" />
+				</p:dialog>
+			</h:form>
+
+			<h:form id="formLicencia">
+				<p:dialog id="dlgLicencia" header="Diligencie y acepte la Licencia"
+					widgetVar="dialogoLicencia" resizable="false" showEffect="fade"
+					hideEffect="explode" modal="true">
+					<p:panelGrid columns="1" style="margin: 0 auto;">
+						<p:outputLabel
+							value="La Dirección General Marítima (Dimar) hace entrega de los siguientes datos e información, sin ningún costo para USO NO COMERCIAL, respondiendo a la solicitud recibida mediante la página de Datos Oceanográficos. Los datos e información serán compartidos a través de correo electrónico, posterior a la entrega del presente acuerdo debidamente diligenciado y firmado." />
+					</p:panelGrid>
+
+					<p:panel>
+						<p:messages />
+						<h:panelGrid id="panel1" columns="4" columnClasses="label, value">
+							<p:outputLabel for="fsol" value="Fecha de la Solicitud" />
+							<p:datePicker id="fsol"
+								value="#{solicitudExternaBean.solicitudExterna.fechaSolicitud}"
+								pattern="dd/MM/yyyy" />
+
+							<h:outputText value="Nombre del Solicitante" />
+							<p:inputText
+								value="#{solicitudExternaBean.solicitudExterna.nombreSolicitante}"
+								required="true" label="Nombre del Solicitante" />
+
+							<h:outputText for="carsol" value="Cargo del Solicitante" />
+							<p:inputText id="carSol"
+								value="#{solicitudExternaBean.solicitudExterna.cargoSolicitante}"
+								required="true" label="Cargo del Solicitante" />
+
+							<h:outputText value="Correo del Solicitante" />
+							<p:inputText id="email" required="true" label="email"
+								requiredMessage="Digite su correo electrónico"
+								validatorMessage="El formato del correo electrónico es inválido"
+								value="#{solicitudExternaBean.solicitudExterna.correoSolicitante}">
+
+								<f:validateRegex
+									pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+							</p:inputText>
+							<h:outputText value="Teléfono del Solicitante" />
+							<p:inputMask id="phone"
+								value="#{solicitudExternaBean.solicitudExterna.telefonoSolicitante}"
+								mask="(999) 999-9999" validateMask="true" />
+							<h:outputText value="Organización / Institución / Empresa" />
+							<p:inputText
+								value="#{solicitudExternaBean.solicitudExterna.organizacion}" />
+
+
+							<p:outputLabel for="pais" value="Pais" />
+							<p:selectOneMenu styleClass="selectOneMenurem12"
+								value="#{solicitudExternaBean.miPais.id}" id="pais"
+								required="true" requiredMessage="Seleccione el segundo pais">
+								<f:selectItem itemLabel="Seleccione..." itemValue="" />
+								<f:selectItems
+									value="#{solicitudExternaBean.paisBean.listaPais}" var="pais"
+									itemLabel="#{pais.nombre}" itemValue="#{pais.id}" />
+								<p:ajax event="change"
+									listener="#{solicitudExternaBean.obtenerIdPais()}"
+									execute="@this" update="depto ciudad"></p:ajax>
+							</p:selectOneMenu>
+
+							<p:outputLabel for="depto" value="Departamento" />
+							<p:selectOneMenu id="depto" styleClass="selectOneMenurem12"
+								value="#{solicitudExternaBean.idDepto}">
+								<f:selectItem itemLabel="Seleccione un Departamento"
+									itemValue="" noSelectionOption="true" />
+								<f:selectItems value="#{solicitudExternaBean.listaDepartamento}"
+									var="depto" itemLabel="#{depto.nombre}" itemValue="#{depto.id}" />
+								<p:ajax event="change"
+									listener="#{solicitudExternaBean.obtenerIdDepto()}"
+									update="ciudad"></p:ajax>
+							</p:selectOneMenu>
+
+							<p:outputLabel for="ciudad" value="Ciudad" />
+							<p:selectOneMenu id="ciudad" styleClass="selectOneMenurem12">
+								<f:selectItem itemLabel="Seleccione una Ciudad" itemValue=""
+									noSelectionOption="true" />
+								<f:selectItems value="#{solicitudExternaBean.listaCiudad}"
+									var="ciudad" itemLabel="#{ciudad.nombre}"
+									itemValue="#{ciudad.id}" />
+								<p:ajax event="change"
+									listener="#{solicitudExternaBean.obtenerIdCiudad()}"></p:ajax>
+							</p:selectOneMenu>
+						</h:panelGrid>
+					</p:panel>
+
+					<p:commandButton value="Aceptar Licencia"
+						actionListener="#{conjuntoDatosProcesoCargaBean.aceptarLicencia()}"
+						update=":formListado:tabla"
+						oncomplete="PF('dialogoLicencia').hide();" />
+					<p:commandButton value="Cancelar"
+						onclick="PF('dialogoLicencia').hide();" />
+				</p:dialog>
+			</h:form>
+
+			<h:form id="formEliminar">
+				<p:dialog id="dlgEliminar" header="Eliminar conjunto de datos"
+					widgetVar="dialogoEliminar" resizable="false" showEffect="fade"
+					hideEffect="explode" modal="true">
+
+					<h:outputText value="Desea eliminar este conjunto de datos ?" />
+					<p:commandButton value="Si"
+						actionListener="#{conjuntoDatosProcesoCargaBean.eliminarConjuntoDatosProcesoCarga()}"
+						update=":formListado:tabla"
+						oncomplete="PF('dialogoEliminar').hide();" />
+					<p:commandButton value="No" onclick="PF('dialogoEliminar').hide();" />
+				</p:dialog>
+			</h:form>
+			<h:form id="formSolEspecial">
+				<h:outputText value="Desea realizar una solicitud especial de datos no encontrados ?" />
+				<p:commandButton id="irSolEsp" value="Solicitar Datos no encontrados"
+									action="#{conjuntoDatosProcesoCargaBean.solEspecial}" />
+			</h:form>
+		</h:body>
+
+	</ui:define>
+</ui:composition>

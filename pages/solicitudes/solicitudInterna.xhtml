@@ -1,0 +1,163 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	template="/pages/template/templateInicio.xhtml">
+	<ui:define name="body">
+		<h:head>
+			<title>Solicitudes Internas</title>
+		</h:head>
+		<div>
+			<p:panel id="solInterna">
+				<style type="text/css">
+.label {
+	width: 20%;
+	padding: 4px;
+}
+
+.value {
+	width: 80%;
+	padding: 4px;
+}
+
+.grid {
+	width: 100%;
+}
+
+.error {
+	color: red;
+}
+
+.outputLabel {
+	font-weight: bold;
+}
+
+.grid {
+	width: 33%;
+	padding: 4px;
+}
+</style>
+				<h:form id="form">
+				    <p:growl id="growl" sticky="true" showDetail="true" />
+
+					<p:wizard id="w1"
+						flowListener="#{solicitudInternaBean.onFlowProcess}">
+						<p:tab id="personal" title = "#{msg['sol.title']}">
+							<p:panel>
+								<p:messages />
+								<h:panelGrid id="panel1" columns="2"
+									columnClasses="label, value">
+									<p:outputLabel for="fsol" value="Fecha de la Solicitud" />
+									<p:datePicker id="fsol"
+										value="#{solicitudInternaBean.solicitudInterna.fechaSolicitud}" 
+										pattern="dd/MM/yyyy"/>
+									<p:outputLabel value="Dependencia del Funcionario" />
+									<p:inputText
+										value="#{solicitudInternaBean.usuario.persona.funcionario.dependenciaId.nombre}"
+										disabled="#{solicitudInternaBean.soloLectura}"
+										required="true" label="Dependencia" readonly="true"/>
+									
+									<h:outputText value="Nombre del Solicitante" />
+									<p:inputText
+										value="#{solicitudInternaBean.usuario.persona.primerNombre}"
+										required="true" label="Nombre del Solicitante" readonly="true" />
+									
+									<h:outputText value="Correo del Solicitante" />
+									<p:inputText id="emailSol" required="true" label="emailSol"
+										requiredMessage="Digite su correo electrónico"
+										validatorMessage="El formato del correo electrónico es inválido"
+										value="#{solicitudInternaBean.usuario.persona.correoElectronico}">
+										<f:validateRegex
+											pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+									</p:inputText>									
+									<h:outputText value="Telefono del Solicitante" />
+									<p:inputMask id="phoneS"
+										value="#{solicitudInternaBean.usuario.persona.telefono}"
+										mask="(999) 999-9999" validateMask="true" />
+								</h:panelGrid>
+							</p:panel>
+						</p:tab>
+
+						<p:tab id="jefe" title="Datos del Jefe del Solicitante">
+							<p:panel>
+								<p:messages />
+								<h:panelGrid id="gFin" columns="2" columnClasses="label, value">
+									<h:outputText value="Nombre del Jefe" />
+									<p:inputText
+										value="#{solicitudInternaBean.solicitudInterna.nombreJefe}"/>
+									
+									<h:outputText value="Cargo del Jefe" />
+									<p:inputText
+										value="#{solicitudInternaBean.solicitudInterna.cargoJefe}"/>
+									
+									<h:outputText value="Correo del Jefe" />
+									<p:inputText id="emailJefe" required="true" label="emailJefe"
+										requiredMessage="Digite su correo electrónico"
+										validatorMessage="El formato del correo electrónico es inválido"
+										value="#{solicitudInternaBean.solicitudInterna.correoJefe}">
+										<f:validateRegex
+											pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+									</p:inputText>
+									<h:outputText value="Telefono del Jefe" />
+									<p:inputMask id="phoneJ"
+										value="#{solicitudInternaBean.solicitudInterna.telefonoJefe}"
+										mask="(999) 999-9999" validateMask="true" />
+									<h:outputText value="Proyecto: " />
+									<p:inputText value="#{solicitudInternaBean.solicitudInterna.proyecto}" />
+									<h:outputText value="Observaciones" />
+									<p:inputTextarea
+										value="#{solicitudInternaBean.solicitudInterna.observaciones}" rows="5"
+										cols="50" maxlength="4000" />
+								</h:panelGrid>
+							</p:panel>
+						</p:tab>
+						<p:tab id="det" title="Detalle de la Solicitud">
+							<p:panel>
+								<p:messages />
+								<h:panelGrid columns="2" columnClasses="label, value">
+									<h:outputText value="Nombre Informacion *" />
+									<p:inputText value="#{solicitudInternaBean.solicitudInternaDetalleBean.solicitudInternaDetalle.nombreInformacion}"/>
+									<p:outputLabel value="Fecha de Inicial Datos" />
+									<p:datePicker id="fIniD"
+										value="#{solicitudInternaBean.solicitudInternaDetalleBean.solicitudInternaDetalle.fechaInicialDatos}" pattern="dd/MM/yyyy"/>
+									<p:outputLabel value="Fecha Final Datos" />
+									<p:datePicker id="fFinD"
+										value="#{solicitudInternaBean.solicitudInternaDetalleBean.solicitudInternaDetalle.fechaFinalDatos}" pattern="dd/MM/yyyy"/>
+									<h:outputText value="Extensión Vertical: " />
+									<p:inputText value="#{solicitudInternaBean.solicitudInternaDetalleBean.solicitudInternaDetalle.extencionVertical}" />
+									<h:outputText value="Cobertura Geografica: " />
+									<p:inputText value="#{solicitudInternaBean.solicitudInternaDetalleBean.solicitudInternaDetalle.coberturaGeografica}" />
+
+									<p:outputLabel for="agrega2" value="Agregación Temporal" />
+									<p:selectOneMenu styleClass="selectOneMenurem12"
+										value="#{solicitudInternaBean.idAgre}" id="agrega2"
+										required="true"
+										requiredMessage="Seleccione la Agregacion Temporal">
+										<f:selectItem itemLabel="Seleccione..." itemValue="" />
+										<f:selectItems
+											value="#{solicitudInternaBean.agregacionTemporalBean.listaAgregacionTemporal}"
+											var="agre" itemLabel="#{agre.nombre}" itemValue="#{agre.id}" />
+										<p:ajax event="change"
+											listener="#{solicitudInternaBean.obtenerIdAgre()}"></p:ajax>
+									</p:selectOneMenu>
+								</h:panelGrid>
+							</p:panel>
+							<p:panel header="Confirmar y Grabar la Solicitud Especial">
+								<p:commandButton value="Radicar Solicitud Interna"
+									action="#{solicitudInternaBean.guardarSolInterna}"
+									update="growl" process="@this" />
+								<p:commandButton value="Cancelar"
+									action="#{solicitudInternaBean.guardarSolInterna}"
+									update="growl" process="@this" />
+							</p:panel>
+						</p:tab>
+					</p:wizard>
+
+				</h:form>
+
+			</p:panel>
+		</div>
+	</ui:define>
+</ui:composition>

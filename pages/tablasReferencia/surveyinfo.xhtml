@@ -1,0 +1,189 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	template="/pages/template/templateInicio.xhtml">
+	<ui:define name="body">
+
+		<h:head>
+<!-- 			<link href="/resources/theme.css" rel="stylesheet" type="text/css" /> -->
+			<meta charset="utf-8" name="viewport"
+				content="width=device-width, initial-scale=1"
+				http-equiv="X-UA-Conpatible" />
+		</h:head>
+		<h:form id="form1">
+			<p:messages id="messages" showDetail="false" autoUpdate="true"
+				closable="true" />
+		</h:form>
+		<h:body>
+			<h:form>
+				<p:commandButton value="#{msg['SI.mensaje1']}"
+					actionListener="#{surveyinfoBean.limpiarSurveyinfo()}"
+					oncomplete="PF('dialogoAgregar').show();" update=":formAgregar" />
+				<p:separator />
+			</h:form>
+
+			<h:form id="formListado">
+				<p:dataTable id="tabla" paginator="true" paginatorPosition="bottom"
+					rows="10" var="surveyinfo" value="#{surveyinfoBean.lista}"
+					emptyMessage="#{msg['AU.mensaje1']}">
+					<p:column headerText="ID">
+						<h:outputText value="#{surveyinfo.surveyID}" />
+					</p:column>
+					<p:column headerText="#{msg['SI.mensaje2']}">
+						<h:outputText value="#{surveyinfo.description}" />
+					</p:column>
+					<p:column headerText="#{msg['C.mensaje6']}">
+						<h:outputText value="#{surveyinfo.startDate}" />
+					</p:column>
+					<p:column headerText="#{msg['C.mensaje7']}">
+						<h:outputText value="#{surveyinfo.endDate}" />
+					</p:column>
+					<p:column headerText="#{msg['SI.mensaje3']}">
+						<h:outputText value="#{surveyinfo.deviceID.name}" />
+					</p:column>
+					<p:column headerText="Track">
+						<h:outputText value="#{surveyinfo.trackID.name}" />
+					</p:column>
+
+					<p:column headerText="#{msg['AU.mensaje8']}" style="text-align: center">
+						<p:commandButton icon="ui-icon-pencil" title="#{msg['AU.mensaje8']}"
+							oncomplete="PF('dialogoModificar').show();"
+							update=":formModificar">
+							<f:setPropertyActionListener
+								target="#{surveyinfoBean.surveyinfo}" value="#{surveyinfo}" />
+						</p:commandButton>
+					</p:column>
+					<p:column headerText="#{msg['AU.mensaje10']}" style="text-align: center">
+						<p:commandButton icon="ui-icon-trash" title="#{msg['AU.mensaje10']}"
+							oncomplete="PF('dialogoEliminar').show();" update=":formEliminar">
+							<f:setPropertyActionListener
+								target="#{surveyinfoBean.surveyinfo}" value="#{surveyinfo}" />
+						</p:commandButton>
+					</p:column>
+				</p:dataTable>
+				<h:panelGrid id="containerGrid" columns="1" cellpadding="10"
+					width="100%">
+					<p:panelGrid columns="2" cellpadding="10" style="float: right;">
+						<p:commandButton id="btn_cr" value="#{msg['AU.mensaje11']}" ajax="false"
+							action="/pages/administracion/panelArcmarine.xhtml?faces-redirect=true">
+						</p:commandButton>
+					</p:panelGrid>
+				</h:panelGrid>
+			</h:form>
+
+
+			<h:form id="formAgregar">
+				<p:dialog id="dlgAgregar" header="#{msg['SI.mensaje1']}"
+					widgetVar="dialogoAgregar" resizable="false" showEffect="fade"
+					hideEffect="explode" modal="true">
+					<p:panelGrid columns="2" style="margin: 0 auto;">
+						<p:outputLabel value="#{msg['SI.mensaje4']} ID:" />
+						<p:inputNumber value="#{surveyinfoBean.surveyinfo.surveyID}">
+							<p:ajax event="change" update="@this" />
+						</p:inputNumber>
+						<p:outputLabel value="#{msg['R.mensaje5']}:" />
+						<p:inputText value="#{surveyinfoBean.surveyinfo.description}">
+							<p:ajax event="change" update="@this" />
+						</p:inputText>
+						<p:outputLabel value="#{msg['C.mensaje6']}:" />
+						<p:datePicker value="#{surveyinfoBean.surveyinfo.startDate}">
+							<p:ajax event="change" update="@this" />
+						</p:datePicker>
+						<p:outputLabel value="#{msg['C.mensaje7']}:" />
+						<p:datePicker value="#{surveyinfoBean.surveyinfo.endDate}">
+							<p:ajax event="change" update="@this" />
+						</p:datePicker>
+						<p:outputLabel value="#{msg['SI.mensaje5']}:" />
+						<p:selectOneMenu value="#{surveyinfoBean.selmeasuringdevice}"
+							id="devices" converter="omnifaces.SelectItemsConverter">
+							<f:selectItem itemLabel="#{msg['SE.mensaje13']}" itemValue="" />
+							<f:selectItems value="#{surveyinfoBean.listaMeasuringdevice}"
+								var="device" itemLabel="#{device.name}" itemValue="#{device}" />
+							<p:ajax event="change" update="@this" />
+						</p:selectOneMenu>
+						<p:outputLabel value="Track:" />
+						<p:selectOneMenu value="#{surveyinfoBean.seltrack}" id="track"
+							converter="omnifaces.SelectItemsConverter">
+							<f:selectItem itemLabel="#{msg['SE.mensaje13']}" itemValue="" />
+							<f:selectItems value="#{surveyinfoBean.listatrack}" var="track"
+								itemLabel="#{track.name}" itemValue="#{track}" />
+							<p:ajax event="change" update="@this" />
+						</p:selectOneMenu>
+					</p:panelGrid>
+					<p:commandButton value="#{msg['R.mensaje2']}"
+						actionListener="#{surveyinfoBean.agregarSurveyinfox()}"
+						immediate="true" process="@this" update=":formListado:tabla"
+						oncomplete="PF('dialogoAgregar').hide();" />
+					<p:commandButton value="#{msg['SE.mensaje45']}"
+						onclick="PF('dialogoAgregar').hide();" />
+				</p:dialog>
+			</h:form>
+
+			<h:form id="formModificar">
+				<p:dialog id="dlgModificar" header="#{msg['SI.mensaje6']}"
+					widgetVar="dialogoModificar" resizable="false" showEffect="fade"
+					hideEffect="explode" modal="true">
+					<p:panelGrid columns="2" style="margin: 0 auto;">
+						<p:outputLabel value="#{msg['SI.mensaje4']} ID:" />
+						<p:inputNumber value="#{surveyinfoBean.surveyinfo.surveyID}">
+							<p:ajax event="change" update="@this" />
+						</p:inputNumber>
+						<p:outputLabel value="#{msg['R.mensaje5']}:" />
+						<p:inputText value="#{surveyinfoBean.surveyinfo.description}">
+							<p:ajax event="change" update="@this" />
+						</p:inputText>
+						<p:outputLabel value="#{msg['C.mensaje6']}:" />
+						<p:datePicker value="#{surveyinfoBean.surveyinfo.startDate}">
+							<p:ajax event="change" update="@this" />
+						</p:datePicker>
+						<p:outputLabel value="#{msg['C.mensaje7']}:" />
+						<p:datePicker value="#{surveyinfoBean.surveyinfo.endDate}">
+							<p:ajax event="change" update="@this" />
+						</p:datePicker>
+						<p:outputLabel value="#{msg['SI.mensaje5']}:" />
+						<p:selectOneMenu value="#{surveyinfoBean.selmeasuringdevice}"
+							converter="omnifaces.SelectItemsConverter" id="measuringdevice">
+							<f:selectItem itemLabel="#{msg['SE.mensaje13']}" itemValue="" />
+							<f:selectItems value="#{surveyinfoBean.listaMeasuringdevice}"
+								var="measuringdevice" itemLabel="#{measuringdevice.name}"
+								itemValue="#{measuringdevice}" />
+							<p:ajax event="change" update="@this" />
+						</p:selectOneMenu>
+						<p:outputLabel value="Track:" />
+						<p:selectOneMenu value="#{surveyinfoBean.seltrack}"
+							converter="omnifaces.SelectItemsConverter" id="track1">
+							<f:selectItem itemLabel="#{msg['SE.mensaje13']}" itemValue="" />
+							<f:selectItems value="#{surveyinfoBean.listatrack}" var="track"
+								itemLabel="#{track.name}" itemValue="#{track}" />
+							<p:ajax event="change" update="@this" />
+						</p:selectOneMenu>
+					</p:panelGrid>
+					<p:commandButton value="#{msg['R.mensaje2']}"
+						actionListener="#{surveyinfoBean.modificarSurveyinfo()}"
+						update=":formListado:tabla" process="@this"
+						oncomplete="PF('dialogoModificar').hide();" />
+					<p:commandButton value="#{msg['SE.mensaje45']}"
+						onclick="PF('dialogoModificar').hide();" />
+				</p:dialog>
+			</h:form>
+
+			<h:form id="formEliminar">
+				<p:dialog id="dlgEliminar" header="#{msg['SI.mensaje7']}"
+					widgetVar="dialogoEliminar" resizable="false" showEffect="fade"
+					hideEffect="explode" modal="true">
+					<h:outputText value="#{msg['R.mensaje7']}" />
+					<p:commandButton value="#{msg['AU.mensaje14']}"
+						actionListener="#{surveyinfoBean.eliminarSurveyinfo()}"
+						update=":formListado:tabla" process="@this"
+						oncomplete="PF('dialogoEliminar').hide();" />
+					<p:commandButton value="No" onclick="PF('dialogoEliminar').hide();" />
+				</p:dialog>
+			</h:form>
+
+		</h:body>
+
+	</ui:define>
+</ui:composition>

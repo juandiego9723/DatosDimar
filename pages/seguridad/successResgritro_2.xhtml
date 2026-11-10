@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	template="/pages/template/templateInicio.xhtml">
+	<ui:define name="body">
+
+		<h:head>
+<!-- 			<link href="/resources/theme.css" rel="stylesheet" type="text/css" /> -->
+		</h:head>
+		<h:form id="form1">
+			<p:messages id="messages" showDetail="false" autoUpdate="true"
+				closable="true" />
+		</h:form>
+		<h:body>
+			<script type="text/javascript">
+				function handleLoginRequest(xhr, status, args) {
+					if (args.validationFailed || !args.loggedIn) {
+						jQuery('#form').effect("shake", {
+							times : 3
+						}, 100);
+					} else {
+						PF('dlg').hide();
+						$('#loginLink').fadeOut();
+					}
+				}
+			</script>
+			<h:outputLabel value="#{bienvenida.bienvenida}" /><br></br><br></br>
+			<h:form id="form">
+				<p:panel header="Activación de Usuario" footer="" id="panel"
+					style="width:50%;">
+					<p:outputPanel>Su Usuario  a sido activado Correctamente.  </p:outputPanel>
+					<br></br>
+					<br></br>
+					<p:commandButton id="login_btn" value="continuar"
+						styleClass="p-mr-2" style="width: auto"
+						action="#{registrarseBeean.cerrarsesion}" var="loginBean" />
+				</p:panel>
+			</h:form>
+			        <footer>
+				<a href="https://www.dimar.mil.co/">Dimar: Portal Marítimo de
+					Colombia</a>
+				<div>
+					<ui:include src="/pages/template/piePagina.xhtml" />
+				</div>
+			</footer>
+		</h:body>
+
+	</ui:define>
+</ui:composition>

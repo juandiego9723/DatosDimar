@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+	<p:panel header="Venta de Datos" styleClass="sub-header-panel" />
+	<p:panel>
+		<p:separator />
+		<p:dataTable id="tabla4" paginator="true" paginatorPosition="bottom"
+			widgetVar="dtWidgetVar" rows="10" var="transacciones" filteredValue="#{reportesBean.filtrotransacciones}"
+			value="#{reportesBean.listaTransacciones}" rowKey="#{transacciones.id}"
+			emptyMessage="No existen registros">
+			<p:column headerText="ID" sortBy="#{transacciones.id}" filterBy="#{transacciones.id}" >
+				<h:outputText value="#{transacciones.id}" />
+			</p:column>
+			<p:column headerText="Estado" sortBy="#{transacciones.estado}" filterBy="#{transacciones.estado}" >
+				<h:outputText value="#{transacciones.estado}" />
+			</p:column>
+			<p:column headerText="Fecha" sortBy="#{transacciones.fecha}" filterBy="#{transacciones.fecha}">
+				<h:outputText
+					value="#{transacciones.fecha}" />
+			</p:column>
+			<p:column headerText="Valor" sortBy="#{transacciones.valor}" filterBy="#{transacciones.valor}">
+				<h:outputText
+					value="#{transacciones.valor}" />
+			</p:column>
+			<p:column headerText="Variable" sortBy="#{transacciones.datossolicitadosId.conjuntoDatosProcesoCargaId.oidVariable}" filterBy="#{transacciones.datossolicitadosId.conjuntoDatosProcesoCargaId.oidVariable}">
+				<h:outputText
+					value="#{transacciones.datossolicitadosId.conjuntoDatosProcesoCargaId.oidVariable}" />
+			</p:column>
+
+            <p:columnGroup type="footer">
+                <p:row>
+                    <p:column colspan="3" style="text-align:right" footerText="Totales:"/>
+                    <p:column>
+                        <f:facet name="footer">
+                            <h:outputText value="#{reportesBean.totalventas}">
+                                <f:convertNumber type="currency" currencySymbol="$"/>
+                            </h:outputText>
+                        </f:facet>
+                    </p:column>
+                </p:row>
+            </p:columnGroup>
+
+		</p:dataTable>
+		<p:panel>
+
+              <p:commandButton value="Descargar PDF" styleClass="mr-2 mb-2" >
+                  <p:dataExporter type="pdf" target="tabla4" fileName="reptransacciones"/>
+              </p:commandButton>
+
+		</p:panel>
+	</p:panel>
+</ui:composition>

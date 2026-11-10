@@ -1,0 +1,190 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	template="/pages/template/templateInicio.xhtml">
+	<ui:define name="body">
+		<h:head>
+  <meta charset="utf-8"></meta>
+  <title>Portal de datos oceanográficos</title>
+  <meta content="width=device-width, initial-scale=1" name="viewport"></meta>
+  <meta content="Webflow" name="generator"></meta>
+  <link href="css/normalize.css" rel="stylesheet" type="text/css"></link>
+  <link href="css/webflow.css" rel="stylesheet" type="text/css"></link>
+  <link href="css/audiometro.webflow.css" rel="stylesheet" type="text/css"></link>
+  <link href="https://fonts.googleapis.com" rel="preconnect"></link>
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin="anonymous"></link>
+  <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js" type="text/javascript"></script>
+  <script type="text/javascript">WebFont.load({  google: {    families: ["Varela:400"]  }});</script>
+  <link href="images/favicon.ico" rel="shortcut icon" type="image/x-icon"> </link>
+  <link href="images/webclip.png" rel="apple-touch-icon"> </link>
+	</h:head>
+		<body onload="estadisticasSession();">
+
+			
+			<p:remoteCommand name="estadisticasSession" action="#{reportesBean.datosIniciales()}" />
+				<p:messages id="messages" showDetail="false" autoUpdate="true"
+					closable="true" />
+					
+					
+  <header>
+    <div class="div-block"></div>
+    <div data-animation="default" data-collapse="medium" data-duration="400" data-easing="ease" data-easing2="ease" role="banner" class="navbar w-nav">
+      <div class="div-block-3">
+        <a href="https://www.gov.co/" target="_blank" class="w-inline-block"><img src="images/gov.webp" loading="lazy" alt="" class="logo"> </img></a>
+      </div>
+      <div class="div-block-4">
+        <nav role="navigation" class="nav-menu w-nav-menu">
+          <a href="#" class="navelement w-nav-link">Última actualización: 2024-08-21</a><img src="images/Silla-de-ruedas.webp" loading="lazy" alt="" height="Auto" class="image-3"> </img>
+          <div class="form-block w-form">
+            <form id="email-form" name="email-form" data-name="Email Form" method="get" class="form" data-wf-page-id="662ab8a931791f8301576699" data-wf-element-id="e1d4555b-2f0b-f52d-95b3-d973fac95f37"><select id="field" name="field" data-name="Field" class="select-field w-select">
+                <option value="es">Español</option>
+                <option value="en">English</option>
+              </select></form>
+            <div class="w-form-done">
+              <div>Thank you! Your submission has been received!</div>
+            </div>
+            <div class="w-form-fail">
+              <div>Oops! Something went wrong while submitting the form.</div>
+            </div>
+          </div>
+          <a href="https://cecoldo.dimar.mil.co/web/sitemap" class="navelement w-nav-link">Mapa del sitio</a>
+          <a href="https://cecoldo.dimar.mil.co/web/user/login" class="navelement w-nav-link">Iniciar sesión</a>
+        </nav>
+      </div>
+      <div class="menu-button-3 w-nav-button">
+        <div class="w-icon-nav-menu"></div>
+      </div>
+    </div>
+  </header>					
+	
+ <div data-animation="default" data-collapse="medium" data-duration="400" data-easing="ease" data-easing2="ease" role="banner" class="navbar-2 w-nav">
+    <div class="div-block-5"><img src="images/Logos-Cecoldo-IDE.png" loading="lazy" sizes="(max-width: 479px) 100vw, (max-width: 767px) 40vw, (max-width: 991px) 42vw, (max-width: 4276px) 46vw, 1967px" srcset="images/Logos-Cecoldo-IDE-p-500.png 500w, images/Logos-Cecoldo-IDE-p-800.png 800w, images/Logos-Cecoldo-IDE-p-1080.png 1080w, images/Logos-Cecoldo-IDE-p-1600.png 1600w, images/Logos-Cecoldo-IDE.png 1967w" alt="" class="image-4"></img></div>
+    <div class="div-block-6">
+      <div class="form-block-2 w-form">
+        <form id="email-form-2" name="email-form-2" data-name="Email Form 2" method="get" class="form-2" data-wf-page-id="662ab8a931791f8301576699" data-wf-element-id="a1616539-361f-396f-fd0b-97880c305044"><input class="text-field w-input" maxlength="256" name="field-2" data-name="Field 2" placeholder="Buscar" type="text" id="field-2" required=""></input></form>
+        <div class="w-form-done">
+          <div>Thank you! Your submission has been received!</div>
+        </div>
+        <div class="w-form-fail">
+          <div>Oops! Something went wrong while submitting the form.</div>
+        </div>
+      </div>
+    </div>
+    <div class="w-nav-button">
+      <div class="w-icon-nav-menu"></div>
+    </div>
+  </div>
+  <div class="navbar-logo-center-3">
+    <div data-animation="default" data-collapse="medium" data-duration="400" data-easing="ease" data-easing2="ease" role="banner" class="navbar-logo-center-container-3 shadow-three w-nav">
+      <ul role="list" class="nav-menu-block-3 w-list-unstyled">
+        <li>
+          <a href="https://cecoldo.dimar.mil.co/web/" class="nav-link-5">Inicio</a>
+        </li>
+        <li>
+          <a href="https://cecoldo.dimar.mil.co/web/" class="nav-link-5">Cecoldo</a>
+        </li>
+        <li>
+          <div data-hover="false" data-delay="0" class="nav-dropdown-3 w-dropdown">
+            <div class="nav-dropdown-toggle-3 w-dropdown-toggle">
+              <div class="nav-dropdown-icon-3 w-icon-dropdown-toggle"></div>
+              <div>Datos abiertos</div>
+            </div>
+            <nav class="nav-dropdown-list-3 shadow-three mobile-shadow-hide w-dropdown-list">
+              <a href="https://cecoldo.dimar.mil.co/datosDimar/sigSDGOAbiertos/index.xhtml" target="_blank" class="nav-dropdown-link-3 w-dropdown-link">Búsqueda geográfica</a>
+              <a href="https://cecoldo.dimar.mil.co/geonetwork/srv/spa/catalog.search;jsessionid=6F18101D2772BDA708DF8C9DA96E5705#/home" target="_blank" class="nav-dropdown-link-3 w-dropdown-link">Búsqueda temática</a>
+              <a href="https://cecoldo.dimar.mil.co/web/licencia_datosabiertos" target="_blank" class="nav-dropdown-link-3 w-dropdown-link">Licencia de uso de datos </a>
+              <a href="https://cecoldo.dimar.mil.co/web/solicitudes" target="_blank" class="nav-dropdown-link-3 w-dropdown-link">Solicitud de datos</a>
+            </nav>
+          </div>
+        </li>
+        <li>
+          <div data-hover="false" data-delay="0" class="nav-dropdown-3 w-dropdown">
+            <div class="nav-dropdown-toggle-3 w-dropdown-toggle">
+              <div class="nav-dropdown-icon-3 w-icon-dropdown-toggle"></div>
+              <div>Acerca de</div>
+            </div>
+            <nav class="nav-dropdown-list-3 shadow-three mobile-shadow-hide w-dropdown-list">
+              <a href="https://cecoldo.dimar.mil.co/web/terminos_sitioweb" class="nav-dropdown-link-3 w-dropdown-link">Términos de uso</a>
+            </nav>
+          </div>
+        </li>
+      </ul>
+      <div class="menu-button-4 w-nav-button">
+        <div class="w-icon-nav-menu"></div>
+      </div>
+    </div>
+  </div>
+  <section>
+    <div class="div-block-8"><img src="images/antares_small_3.jpg" loading="lazy" sizes="100vw" height="Auto" alt="" srcset="images/antares_small_3-p-500.jpg 500w, images/antares_small_3-p-800.jpg 800w, images/antares_small_3-p-1080.jpg 1080w, images/antares_small_3-p-1600.jpg 1600w, images/antares_small_3-p-2000.jpg 2000w, images/antares_small_3-p-2600.jpg 2600w, images/antares_small_3-p-3200.jpg 3200w, images/antares_small_3.jpg 3800w" class="image-5"></img></div>
+  </section>
+  <section>
+    <div class="div-block-9">
+      <div class="div-block-10">
+        <!-- Enlace 1 en este href -->
+        <a href="#" class="w-inline-block"><img src="images/Infraestructura_de_Datos_Espaciales.png" loading="lazy" width="100" height="100" alt=""></img></a>
+         <!-- Variable para la estadistica de posiciones geográficas  -->
+         <p:outputLabel value="Conjunto de datos disponible"  />
+         <p:outputLabel value="#{reportesBean.valAbiertos}" />
+        <div class="text-block-3">Posiciones geográficas</div>
+      </div>
+      <div class="div-block-11">
+        <!-- Enlace 2 en este href -->
+        <a href="#" class="w-inline-block"><img src="images/Botones_cecoldo_Mesa-de-trabajo.png" loading="lazy" width="100" height="100" alt="" srcset="images/Botones_cecoldo_Mesa-de-trabajo-p-500.png 500w, images/Botones_cecoldo_Mesa-de-trabajo-p-800.png 800w, images/Botones_cecoldo_Mesa-de-trabajo.png 1276w" sizes="(max-width: 479px) 100vw, 100px"></img></a>
+       <!-- Variable para la estadistica de Conjuntos de datos  -->
+        <div class="text-block-2">2000</div>
+        <div class="text-block-3">Conjuntos de datos</div>
+      </div>
+      <div class="div-block-12">
+        <!-- Enlace 3 en este href -->
+        <a href="#" class="w-inline-block"><img src="images/botones_geoportal_datos_Mesa.jpg" loading="lazy" width="100" height="100" alt="" class="image-6"></img></a>
+        <!-- Variable para la estadistica de Series de tiempo  -->
+        <div class="text-block-2">3000</div>
+        <div class="text-block-3">Series de tiempo</div>
+      </div>
+      <div class="div-block-13">
+        <!-- Enlace 4 en este href -->
+        <a href="#" class="w-inline-block"><img src="images/botones_geoportal_datos_Mesa-de-trabajo.jpg" loading="lazy" width="100" height="100" alt="" class="image-7"></img></a>
+         <!-- Variable para la estadistica de Perfiles -->
+        <div class="text-block-2">4000</div>
+        <div class="text-block-3">Perfiles</div>
+      </div>
+    </div>
+  </section>					
+					
+				<h2 >Estadisticas datos abiertos </h2>
+				<p:separator />
+				<p:outputLabel
+					value="Bienvenido a la consulta estadisticas datos abiertos del Sistema de Datos Geográficos y Oceanográficos de la DIMAR." />
+				<p:separator />
+
+				<h:panelGroup id="misReportes">
+
+					
+		<p:panelGrid id="resumenestadisticas" columns="2">
+			<p:outputLabel value="Conjunto de datos disponible" styleClass="p-mr-2 p-mb-2" />
+			<p:outputLabel value="#{reportesBean.valAbiertos}" styleClass="p-mr-2 p-mb-2" />
+			<p:outputLabel value="Posiciones geográficas disponibles" styleClass="p-mr-2 p-mb-2" />
+			<p:outputLabel value="#{reportesBean.valAbiertos}" styleClass="p-mr-2 p-mb-2" />
+			<p:outputLabel value="Cantidas de series de tiempo" styleClass="p-mr-2 p-mb-2" />
+			<p:outputLabel value="#{reportesBean.valAbiertos}" styleClass="p-mr-2 p-mb-2" />
+			<p:outputLabel value="Cantidas de Perfiles" styleClass="p-mr-2 p-mb-2" />
+			<p:outputLabel value="#{reportesBean.valAbiertos}" styleClass="p-mr-2 p-mb-2" />
+			<p:outputLabel value="Cantidas de series de perfiles" styleClass="p-mr-2 p-mb-2" />
+			<p:outputLabel value="#{reportesBean.valAbiertos}" styleClass="p-mr-2 p-mb-2" />
+			<p:outputLabel value="Cantidas de Mediciones discretas" styleClass="p-mr-2 p-mb-2" />
+			<p:outputLabel value="#{reportesBean.valAbiertos}" styleClass="p-mr-2 p-mb-2" />
+			<p:outputLabel value="Cantidas de transectos" styleClass="p-mr-2 p-mb-2" />
+			<p:outputLabel value="#{reportesBean.valAbiertos}" styleClass="p-mr-2 p-mb-2" />
+
+		</p:panelGrid>
+
+
+				</h:panelGroup>
+
+
+		</body>
+	</ui:define>
+</ui:composition>

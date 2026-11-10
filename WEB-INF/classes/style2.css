@@ -1,0 +1,220 @@
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  font-family: serif;
+  text-decoration: none;
+  list-style: none;
+}
+
+#sidenavbar-toggle {
+  display: none;
+  width: 60px;
+}
+
+#sidenavbar-toggle:checked ~ .sidenavbar {
+  width: auto;
+}
+
+#sidenavbar-toggle:checked ~ .main-content {
+  margin-left: 60px;
+}
+
+#sidenavbar-toggle:checked ~ .main-content header {
+  left: 80px;
+}
+
+#sidenavbar-toggle:checked ~ .sidenavbar .sidebar-header h3 span,
+#sidenavbar-toggle:checked ~ .sidenavbar .sidebar-menu li span:last-child {
+  display: none;
+}
+
+#sidenavbar-toggle:checked ~ .sidenavbar
+.sidebar-header
+#sidenavbar-toggle:checked ~ .sidenavbar
+.sidebar-menu
+li {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.sidenavbar {
+  height: 100%;
+  width: 240px;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 100;
+  color: white;
+  background-color: #027581;
+  overflow-y: auto;
+  -webkit-transition: width 500ms;
+  transition: width 500ms;
+}
+
+.sidenavbar .sidebar-header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 60px;
+  padding: 0 1rem;
+}
+
+.sidenavbar .sidebar-menu {
+  padding: 1rem;
+}
+
+.sidenavbar .sidebar-menu li {
+  margin-bottom: 1.2rem;
+}
+
+.sidenavbar .sidebar-menu li a {
+  color: white;
+}
+
+.sidenavbar .sidebar-menu li a span:first-child {
+  padding: 0 1rem;
+}
+
+.main-content {
+  position: relative;
+  margin-left: 240px;
+  -webkit-transition: margin-left 500ms;
+  transition: margin-left 500ms;
+}
+
+.main-content header {
+  position: fixed;
+  left: 240px;
+  top: 0;
+  z-index: 100;
+  width: calc(100% - 240px);
+  background: #fff;
+  height: 60px;
+  padding: 0 1rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  border-bottom: 1px solid #ccc;
+  -webkit-transition: left 500ms;
+  transition: left 500ms;
+}
+
+.main-content header .search-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.main-content header .search-wrapper input {
+  border: 0;
+  outline: 0;
+  padding: 1rem;
+  height: 38px;
+}
+
+.main-content header .social-icons {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.main-content header .social-icons span,
+.main-content header .social-icons div {
+  margin-left: 1rem;
+}
+
+.main-content header .social-icons div {
+  height: 40px;
+  width: 40px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-image: url("https://source.unsplash.com/1600x900/?coding,programmer");
+  border-radius: 50%;
+}
+
+.main-content main {
+  margin-top: 60px;
+  background: #f1f5f9;
+  min-height: 90vh;
+  padding: 1rem 3rem;
+}
+
+.main-content main .dash-tittle {
+  color: #1d2231;
+  margin-bottom: 1rem;
+}
+
+.main-content main .dash-cards {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (1fr)[3];
+      grid-template-columns: repeat(3, 1fr);
+  grid-column-gap: 3rem;
+}
+
+.main-content main .dash-cards .card-single {
+  background: #fff;
+  border-radius: 7px;
+  -webkit-box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
+          box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
+}
+
+.main-content main .dash-cards .card-single .card-body {
+  padding: 1.4rem 1rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.main-content main .dash-cards .card-single .card-body span {
+  font-size: 1.2rem;
+  color: #777;
+  padding-right: 1rem;
+}
+
+.main-content main .dash-cards .card-single .card-body h5 {
+  color-adjust: #8390a2;
+  font-size: 1.4rem;
+}
+
+.main-content main .dash-cards .card-single .card-body h4 {
+  color: #1d2231;
+  margin-top: 0.2rem;
+  font-size: 1.1rem;
+}
+
+.main-content main .dash-cards .card-single .card-footer {
+  padding: 0.2rem 1rem;
+  background: #f9fafc;
+}
+
+.main-content main .dash-cards .card-single .card-footer a {
+  color: #027581;
+}

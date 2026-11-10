@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	template="/pages/template/templateInicio.xhtml">
+	<ui:define name="body">
+		<h:head>
+<!-- 			<link href="/resources/theme.css" rel="stylesheet" type="text/css" /> -->
+			<meta charset="utf-8" name="viewport"
+				content="width=device-width, initial-scale=1"
+				http-equiv="X-UA-Conpatible" />
+		</h:head>
+		<h:body onload="estadisticasSession();">
+			<h:form id="formEstadisticas" >
+			
+			<p:remoteCommand name="estadisticasSession" action="#{reportesBean.generaTabla1()}" />
+				<p:messages id="messages" showDetail="false" autoUpdate="true"
+					closable="true" />
+				<h2 >Estadisticas datos abiertos </h2>
+				<p:separator />
+				<p:outputLabel
+					value="Bienvenido a la consulta estadisticas datos abiertos del Sistema de Datos Geográficos y Oceanográficos de la DIMAR." />
+				<p:separator />
+
+				<h:panelGroup id="misReportes">
+
+					
+		<p:panelGrid id="resumenestadisticas" columns="2">
+			<p:outputLabel value="Conjunto de datos disponible" styleClass="p-mr-2 p-mb-2" />
+			<p:outputLabel value="#{reportesBean.valAbiertos}" styleClass="p-mr-2 p-mb-2" />
+			<p:outputLabel value="Posiciones geográficas disponibles" styleClass="p-mr-2 p-mb-2" />
+			<p:outputLabel value="#{reportesBean.valAbiertos}" styleClass="p-mr-2 p-mb-2" />
+			<p:outputLabel value="Cantidas de series de tiempo" styleClass="p-mr-2 p-mb-2" />
+			<p:outputLabel value="#{reportesBean.valAbiertos}" styleClass="p-mr-2 p-mb-2" />
+			<p:outputLabel value="Cantidas de Perfiles" styleClass="p-mr-2 p-mb-2" />
+			<p:outputLabel value="#{reportesBean.valAbiertos}" styleClass="p-mr-2 p-mb-2" />
+			<p:outputLabel value="Cantidas de series de perfiles" styleClass="p-mr-2 p-mb-2" />
+			<p:outputLabel value="#{reportesBean.valAbiertos}" styleClass="p-mr-2 p-mb-2" />
+			<p:outputLabel value="Cantidas de Mediciones discretas" styleClass="p-mr-2 p-mb-2" />
+			<p:outputLabel value="#{reportesBean.valAbiertos}" styleClass="p-mr-2 p-mb-2" />
+			<p:outputLabel value="Cantidas de transectos" styleClass="p-mr-2 p-mb-2" />
+			<p:outputLabel value="#{reportesBean.valAbiertos}" styleClass="p-mr-2 p-mb-2" />
+
+		</p:panelGrid>
+
+
+				</h:panelGroup>
+
+			</h:form>
+		</h:body>
+	</ui:define>
+</ui:composition>

@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	template="/pages/template/templateInicio.xhtml">
+	<ui:define name="body">
+
+		<h:head>
+<!-- 			<link href="/resources/theme.css" rel="stylesheet" type="text/css" /> -->
+		</h:head>
+		<h:form id="form1">
+			<p:messages id="messages" showDetail="false" autoUpdate="true"
+				closable="true" />
+		</h:form>
+		<h:body>
+			<script type="text/javascript">
+				function handleLoginRequest(xhr, status, args) {
+					if (args.validationFailed || !args.loggedIn) {
+						jQuery('#form').effect("shake", {
+							times : 3
+						}, 100);
+					} else {
+						PF('dlg').hide();
+						$('#loginLink').fadeOut();
+					}
+				}
+			</script>
+			<h:outputLabel value="#{bienvenida.bienvenida}" />
+			<h:form id="form">
+				<div class="card">
+					<h2>Se ha cerrado sesión correctamente</h2>
+					<style>
+/* reset on the showcase style*/
+body .ui-panelgrid .ui-panelgrid-cell {
+	background-color: transparent;
+}
+
+/* example use of styles for your form */
+.my-heading-row {
+	background-color: var(- -surface-c);
+	font-weight: bold;
+}
+</style>
+
+
+					<p:panelGrid columns="2"
+						styleClass="ui-panelgrid-blank ui-fluid,panelGridCenter"
+						style=" background-color:transparent;">
+
+
+
+						<p:row>
+							<p:column styleClass="ui-grid-col-12">
+								<p:commandButton id="login_btn" value="Aceptar"
+									styleClass="p-mr-2" style="width: auto"
+									action="#{registrarseBean.cerrarsesion}" var="loginBean" />
+
+								
+
+
+
+								<div style="text-align: center">
+									<h:messages for="login_btn" infoStyle="color:green"
+										errorStyle="color:red" />
+								</div>
+							</p:column>
+						</p:row>
+					</p:panelGrid>
+				</div>
+			</h:form>
+		</h:body>
+
+	</ui:define>
+</ui:composition>

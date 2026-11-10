@@ -1,0 +1,18 @@
+<beans xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+       xmlns:xsi="http://www.w3.org/2001/XMLScheme-instance"
+       xmlns:beans="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
+                           http://xmlns.jcp.org/xml/ns/javaee/beans_2_0.xsd"
+       bean-discovery-mode="all"
+       version="2.0">
+       
+       
+   	<beans:bean id="parameterConverter" name="parameterConverter"
+		class="datosDimar.converter.ParameterConverter" scope="request">
+		<beans:property name="parametrodao" ref="parameterService"></beans:property>
+	</beans:bean>
+       
+       
+</beans>  
+
+               

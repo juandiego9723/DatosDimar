@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+	<p:panel header="Finalidad de los datos descargados"
+		styleClass="sub-header-panel" />
+	<p:panel>
+		<p:separator />
+		<p:dataTable id="tabla2" paginator="true" paginatorPosition="bottom"
+			widgetVar="dtWidgetVar" rows="10" var="datosSolicitados"
+			value="#{conjuntoDatosProcesoCargaBean.listaAbiertosDes}"
+			rowKey="#{datosSolicitados.id}" emptyMessage="No existen registros">
+			<p:column headerText="ID">
+				<h:outputText value="#{datosSolicitados.id}" />
+			</p:column>
+			<p:column headerText="Tipo Dato">
+				<h:outputText value="#{datosSolicitados.tipoDatoId.nombre}" />
+			</p:column>
+			<p:column headerText="Conjunto">
+				<h:outputText
+					value="#{datosSolicitados.conjuntoDatosProcesoCargaId.id}" />
+			</p:column>
+			<p:column headerText="Tipo Conjunto">
+				<h:outputText
+					value="#{datosSolicitados.conjuntoDatosProcesoCargaId.tipoConjuntoDatosId.nombre}" />
+			</p:column>
+			<p:column headerText="Originador del Dato">
+				<h:outputText
+					value="#{datosSolicitados.conjuntoDatosProcesoCargaId.originadorDatoId}" />
+			</p:column>
+			<p:column headerText="Variable" style="width:280px">
+				<h:outputText
+					value="#{datosSolicitados.conjuntoDatosProcesoCargaId.oidVariable}" />
+			</p:column>
+			<p:column headerText="Fecha Inicial">
+				<h:outputText
+					value="#{datosSolicitados.conjuntoDatosProcesoCargaId.fechaini}">
+					<f:convertDateTime pattern="dd-MM-yyyy" />
+				</h:outputText>
+			</p:column>
+			<p:column headerText="Fecha Final">
+				<h:outputText
+					value="#{datosSolicitados.conjuntoDatosProcesoCargaId.fechafin}">
+					<f:convertDateTime pattern="dd-MM-yyyy" />
+				</h:outputText>
+			</p:column>
+			<p:column headerText="Cantidad Datos">
+				<h:outputText
+					value="#{datosSolicitados.conjuntoDatosProcesoCargaId.cantidadDatos}" />
+			</p:column>
+		</p:dataTable>
+		<p:panel>
+			<p:commandButton action="#{reportesBean.descargaFinalidad()}"
+				value="Descargar PDF de Reporte" ajax="false">
+			</p:commandButton>
+		</p:panel>
+	</p:panel>
+</ui:composition>

@@ -1,0 +1,310 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:leaf="http://java.sun.com/jsf/composite/jsf2leaf"
+	template="/pages/template/templateInicio.xhtml">
+	<ui:define name="body">
+
+		<h:head>
+     <link rel="stylesheet" href="https://cecoldo.dimar.mil.co/datosDimar/themecupertino3.css"  />
+
+		</h:head>
+
+		<h:body>
+			<h:form id="form" enctype="multipart/form-data">
+				<p:messages id="messages" showDetail="false" autoUpdate="true"
+					closable="true" />
+				<h2>
+					<h:outputText value="#{msg['CD.mensaje1']}"></h:outputText>
+				</h2>
+
+				<p:panelGrid cellspacing="10" border="1"
+					class="tablaCargaInicialDatos">
+					<p:row>
+						<p:column>
+							<h:outputText value="#{msg['CD.mensaje2']}:*"></h:outputText>
+						</p:column>
+						<p:column>
+							<p:selectOneMenu id="tipodatos"
+								value="#{cargaInicialBean.tipoDato}" unselectable="true"
+								required="#{cargaInicialBean.camposrequeridos}"
+								converter="omnifaces.SelectItemsConverter">
+								<f:selectItem itemLabel="#{msg['SE.mensaje13']}" itemValue="" />
+								<f:selectItems value="#{cargaInicialBean.tipodatos}"
+									var="tipodato" itemLabel="#{tipodato.nombre}"
+									itemValue="#{tipodato}" />
+								<p:ajax listener="#{cargaInicialBean.getTipotarifas}"
+									update="tarifas" />
+							</p:selectOneMenu>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column>
+							<h:outputText value="#{msg['CD.mensaje3']}:*"></h:outputText>
+						</p:column>
+						<p:column>
+							<p:selectOneMenu id="tipoinformacion"
+								value="#{cargaInicialBean.tipoConjuntoDato}" unselectable="true"
+								required="#{cargaInicialBean.camposrequeridos}"
+								converter="omnifaces.SelectItemsConverter">
+								<f:selectItem itemLabel="#{msg['SE.mensaje13']}" itemValue="" />
+								<f:selectItems value="#{cargaInicialBean.tipoconjuntodatos}"
+									var="tipoconjuntodato" itemLabel="#{tipoconjuntodato.nombre}"
+									itemValue="#{tipoconjuntodato}" />
+							</p:selectOneMenu>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column>
+							<h:outputText value="#{msg['CD.mensaje4']}:*"></h:outputText>
+						</p:column>
+						<p:column>
+							<p:selectOneMenu id="tipopais"
+								value="#{cargaInicialBean.tipoPais}" unselectable="true"
+								required="#{cargaInicialBean.camposrequeridos}"
+								converter="omnifaces.SelectItemsConverter">
+								<f:selectItem itemLabel="#{msg['SE.mensaje13']}" itemValue="" />
+								<f:selectItems value="#{cargaInicialBean.tipopaises}"
+									var="tipopais" itemLabel="#{tipopais.nombre}"
+									itemValue="#{tipopais}" />
+							</p:selectOneMenu>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column>
+							<h:outputText value="#{msg['D.mensaje2']}:*"></h:outputText>
+						</p:column>
+						<p:column>
+							<p:selectOneMenu id="tipodisciplina"
+								value="#{cargaInicialBean.tipodisciplina}" unselectable="true"
+								required="#{cargaInicialBean.camposrequeridos}"
+								converter="omnifaces.SelectItemsConverter">
+								<f:selectItem itemLabel="#{msg['SE.mensaje13']}" itemValue="" />
+								<f:selectItems value="#{cargaInicialBean.tipodisciplinas}"
+									var="disciplina" itemLabel="#{disciplina.name}"
+									itemValue="#{disciplina}" />
+								<p:ajax listener="#{cargaInicialBean.getTipovocabularios}"
+									update="tipovocabulario" />
+							</p:selectOneMenu>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column>
+							<h:outputText value="#{msg['DV.mensaje2']}:*"></h:outputText>
+						</p:column>
+						<p:column>
+							<p:selectOneMenu id="tipovocabulario"
+								value="#{cargaInicialBean.tipovocabulario}" unselectable="true"
+								required="#{cargaInicialBean.camposrequeridos}"
+								converter="omnifaces.SelectItemsConverter">
+								<f:selectItem itemLabel="#{msg['SE.mensaje13']}" itemValue="" />
+								<f:selectItems value="#{cargaInicialBean.tipovocabularios}"
+									var="vocabulario" itemLabel="#{vocabulario.name}"
+									itemValue="#{vocabulario}" />
+								<p:ajax listener="#{cargaInicialBean.getTipovocabulario}" />
+							</p:selectOneMenu>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column>
+							<h:outputText value="#{msg['CD.mensaje5']}:*"></h:outputText>
+						</p:column>
+						<p:column>
+							<p:selectOneMenu required="#{cargaInicialBean.camposrequeridos}"
+								value="#{cargaInicialBean.tipoMeasuringdevice}" id="devices"
+								converter="omnifaces.SelectItemsConverter">
+								<f:selectItem itemLabel="#{msg['SE.mensaje13']}" itemValue="" />
+								<f:selectItems value="#{cargaInicialBean.measuringdevices}"
+									var="device" itemLabel="#{device.name}" itemValue="#{device}" />
+							</p:selectOneMenu>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column>
+							<h:outputText value="#{msg['SI.mensaje3']}:*"></h:outputText>
+						</p:column>
+						<p:column>
+							<p:selectOneMenu required="#{cargaInicialBean.camposrequeridos}"
+								value="#{cargaInicialBean.tipoVehicle}" id="plataforma"
+								converter="omnifaces.SelectItemsConverter">
+								<f:selectItem itemLabel="#{msg['SE.mensaje13']}" itemValue="" />
+								<f:selectItems value="#{cargaInicialBean.vehiculos}"
+									var="vehiculo" itemLabel="#{vehiculo.name}"
+									itemValue="#{vehiculo}" />
+							</p:selectOneMenu>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column>
+							<h:outputText value="#{msg['CD.mensaje6']}:*"></h:outputText>
+						</p:column>
+						<p:column>
+							<p:selectOneMenu required="#{cargaInicialBean.camposrequeridos}"
+								value="#{cargaInicialBean.tipoSurveyinfo}" id="proyecto"
+								converter="omnifaces.SelectItemsConverter">
+								<f:selectItem itemLabel="#{msg['SE.mensaje13']}" itemValue="" />
+								<f:selectItems value="#{cargaInicialBean.proyectos}"
+									var="proyecto" itemLabel="#{proyecto.description}"
+									itemValue="#{proyecto}" />
+							</p:selectOneMenu>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column>
+							<h:outputText value="#{msg['CD.mensaje7']}:*"></h:outputText>
+						</p:column>
+						<p:column>
+							<p:pickList id="originadorList"
+								value="#{cargaInicialBean.dualoriginador}" var="originador"
+								itemLabel="#{originador}" itemValue="#{originador}" />
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column>
+							<h:outputText value="#{msg['CD.mensaje8']}:"></h:outputText>
+						</p:column>
+						<p:column>
+							<p:selectOneMenu value="#{cargaInicialBean.tipoCruise}"
+								id="cruceros" converter="omnifaces.SelectItemsConverter">
+								<f:selectItem itemLabel="#{msg['SE.mensaje13']}" itemValue="" />
+								<f:selectItems value="#{cargaInicialBean.cruise}" var="cruise"
+									itemLabel="#{cruise.name}" itemValue="#{cruise}" />
+							</p:selectOneMenu>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column>
+							<h:outputText value="#{msg['CD.mensaje9']}:*"></h:outputText>
+						</p:column>
+						<p:column>
+							<p:inputText id="linkmetadato"
+								value="#{cargaInicialBean.linkmetadato}" />
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column>
+							<h:outputText value="#{msg['CD.mensaje10']}:*"></h:outputText>
+						</p:column>
+						<p:column>
+							<p:selectOneMenu required="#{cargaInicialBean.tarifarequerido}"
+								value="#{cargaInicialBean.tipotarifa}" id="tarifas"
+								converter="omnifaces.SelectItemsConverter">
+								<f:selectItem itemLabel="#{msg['SE.mensaje13']}" itemValue="" />
+								<f:selectItems value="#{cargaInicialBean.tipotarifas}"
+									var="tipotarifa" itemLabel="#{tipotarifa.nombreServicio}"
+									itemValue="#{tipotarifa}" />
+							</p:selectOneMenu>
+						</p:column>
+					</p:row>
+
+					<p:row>
+						<p:column>
+							<h:outputText value="#{msg['CD.mensaje14']}:*"></h:outputText>
+						</p:column>
+						<p:column>
+							<p:fileUpload value="#{cargaInicialBean.archivosperfiles}"
+								mode="simple" skinSimple="false" update="estadisticas"
+								label="#{msg['CD.mensaje15']}" multiple="true"
+								allowTypes="/(\.|\/)(txt|csv)$/" />
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column>
+							<h:outputText value="#{msg['CD.mensaje16']}:*"></h:outputText>
+						</p:column>
+						<p:column>
+							<p:fileUpload value="#{cargaInicialBean.archivo_muestragrafica}"
+								mode="simple" skinSimple="false" update="estadisticas"
+								label="#{msg['CD.mensaje15']}" multiple="false" />
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column>
+							<h:outputText value="#{msg['CD.mensaje17']} (XML):*"></h:outputText>
+						</p:column>
+						<p:column>
+							<p:fileUpload value="#{cargaInicialBean.archivo_metadato}"
+								mode="simple" skinSimple="false" update="estadisticas"
+								label="${msg['CD.mensaje15']}" multiple="false" />
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column>
+							<p:commandButton value="#{msg['CD.mensaje18']}" 
+								action="#{cargaInicialBean.verficarArchivos}"
+								process="@this"
+								ajax="false"
+								update="@form:mapa, mapacoordenadas" />
+						</p:column>
+						<p:column>
+							<p:commandButton value="#{msg['CD.mensaje19']}" ajax="false"
+								action="#{cargaInicialBean.procesarregistro}"
+								onclick="PF('progressBar').start()" async="true"
+								disabled="#{cargaInicialBean.botonenable}" />
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column colspan="2">
+							<p:progressBar widgetVar="progressBar" ajax="true" interval="100"
+								value="#{cargaInicialBean.progress}" labelTemplate="{value}%"
+								global="false" style="width:500px">
+							</p:progressBar>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column colspan="2">
+							<p:commandButton id="cancelar_btn" value="#{msg['SE.mensaje45']}"
+								var="Cancelar" action="#{cargaInicialBean.cancelar()}" />
+						</p:column>
+					</p:row>
+				</p:panelGrid>
+
+
+				<p:dataTable id="estadisticas" var="estadistica"
+					value="#{cargaInicialBean.estadisticasarchivos}"
+					rowKey="#{estadistica.id}"
+					rendered="#{cargaInicialBean.mostrartabla}">
+
+					<f:facet name="header">
+						<h:outputLabel value="#{msg['CD.mensaje20']}"></h:outputLabel>
+					</f:facet>
+					<p:column headerText="#{msg['CD.mensaje21']}">
+						<h:outputText value="#{estadistica.archivo}" />
+					</p:column>
+					<p:column headerText="#{msg['CD.mensaje22']}">
+						<h:outputText value="#{estadistica.variable}" />
+					</p:column>
+					<p:column headerText="#{msg['CD.mensaje23']}">
+						<h:outputText value="#{estadistica.varmin}" />
+					</p:column>
+					<p:column headerText="#{msg['CD.mensaje24']}">
+						<h:outputText value="#{estadistica.varmax}" />
+					</p:column>
+
+				</p:dataTable>
+
+				
+
+				
+
+			</h:form>
+		</h:body>
+		
+		<h:form id="mapa">
+							<p:panel id="panelmapa" >
+
+						<div id="mapacoordenadas" align="center" >
+							<b>Mapa de ubicaciones</b>
+							<leaf:mapAdvanced
+								map="#{mapaBean.Mapacoordenadas(cargaInicialBean.datoscordenadas)}" rendered="#{cargaInicialBean.mostrartabla}" />
+						</div>
+
+					</p:panel>
+		
+		</h:form>
+
+	</ui:define>
+</ui:composition>

@@ -1,0 +1,290 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	template="/pages/template/templateInicio.xhtml">
+	<ui:define name="body">
+
+		<h:head>
+<!-- 			<link href="/resources/theme.css" rel="stylesheet" type="text/css" /> -->
+		</h:head>
+		<h:form id="form1">
+			<p:messages id="messages" showDetail="false" autoUpdate="true"
+				closable="true" />
+		</h:form>
+		<h:body>
+			<script type="text/javascript">
+				function handleLoginRequest(xhr, status, args) {
+					if (args.validationFailed || !args.loggedIn) {
+						jQuery('#form').effect("shake", {
+							times : 3
+						}, 100);
+					} else {
+						PF('dlg').hide();
+						$('#loginLink').fadeOut();
+					}
+				}
+			</script>
+			<h:form id="form">
+				<h:messages id="mensaje" autoUpdate="true" />
+
+				<p:panel header="#{msg['PTR.mensaje1']}"
+					footer=" " id="panel">
+
+					<p:panelGrid columns="4" style="width:100%;">
+						<p:panelGrid columns="1"
+							style="width:80%; margin-left: 10%; background: #c4c4c4; text-align: center;">
+							<p:commandLink id="AgregacionTemporal"
+								action="/pages/tablasReferencia/agregacionTemporal.xhtml?faces-redirect=true">
+								<!--  <i class="pi pi-plus-circle" style="font-size: 5rem"></i>-->
+								<h:graphicImage><img src="../../images/IAgregTemp2.svg" width="100" height="100"></img> </h:graphicImage>
+							</p:commandLink>
+							<p:commandLink id="AgregacionTemporal1" ajax="false"
+								value="#{msg['PTR.mensaje2']}"
+								action="/pages/tablasReferencia/agregacionTemporal.xhtml?faces-redirect=true">
+								
+							</p:commandLink>
+						</p:panelGrid>
+
+						<p:panelGrid columns="1"
+							style="width:80%; margin-left: 10%; background: #c4c4c4; text-align: center;">
+							<p:commandLink id="encuesta"
+								action="/pages/tablasReferencia/encuesta.xhtml?faces-redirect=true">
+								<!--  <i class="pi pi-plus-circle" style="font-size: 5rem"></i> -->
+								<h:graphicImage><img src="../../images/IEncuesta.svg" width="100" height="100"></img></h:graphicImage>
+							</p:commandLink>
+							<p:commandLink id="encuesta1" ajax="false" value="#{msg['PTR.mensaje3']}"
+								action="/pages/tablasReferencia/encuesta.xhtml?faces-redirect=true">
+							</p:commandLink>
+						</p:panelGrid>
+
+						<p:panelGrid columns="1"
+							style="width:80%; margin-left: 10%; background: #c4c4c4; text-align: center;">
+							<p:commandLink id="estadoProcesoCargaDatos"
+								action="/pages/tablasReferencia/estadoProcesoCargaDatos.xhtml?faces-redirect=true">
+								<!--  <i class="pi pi-plus-circle" style="font-size: 5rem"></i> -->
+								<h:graphicImage><img src="../../images/ICargaDatos.svg" width="100" height="100"></img></h:graphicImage>
+							</p:commandLink>
+							<p:commandLink id="estadoProcesoCargaDatos1" ajax="false"
+								value="#{msg['PTR.mensaje4']}"
+								action="/pages/tablasReferencia/estadoProcesoCargaDatos.xhtml?faces-redirect=true">
+							</p:commandLink>
+						</p:panelGrid>
+						<p:panelGrid columns="1"
+							style="width:80%; margin-left: 10%; background: #c4c4c4; text-align: center;">
+							<p:commandLink id="finalidad"
+								action="/pages/tablasReferencia/finalidad.xhtml?faces-redirect=true">
+								<!-- <i class="pi pi-plus-circle" style="font-size: 5rem"></i> -->
+								<h:graphicImage><img src="../../images/IFinalidad.svg" width="100" hegiht="100"></img></h:graphicImage>
+							</p:commandLink>
+							<p:commandLink id="finalidad1" ajax="false" value="#{msg['PTR.mensaje5']}"
+								action="/pages/tablasReferencia/finalidad.xhtml?faces-redirect=true">
+							</p:commandLink>
+						</p:panelGrid>
+						<p:panelGrid columns="1"
+							style="width:80%; margin-left: 10%; background: #c4c4c4; text-align: center;">
+							<p:commandLink id="genero"
+								action="/pages/tablasReferencia/genero.xhtml?faces-redirect=true">
+								<!--  <i class="pi pi-plus-circle" style="font-size: 5rem"></i> -->
+								<h:graphicImage><img src="../../images/IGenero.svg" width="100" height="100"></img></h:graphicImage>
+							</p:commandLink>
+							<p:commandLink id="genero1" ajax="false" value="#{msg['PTR.mensaje6']}"
+								action="/pages/tablasReferencia/genero.xhtml?faces-redirect=true">
+							</p:commandLink>
+						</p:panelGrid>
+						<p:panelGrid columns="1"
+							style="width:80%; margin-left: 10%; background: #c4c4c4; text-align: center;">
+							<p:commandLink id="medioEntrega"
+								action="/pages/tablasReferencia/medioEntrega.xhtml?faces-redirect=true">
+								<!-- <i class="pi pi-plus-circle" style="font-size: 5rem"></i> -->
+								<h:graphicImage><img src="../../images/IMedioEntrega.svg" width="100" height="100"></img></h:graphicImage>
+							</p:commandLink>
+							<p:commandLink id="medioEntrega1" ajax="false" value="#{msg['PTR.mensaje7']}"
+								action="/pages/tablasReferencia/medioEntrega.xhtml?faces-redirect=true">
+							</p:commandLink>
+						</p:panelGrid>
+						<p:panelGrid columns="1"
+							style="width:80%; margin-left: 10%; background: #c4c4c4; text-align: center;">
+							<p:commandLink id="medioSolicitud"
+								action="/pages/tablasReferencia/medioSolicitud.xhtml?faces-redirect=true">
+								<!-- <i class="pi pi-plus-circle" style="font-size: 5rem"></i> -->
+								<h:graphicImage><img src="../../images/IMedioSolicitud.svg" width="100" height="100"></img></h:graphicImage>
+							</p:commandLink>
+							<p:commandLink id="medioSolicitud1" ajax="false" value="#{msg['PTR.mensaje8']}"
+								action="/pages/tablasReferencia/medioSolicitud.xhtml?faces-redirect=true">
+							</p:commandLink>
+						</p:panelGrid>
+						<p:panelGrid columns="1"
+							style="width:80%; margin-left: 10%; background: #c4c4c4; text-align: center;">
+							<p:commandLink id="nivelEscolaridad"
+								action="/pages/tablasReferencia/nivelEscolaridad.xhtml?faces-redirect=true">
+								<!--  <i class="pi pi-plus-circle" style="font-size: 5rem"></i> -->
+								<h:graphicImage><img src="../../images/INivelEscolaridad.svg" width="100" height="100"></img></h:graphicImage>
+							</p:commandLink>
+							<p:commandLink id="nivelEscolaridad1" ajax="false" value="#{msg['PTR.mensaje9']}"
+								action="/pages/tablasReferencia/nivelEscolaridad.xhtml?faces-redirect=true">
+							</p:commandLink>
+						</p:panelGrid>
+						<p:panelGrid columns="1"
+							style="width:80%; margin-left: 10%; background: #c4c4c4; text-align: center;">
+							<p:commandLink id="operacionAuditoria"
+								action="/pages/tablasReferencia/operacionAuditoria.xhtml?faces-redirect=true">
+								<!-- <i class="pi pi-plus-circle" style="font-size: 5rem"></i> -->
+								<h:graphicImage><img src="../../images/IAuditoria.svg" width="100" height="100"></img></h:graphicImage>
+							</p:commandLink>
+							<p:commandLink id="operacionAuditoria1" ajax="false" value="#{msg['PTR.mensaje10']}"
+								action="/pages/tablasReferencia/operacionAuditoria.xhtml?faces-redirect=true">
+							</p:commandLink>
+						</p:panelGrid>
+						<p:panelGrid columns="1"
+							style="width:80%; margin-left: 10%; background: #c4c4c4; text-align: center;">
+							<p:commandLink id="permiso"
+								action="/pages/tablasReferencia/permiso.xhtml?faces-redirect=true">
+								<!-- <i class="pi pi-plus-circle" style="font-size: 5rem"></i> -->
+								<h:graphicImage><img src="../../images/IPermiso.svg" width="100" height="100"></img></h:graphicImage>
+							</p:commandLink>
+							<p:commandLink id="permiso1" ajax="false" value="#{msg['PTR.mensaje11']}"
+								action="/pages/tablasReferencia/permiso.xhtml?faces-redirect=true">
+							</p:commandLink>
+						</p:panelGrid>
+						<p:panelGrid columns="1"
+							style="width:80%; margin-left: 10%; background: #c4c4c4; text-align: center;">
+							<p:commandLink id="personaTipo"
+								action="/pages/tablasReferencia/personaTipo.xhtml?faces-redirect=true">
+								<!-- <i class="pi pi-plus-circle" style="font-size: 5rem"></i> -->
+								<h:graphicImage><img src="../../images/ITipoPersona.svg" width="100" height="100"></img></h:graphicImage>
+							</p:commandLink>
+							<p:commandLink id="personaTipo1" ajax="false" value="#{msg['PTR.mensaje12']}"
+								action="/pages/tablasReferencia/personaTipo.xhtml?faces-redirect=true">
+							</p:commandLink>
+						</p:panelGrid>
+						<p:panelGrid columns="1"
+							style="width:80%; margin-left: 10%; background: #c4c4c4; text-align: center;">
+							<p:commandLink id="rangoEdad"
+								action="/pages/tablasReferencia/rangoEdad.xhtml?faces-redirect=true">
+								<!--  <i class="pi pi-plus-circle" style="font-size: 5rem"></i> -->
+								<h:graphicImage><img src="../../images/IRangoEdad.svg" width="100" height="100" ></img></h:graphicImage>
+							</p:commandLink>
+							<p:commandLink id="rangoEdad1" ajax="false" value="#{msg['PTR.mensaje13']}"
+								action="/pages/tablasReferencia/rangoEdad.xhtml?faces-redirect=true">
+							</p:commandLink>
+						</p:panelGrid>
+						<p:panelGrid columns="1"
+							style="width:80%; margin-left: 10%; background: #c4c4c4; text-align: center;">
+							<p:commandLink id="rol"
+								action="/pages/tablasReferencia/rol.xhtml?faces-redirect=true">
+								<!--  <i class="pi pi-plus-circle" style="font-size: 5rem"></i> -->
+								<h:graphicImage><img src="../../images/IRol.svg" width="100" height="100"></img></h:graphicImage>
+							</p:commandLink>
+							<p:commandLink id="rol1" ajax="false" value="#{msg['PTR.mensaje14']}"
+								action="/pages/tablasReferencia/rol.xhtml?faces-redirect=true">
+							</p:commandLink>
+						</p:panelGrid>
+						<p:panelGrid columns="1"
+							style="width:80%; margin-left: 10%; background: #c4c4c4; text-align: center;">
+							<p:commandLink id="solicitudEstado"
+								action="/pages/tablasReferencia/solicitudEstado.xhtml?faces-redirect=true">
+								<!-- <i class="pi pi-plus-circle" style="font-size: 5rem"></i> -->
+								<h:graphicImage><img src="../../images/IEstadoSolicitud.svg" width="100" height="100"></img></h:graphicImage>
+							</p:commandLink>
+							<p:commandLink id="solicitudEstado1" ajax="false" value="#{msg['PTR.mensaje15']}"
+								action="/pages/tablasReferencia/solicitudEstado.xhtml?faces-redirect=true">
+							</p:commandLink>
+						</p:panelGrid>
+						<p:panelGrid columns="1"
+							style="width:80%; margin-left: 10%; background: #c4c4c4; text-align: center;">
+							<p:commandLink id="tipoDato"
+								action="/pages/tablasReferencia/tipoDato.xhtml?faces-redirect=true">
+								<!--  <i class="pi pi-plus-circle" style="font-size: 5rem"></i> -->
+								<h:graphicImage><img src="../../images/ITipoDatos.svg" width="100" height="100"></img></h:graphicImage>
+							</p:commandLink>
+							<p:commandLink id="tipoDato1" ajax="false" value="#{msg['PTR.mensaje16']}"
+								action="/pages/tablasReferencia/tipoDato.xhtml?faces-redirect=true">
+							</p:commandLink>
+						</p:panelGrid>
+						<p:panelGrid columns="1"
+							style="width:80%; margin-left: 10%; background: #c4c4c4; text-align: center;">
+							<p:commandLink id="tipoDocumento"
+								action="/pages/tablasReferencia/tipoDocumento.xhtml?faces-redirect=true">
+								<!-- <i class="pi pi-plus-circle" style="font-size: 5rem"></i> -->
+								<h:graphicImage><img src="../../images/ITipoDocumento.svg" width="100" height="100"></img></h:graphicImage>
+							</p:commandLink>
+							<p:commandLink id="tipoDocumento1" ajax="false" value="#{msg['PTR.mensaje17']}"
+								action="/pages/tablasReferencia/tipoDocumento.xhtml?faces-redirect=true">
+							</p:commandLink>
+						</p:panelGrid>
+						<p:panelGrid columns="1"
+							style="width:80%; margin-left: 10%; background: #c4c4c4; text-align: center;">
+							<p:commandLink id="tipoRespuesta"
+								action="/pages/tablasReferencia/tipoRespuesta.xhtml?faces-redirect=true">
+								<!-- <i class="pi pi-plus-circle" style="font-size: 5rem"></i> -->
+								<h:graphicImage><img src="../../images/ITipoRespuesta.svg" width="100" height="100"></img></h:graphicImage>
+							</p:commandLink>
+							<p:commandLink id="tipoRespuesta1" ajax="false" value="#{msg['PTR.mensaje18']}"
+								action="/pages/tablasReferencia/tipoRespuesta.xhtml?faces-redirect=true">
+							</p:commandLink>
+						</p:panelGrid>
+						<p:panelGrid columns="1"
+							style="width:80%; margin-left: 10%; background: #c4c4c4; text-align: center;">
+							<p:commandLink id="tipoSeleccionGeografica"
+								action="/pages/tablasReferencia/tipoSeleccionGeografica.xhtml?faces-redirect=true">
+								<!--  <i class="pi pi-plus-circle" style="font-size: 5rem"></i> -->
+								<h:graphicImage><img src="../../images/ITipoSelecGeo.svg" width="100" height="100"></img></h:graphicImage>
+							</p:commandLink>
+							<p:commandLink id="tipoSeleccionGeografica1" ajax="false" value="#{msg['PTR.mensaje19']}"
+								action="/pages/tablasReferencia/tipoSeleccionGeografica.xhtml?faces-redirect=true">
+							</p:commandLink>
+						</p:panelGrid>
+						<p:panelGrid columns="1"
+							style="width:80%; margin-left: 10%; background: #c4c4c4; text-align: center;">
+							<p:commandLink id="usuarioTipo"
+								action="/pages/tablasReferencia/usuarioTipo.xhtml?faces-redirect=true">
+								<!--  <i class="pi pi-plus-circle" style="font-size: 5rem"></i> -->
+								<h:graphicImage><img src="../../images/ITipoUsuario.svg" width="100" height="100"></img></h:graphicImage>
+							</p:commandLink>
+							<p:commandLink id="usuarioTipo1" ajax="false" value="#{msg['PTR.mensaje20']}"
+								action="/pages/tablasReferencia/usuarioTipo.xhtml?faces-redirect=true">
+							</p:commandLink>
+						</p:panelGrid>
+						<p:panelGrid columns="1"
+							style="width:80%; margin-left: 10%; background: #c4c4c4; text-align: center;">
+							<p:commandLink id="tipoIniciativaAcademica"
+								action="/pages/tablasReferencia/tipoIniciativaAcademica.xhtml?faces-redirect=true">
+								<!--  <i class="pi pi-plus-circle" style="font-size: 5rem"></i> -->
+								<h:graphicImage><img src="../../images/ITipoIniciativaAcademica.svg" width="100" height="100"></img></h:graphicImage>
+							</p:commandLink>
+							<p:commandLink id="tipoIniciativaAcademica1" ajax="false" value="#{msg['TIA.mensaje2']}"
+								action="/pages/tablasReferencia/tipoIniciativaAcademica.xhtml?faces-redirect=true">
+							</p:commandLink>
+						</p:panelGrid>
+						<p:panelGrid columns="1"
+							style="width:80%; margin-left: 10%; background: #c4c4c4; text-align: center;">
+							<p:commandLink id="tipoUsuarioSolicitud"
+								action="/pages/tablasReferencia/tipoUsuarioSolicitud.xhtml?faces-redirect=true">
+								<!--  <i class="pi pi-plus-circle" style="font-size: 5rem"></i> -->
+								<h:graphicImage><img src="../../images/ITipoUsuarioSolicitud.svg" width="100" height="100"></img></h:graphicImage>
+							</p:commandLink>
+							<p:commandLink id="tipoUsuarioSolicitud1" ajax="false" value="#{msg['TUS.mensaje2']}"
+								action="/pages/tablasReferencia/tipoUsuarioSolicitud.xhtml?faces-redirect=true">
+							</p:commandLink>
+						</p:panelGrid>
+						
+
+					</p:panelGrid>
+					<h:panelGrid id="containerGrid" columns="1" cellpadding="10"
+						width="100%">
+						<p:panelGrid columns="2" cellpadding="10" style="float: right;">
+							<p:commandButton id="btn_cr" value="#{msg['AU.mensaje11']}" ajax="false"
+								action="/pages/administracion/panelCategorias.xhtml?faces-redirect=true">
+							</p:commandButton>
+						</p:panelGrid>
+					</h:panelGrid>
+
+				</p:panel>
+			</h:form>
+		</h:body>
+
+	</ui:define>
+</ui:composition>

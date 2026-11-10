@@ -1,0 +1,143 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	template="/pages/template/templateInicio.xhtml">
+	<ui:define name="body">
+
+
+		<h:head>
+			<title>Success</title>
+		</h:head>
+		<div style="text-align: center; margin-top: 50px">
+			Ha ingresado Exitosamente al Portal
+			
+		</div>
+		<div>
+
+			<p:layout fullPage="false">
+
+				<p:layoutUnit position="west" size="25%">
+
+					<p:outputLabel value="Menu" />
+					<h:form id="form">
+						<p:growl id="msgs" showDetail="true"
+							skipDetailIfEqualsSummary="true" />
+
+						<div class="card">
+							<h:form>
+								<p:growl>
+									<p:autoUpdate />
+								</p:growl>
+
+								<p:panelMenu style="width:300px">
+									<p:submenu label="Administración">
+										<p:menuitem value="Aqui van Opciones Administrativas"
+											url="../datosDimar/pages/tablasReferencia/tablaReferencia.xhtml"
+											ajax="false" icon="pi pi-save" />
+									</p:submenu>
+									<p:submenu label="Usuarios">
+										<p:menuitem value="Roles del Sistema"
+											url="../datosDimar/pages/tablasReferencia/rol.xhtml"
+											icon="pi pi-external-link" />
+										<p:menuitem value="Permisos"
+											url="../datosDimar/pages/tablasReferencia/permiso.xhtml"
+											icon="pi pi-external-link" />
+									</p:submenu>
+									<p:submenu label="Tablas de Referencia">
+										<p:menuitem value="Agregación Temporal"
+											url="../datosDimar/pages/tablasReferencia/agregacionTemporal.xhtml"
+											icon="pi pi-external-link" />
+										<p:menuitem value="Finalidad"
+											url="../datosDimar/pages/tablasReferencia/finalidad.xhtml"
+											icon="pi pi-external-link" />
+										<p:menuitem value="Género"
+											url="../datosDimar/pages/tablasReferencia/genero.xhtml"
+											icon="pi pi-external-link" />
+										<p:menuitem value="Nivel Escolaridad"
+											url="../datosDimar/pages/tablasReferencia/nivelEscolaridad.xhtml"
+											icon="pi pi-external-link" />
+										<p:menuitem value="Rango de Edad"
+											url="../datosDimar/pages/tablasReferencia/rangoEdad.xhtml"
+											icon="pi pi-external-link" />
+										<p:menuitem value="Tipo de Documento"
+											url="../datosDimar/pages/tablasReferencia/tipoDocumento.xhtml"
+											icon="pi pi-external-link" />
+										<p:menuitem value="Tipo de Persona"
+											url="../datosDimar/pages/tablasReferencia/personaTipo.xhtml"
+											icon="pi pi-external-link" />
+										<p:menuitem value="Conjunto de datos"
+											url="../datosDimar/pages/tablasReferencia/conjuntoDatos.xhtml"
+											icon="pi pi-external-link" />
+										<p:menuitem value="Encuesta"
+											url="../datosDimar/pages/tablasReferencia/encuesta.xhtml"
+											icon="pi pi-external-link" />
+										<p:menuitem value="Estado del proceso de carga de datos"
+											url="../datosDimar/pages/tablasReferencia/estadoProcesoCargaDatos.xhtml"
+											icon="pi pi-external-link" />
+										<p:menuitem value="Estado de solicitud"
+											url="../datosDimar/pages/tablasReferencia/solicitudEstado.xhtml"
+											icon="pi pi-external-link" />
+										<p:menuitem value="Medio de entrega"
+											url="../datosDimar/pages/tablasReferencia/medioEntrega.xhtml"
+											icon="pi pi-external-link" />
+										<p:menuitem value="Medio de solicitud"
+											url="../datosDimar/pages/tablasReferencia/medioSolicitud.xhtml"
+											icon="pi pi-external-link" />
+										<p:menuitem value="Operación de auditoría"
+											url="../datosDimar/pages/tablasReferencia/operacionAuditoria.xhtml"
+											icon="pi pi-external-link" />
+										<p:menuitem value="Tipo de dato"
+											url="../datosDimar/pages/tablasReferencia/tipoDato.xhtml"
+											icon="pi pi-external-link" />
+										<p:menuitem value="Tipo de respuesta"
+											url="../datosDimar/pages/tablasReferencia/tipoRespuesta.xhtml"
+											icon="pi pi-external-link" />
+										<p:menuitem value="Tipo de selección geográfica"
+											url="../datosDimar/pages/tablasReferencia/tipoSeleccionGeografica.xhtml"
+											icon="pi pi-external-link" />
+										<p:menuitem value="Tipo de usuario"
+											url="../datosDimar/pages/tablasReferencia/usuarioTipo.xhtml"
+											icon="pi pi-external-link" />
+										<p:menuitem value="Zona geográfica"
+											url="../datosDimar/pages/tablasReferencia/zonaGeografica.xhtml"
+											icon="pi pi-external-link" />
+									</p:submenu>
+									<p:submenu label="Solicitudes Especiales">
+										<p:menuitem value="Solicitud Externa"
+											url="../datosDimar/pages/solicitudes/solicitudExterna.xhtml"
+											icon="pi pi-external-link" />
+										<p:menuitem value="Solicitud Interna"
+											url="../datosDimar/pages/solicitudes/solicitudInterna.xhtml"
+											icon="pi pi-external-link" />
+									</p:submenu>
+									<p:submenu label="Salir"> 
+										<p:menuitem value="cerrar sesión"
+											url="../datosDimar/signoff.xhtml"
+											icon="pi pi-external-link" />
+
+									</p:submenu>
+								</p:panelMenu>
+							</h:form>
+						</div>
+					</h:form>
+
+				</p:layoutUnit>
+
+				<p:layoutUnit position="center" size="74%" styleClass="tu-clase-css">
+					<p:outputLabel value="Mapa" />
+					<div style="width: 100%">
+						<iframe width="100%" height="600" frameborder="0" scrolling="no"
+							marginheight="0" marginwidth="0"
+							src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=es&amp;q=Colombia,%20Bogota+(Mi%20nombre%20de%20egocios)&amp;t=k&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe>
+						<a
+							href="https://www.mapsdirections.info/marcar-radio-circulo-mapa/">Dimar</a>
+					</div>
+				</p:layoutUnit>
+
+			</p:layout>
+		</div>
+	</ui:define>
+</ui:composition>

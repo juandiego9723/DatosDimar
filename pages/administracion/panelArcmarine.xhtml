@@ -1,0 +1,173 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	template="/pages/template/templateInicio.xhtml">
+	<ui:define name="body">
+
+		<h:head>
+<!-- 			<link href="/resources/theme.css" rel="stylesheet" type="text/css" /> -->
+		</h:head>
+		<h:form id="form1">
+			<p:messages id="messages" showDetail="false" autoUpdate="true"
+				closable="true" />
+		</h:form>
+		<h:body>
+			<script type="text/javascript">
+				function handleLoginRequest(xhr, status, args) {
+					if (args.validationFailed || !args.loggedIn) {
+						jQuery('#form').effect("shake", {
+							times : 3
+						}, 100);
+					} else {
+						PF('dlg').hide();
+						$('#loginLink').fadeOut();
+					}
+				}
+			</script>
+			<h:form id="form">
+				<h:messages id="mensaje" autoUpdate="true" />
+
+				<p:panel header="#{msg['PA.mensaje1']}"
+					footer=" " id="panel">
+
+					<p:panelGrid columns="4" style="width:100%;">
+						<p:panelGrid columns="1"
+							style="width:80%; margin-left: 10%; background: #c4c4c4; text-align: center;">
+							<p:link id="cruise"
+								href="https://cecoldo.dimar.mil.co/datosDimar/pages/tablasReferencia/cruise.xhtml">
+								<!--  <i class="pi pi-plus-circle" style="font-size: 5rem"></i> -->
+								<h:graphicImage><img src="../../images/ICrucero.svg" width="100" height="100"></img></h:graphicImage>
+							</p:link>
+							<p:link id="cruise1"
+								href="https://cecoldo.dimar.mil.co/datosDimar/pages/tablasReferencia/cruise.xhtml">
+								<p:outputLabel value="#{msg['PA.mensaje2']}" />
+							</p:link>
+						</p:panelGrid>
+
+						<p:panelGrid columns="1"
+							style="width:80%; margin-left: 10%; background: #c4c4c4; text-align: center;">
+							<p:link id="usuario2"
+								href="https://cecoldo.dimar.mil.co/datosDimar/pages/tablasReferencia/discipline.xhtml">
+								<!--  <i class="pi pi-plus-circle" style="font-size: 5rem"></i> -->
+								<h:graphicImage><img src="../../images/IDisciplina.svg" width="100" height="100"></img></h:graphicImage>
+							</p:link>
+							<p:link id="usuariotext2"
+								href="https://cecoldo.dimar.mil.co/datosDimar/pages/tablasReferencia/discipline.xhtml">
+								<p:outputLabel value="#{msg['PA.mensaje3']}" />
+							</p:link>
+						</p:panelGrid>
+
+
+						<p:panelGrid columns="1"
+							style="width:80%; margin-left: 10%; background: #c4c4c4; text-align: center;">
+							<p:link id="usuario3"
+								href="https://cecoldo.dimar.mil.co/datosDimar/pages/tablasReferencia/disciplineVocabulary.xhtml">
+								<!-- <i class="pi pi-plus-circle" style="font-size: 5rem"></i> -->
+								<h:graphicImage><img src="../../images/IDisVoc.svg" width="100" height="100"></img></h:graphicImage>
+							</p:link>
+							<p:link id="disciplineVocabulary"
+								href="https://cecoldo.dimar.mil.co/datosDimar/pages/tablasReferencia/disciplineVocabulary.xhtml">
+								<p:outputLabel value="#{msg['PA.mensaje4']}" />
+							</p:link>
+						</p:panelGrid>
+
+						<p:panelGrid columns="1"
+							style="width:80%; margin-left: 10%; background: #c4c4c4; text-align: center;">
+							<p:link id="measuringDevice"
+								href="https://cecoldo.dimar.mil.co/datosDimar/pages/tablasReferencia/measuringDevice.xhtml">
+								<!--  <i class="pi pi-plus-circle" style="font-size: 5rem"></i> -->
+								<h:graphicImage><img src="../../images/IInstrumento.svg" width="100" height="100" ></img></h:graphicImage>
+							</p:link>
+							<p:link id="measuringDevice1"
+								href="https://cecoldo.dimar.mil.co/datosDimar/pages/tablasReferencia/measuringDevice.xhtml">
+								<p:outputLabel value="#{msg['PA.mensaje5']}" />
+							</p:link>
+						</p:panelGrid>
+
+						<p:panelGrid columns="1"
+							style="width:80%; margin-left: 10%; background: #c4c4c4; text-align: center;">
+							<p:link id="parametrosarcmarine"
+								href="https://cecoldo.dimar.mil.co/datosDimar/pages/tablasReferencia/parametrosarcmarine.xhtml">
+								<!--  <i class="pi pi-plus-circle" style="font-size: 5rem"></i> -->
+								<h:graphicImage><img src="../../images/IParametro.svg" width="100" height="100"></img></h:graphicImage>
+							</p:link>
+							<p:link id="parametrosarcmarine1"
+								href="https://cecoldo.dimar.mil.co/datosDimar/pages/tablasReferencia/parametrosarcmarine.xhtml">
+								<p:outputLabel value="#{msg['PA.mensaje6']}" />
+							</p:link>
+						</p:panelGrid>
+
+						<p:panelGrid columns="1"
+							style="width:80%; margin-left: 10%; background: #c4c4c4; text-align: center;">
+							<p:link id="surveyinfo"
+								href="https://cecoldo.dimar.mil.co/datosDimar/pages/tablasReferencia/surveyinfo.xhtml">
+								<!-- <i class="pi pi-plus-circle" style="font-size: 5rem"></i> -->
+								<h:graphicImage><img src="../../images/IProyecto.svg" width="100" height="100"></img></h:graphicImage>
+							</p:link>
+							<p:link id="surveyinfo1"
+								href="https://cecoldo.dimar.mil.co/datosDimar/pages/tablasReferencia/surveyinfo.xhtml">
+								<p:outputLabel value="#{msg['PA.mensaje7']}" />
+							</p:link>
+						</p:panelGrid>
+
+						<p:panelGrid columns="1"
+							style="width:80%; margin-left: 10%; background: #c4c4c4; text-align: center;">
+							<p:link id="vehicle"
+								href="https://cecoldo.dimar.mil.co/datosDimar/pages/tablasReferencia/vehicle.xhtml">
+								<!-- <i class="pi pi-plus-circle" style="font-size: 5rem"></i> -->
+								<h:graphicImage><img src="../../images/IVehiculo.svg" width="100" height="100"></img></h:graphicImage>
+							</p:link>
+							<p:link id="vehicle1"
+								href="https://cecoldo.dimar.mil.co/datosDimar/pages/tablasReferencia/vehicle.xhtml">
+								<p:outputLabel value="#{msg['PA.mensaje8']}" />
+							</p:link>
+						</p:panelGrid>
+
+						<p:panelGrid columns="1"
+							style="width:80%; margin-left: 10%; background: #c4c4c4; text-align: center;">
+							<p:link id="vocabulary"
+								href="https://cecoldo.dimar.mil.co/datosDimar/pages/tablasReferencia/vocabulary.xhtml">
+								<!-- <i class="pi pi-plus-circle" style="font-size: 5rem"></i> -->
+								<h:graphicImage><img src="../../images/IVocabulario.svg" width="100" height="100"></img></h:graphicImage>
+							</p:link>
+							<p:link id="vocabulary1"
+								href="https://cecoldo.dimar.mil.co/datosDimar/pages/tablasReferencia/vocabulary.xhtml">
+								<p:outputLabel value="#{msg['PA.mensaje9']}" />
+							</p:link>
+						</p:panelGrid>
+
+						<p:panelGrid columns="1"
+							style="width:80%; margin-left: 10%; background: #c4c4c4; text-align: center;">
+							<p:link id="vocabularyParameter"
+								href="https://cecoldo.dimar.mil.co/datosDimar/pages/tablasReferencia/vocabularyParameter.xhtml">
+								<!-- <i class="pi pi-plus-circle" style="font-size: 5rem"></i> -->
+								<h:graphicImage><img src="../../images/IVocParam.svg" width="100" height="100"></img></h:graphicImage>
+							</p:link>
+							<p:link id="vocabularyParameter1"
+								href="https://cecoldo.dimar.mil.co/datosDimar/pages/tablasReferencia/vocabularyParameter.xhtml">
+								<p:outputLabel
+									value="#{msg['PA.mensaje10']}" />
+							</p:link>
+						</p:panelGrid>
+
+					</p:panelGrid>
+					<h:panelGrid id="containerGrid" columns="1" cellpadding="10"
+						width="100%">
+						<p:panelGrid columns="2" cellpadding="10" style="float: right;">
+							<p:commandButton id="btn_cr" value="#{msg['AU.mensaje11']}" ajax="false"
+								action="/pages/administracion/panelCategorias.xhtml?faces-redirect=true">
+							</p:commandButton>
+						</p:panelGrid>
+					</h:panelGrid>
+
+				</p:panel>
+
+
+			</h:form>
+		</h:body>
+
+	</ui:define>
+</ui:composition>

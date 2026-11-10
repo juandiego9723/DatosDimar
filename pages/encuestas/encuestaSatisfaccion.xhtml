@@ -1,0 +1,267 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+	<h2 >BIENVENIDO A LA ENCUESTA DE SATISFACCIÓN
+		DEL PROCESO</h2>
+	<p:separator />
+	<p:outputLabel
+		value="Señor Usuario: A continuación se muestra una breve encuesta para que nos cuente qué tal fue su experiencia en el Portal de Datos Oceanográficos de Dimar." />
+	<p:separator />
+	<p:panel style="align: right">
+		<h:panelGroup>
+			<h:panelGrid id="ask1" columns="5">
+				<p:outputLabel value="1. " styleClass="p-mr-2 p-mb-2" />
+				<h:outputText value="&#160;" />
+				<p:outputLabel
+					value="¿Los datos proporcionados finalmente fueron usados en su iniciativa?"
+					styleClass="p-mr-2 p-mb-2" />
+				<h:outputText value="&#160;" />
+				<p:panel>
+					<p:selectOneRadio id="opc1" value="#{encuestaBean.opcion1}"
+						layout="grid" columns="2" unselectable="true"
+						styleClass="grid-radio">
+						<f:selectItems value="#{encuestaBean.opciones}" var="opcion"
+							itemLabel="#{opcion}" itemValue="#{opcion}" />
+						<f:ajax process=":formDescargar:askno1"
+							update=":formDescargar:askno1" render=":formDescargar:askno1" />
+					</p:selectOneRadio>
+				</p:panel>
+			</h:panelGrid>
+			<h:panelGroup id="askno1">
+				<p:outputPanel layout="inline"
+					rendered="#{encuestaBean.opcion1 eq 'No'}">
+					<p:outputLabel value="Explique porqué no:"
+						styleClass="p-mr-2 p-mb-2" />
+					<p:inputTextarea
+						value="#{encuestaBean.textNo1}"
+						rows="5" cols="40" maxlength="1000" />
+				</p:outputPanel>
+			</h:panelGroup>
+		</h:panelGroup>
+		<p:separator />
+		<h:panelGroup>
+			<h:panelGrid id="ask2" columns="5">
+				<p:outputLabel value="2. " styleClass="p-mr-2 p-mb-2" />
+				<h:outputText value="&#160;" />
+				<p:outputLabel
+					value="¿Está satisfecho con el tiempo de entrega de los datos, una vez aceptada la licencia de uso de los mismos?"
+					styleClass="p-mr-2 p-mb-2" />
+				<h:outputText value="&#160;" />
+				<p:panel>
+					<p:selectOneRadio id="opc2" value="#{encuestaBean.opcion2}"
+						layout="grid" columns="2" unselectable="true"
+						styleClass="grid-radio">
+						<f:selectItems value="#{encuestaBean.opciones}" var="opcion"
+							itemLabel="#{opcion}" itemValue="#{opcion}" />
+						<f:ajax process=":formDescargar:askno2"
+							update=":formDescargar:askno2" render=":formDescargar:askno2" />
+					</p:selectOneRadio>
+				</p:panel>
+			</h:panelGrid>
+			<h:panelGroup id="askno2">
+				<p:outputPanel layout="inline"
+					rendered="#{encuestaBean.opcion2 eq 'No'}">
+					<p:outputLabel value="Explique porqué no:"
+						styleClass="p-mr-2 p-mb-2" />
+					<p:inputTextarea
+						value="#{encuestaBean.textNo2}"
+						rows="5" cols="40" maxlength="1000" />
+				</p:outputPanel>
+			</h:panelGroup>
+		</h:panelGroup>
+		<p:separator />
+		<h:panelGroup>
+			<h:panelGrid id="ask3" columns="5">
+				<p:outputLabel value="3. " styleClass="p-mr-2 p-mb-2" />
+				<h:outputText value="&#160;" />
+				<p:outputLabel
+					value="¿Teniendo en cuenta que los datos abiertos son datos primarios (es decir, sin procesar) cumplieron estos con sus expectativas?"
+					styleClass="p-mr-2 p-mb-2" />
+				<h:outputText value="&#160;" />
+				<p:panel>
+					<p:selectOneRadio id="opc3" value="#{encuestaBean.opcion3}"
+						layout="grid" columns="2" unselectable="true"
+						styleClass="grid-radio">
+						<f:selectItems value="#{encuestaBean.opciones}" var="opcion"
+							itemLabel="#{opcion}" itemValue="#{opcion}" />
+						<f:ajax process=":formDescargar:askno3"
+							update=":formDescargar:askno3" render=":formDescargar:askno3" />
+					</p:selectOneRadio>
+				</p:panel>
+			</h:panelGrid>
+			<h:panelGroup id="askno3">
+				<p:outputPanel layout="inline"
+					rendered="#{encuestaBean.opcion3 eq 'No'}">
+					<p:outputLabel value="Explique porqué no:"
+						styleClass="p-mr-2 p-mb-2" />
+					<p:inputTextarea
+						value="#{encuestaBean.textNo3}"
+						rows="5" cols="40" maxlength="1000" />
+				</p:outputPanel>
+			</h:panelGroup>
+		</h:panelGroup>
+		<p:separator />
+		<h:panelGroup>
+			<h:panelGrid id="ask4" columns="5">
+				<p:outputLabel value="4. " styleClass="p-mr-2 p-mb-2" />
+				<h:outputText value="&#160;" />
+				<p:outputLabel
+					value="¿Se le proporcionó información adicional referente a los datos solicitados (metadato), que le permitieran hacerse una idea acerca del método de adquisición de los mismos?"
+					styleClass="p-mr-2 p-mb-2" />
+				<h:outputText value="&#160;" />
+				<p:panel>
+					<p:selectOneRadio id="opc4" value="#{encuestaBean.opcion4}"
+						layout="grid" columns="2" unselectable="true"
+						styleClass="grid-radio">
+						<f:selectItems value="#{encuestaBean.opciones}" var="opcion"
+							itemLabel="#{opcion}" itemValue="#{opcion}" />
+						<f:ajax process=":formDescargar:askno4"
+							update=":formDescargar:askno4" render=":formDescargar:askno4" />
+					</p:selectOneRadio>
+				</p:panel>
+			</h:panelGrid>
+			<h:panelGroup id="askno4">
+				<p:outputPanel layout="inline"
+					rendered="#{encuestaBean.opcion4 eq 'No'}">
+					<p:outputLabel value="Explique porqué no:"
+						styleClass="p-mr-2 p-mb-2" />
+					<p:inputTextarea
+						value="#{encuestaBean.textNo4}"
+						rows="5" cols="40" maxlength="1000" />
+				</p:outputPanel>
+			</h:panelGroup>
+		</h:panelGroup>
+		<p:separator />
+		<h:panelGroup>
+			<h:panelGrid id="ask5" columns="5">
+				<p:outputLabel value="5. " styleClass="p-mr-2 p-mb-2" />
+				<h:outputText value="&#160;" />
+				<p:outputLabel
+					value="¿Fue fácil manipular el formato de archivo en el cual se le entregaron los datos y/o la información asociada a estos fue de fácil manipulación?"
+					styleClass="p-mr-2 p-mb-2" />
+				<h:outputText value="&#160;" />
+				<p:panel>
+					<p:selectOneRadio id="opc5" value="#{encuestaBean.opcion5}"
+						layout="grid" columns="2" unselectable="true"
+						styleClass="grid-radio">
+						<f:selectItems value="#{encuestaBean.opciones}" var="opcion"
+							itemLabel="#{opcion}" itemValue="#{opcion}" />
+						<f:ajax process=":formDescargar:askno5"
+							update=":formDescargar:askno5" render=":formDescargar:askno5" />
+					</p:selectOneRadio>
+				</p:panel>
+			</h:panelGrid>
+			<h:panelGroup id="askno5">
+				<p:outputPanel layout="inline"
+					rendered="#{encuestaBean.opcion5 eq 'No'}">
+					<p:outputLabel value="Explique porqué no:"
+						styleClass="p-mr-2 p-mb-2" />
+					<p:inputTextarea
+						value="#{encuestaBean.textNo5}"
+						rows="5" cols="40" maxlength="1000" />
+				</p:outputPanel>
+			</h:panelGroup>
+		</h:panelGroup>
+		<p:separator />
+		<h:panelGroup>
+			<h:panelGrid id="ask6" columns="5">
+				<p:outputLabel value="6. " styleClass="p-mr-2 p-mb-2" />
+				<h:outputText value="&#160;" />
+				<p:outputLabel
+					value="¿Volvería a solicitar acceso a datos abiertos oceanográficos y de meteorología marina de Dimar?"
+					styleClass="p-mr-2 p-mb-2" />
+				<h:outputText value="&#160;" />
+				<p:panel>
+					<p:selectOneRadio id="opc6" value="#{encuestaBean.opcion6}"
+						layout="grid" columns="2" unselectable="true"
+						styleClass="grid-radio">
+						<f:selectItems value="#{encuestaBean.opciones}" var="opcion"
+							itemLabel="#{opcion}" itemValue="#{opcion}" />
+						<f:ajax process=":formDescargar:askno6"
+							update=":formDescargar:askno6" render=":formDescargar:askno6" />
+					</p:selectOneRadio>
+				</p:panel>
+			</h:panelGrid>
+			<h:panelGroup id="askno6">
+				<p:outputPanel layout="inline"
+					rendered="#{encuestaBean.opcion6 eq 'No'}">
+					<p:outputLabel value="Explique porqué no:"
+						styleClass="p-mr-2 p-mb-2" />
+					<p:inputTextarea
+						value="#{encuestaBean.textNo6}"
+						rows="5" cols="40" maxlength="1000" />
+				</p:outputPanel>
+			</h:panelGroup>
+		</h:panelGroup>
+		<p:separator />
+		<h:panelGroup>
+			<h:panelGrid id="ask7" columns="5">
+				<p:outputLabel value="7. " styleClass="p-mr-2 p-mb-2" />
+				<h:outputText value="&#160;" />
+				<p:outputLabel
+					value="¿El proyecto o iniciativa en la cual uso los datos ya finalizó?"
+					styleClass="p-mr-2 p-mb-2" />
+				<h:outputText value="&#160;" />
+				<p:panel>
+					<p:selectOneRadio id="opc7" value="#{encuestaBean.opcion7}"
+						layout="grid" columns="2" unselectable="true"
+						styleClass="grid-radio">
+						<f:selectItems value="#{encuestaBean.opciones}" var="opcion"
+							itemLabel="#{opcion}" itemValue="#{opcion}" />
+						<f:ajax process=":formDescargar:askno7"
+							update=":formDescargar:askno7" render=":formDescargar:askno7" />
+					</p:selectOneRadio>
+				</p:panel>
+			</h:panelGrid>
+			<h:panelGroup id="askno7">
+				<p:outputPanel layout="inline"
+					rendered="#{encuestaBean.opcion7 eq 'Si'}">
+					<p:outputLabel value="Incluya los enlaces (URL) a los productos desarrollados tales como: artículos científicos, tesis de grado, publicaciones, servicios de información o a la iniciativa/proyecto."
+						styleClass="p-mr-2 p-mb-2" />
+					<p:inputTextarea
+						value="#{encuestaBean.textNo7}"
+						rows="5" cols="40" maxlength="3000" />
+				</p:outputPanel>
+			</h:panelGroup>
+		</h:panelGroup>
+		<p:separator />
+
+		<h:panelGrid id="ask8" columns="5">
+			<p:outputLabel value="8. " styleClass="p-mr-2 p-mb-2" />
+			<h:outputText value="&#160;" />
+			<p:outputLabel
+				value="Déjenos saber sus sugerencias y recomendaciones para continuar mejorando nuestro servicio de acceso a datos"
+				styleClass="p-mr-2 p-mb-2" />
+			<h:outputText value="&#160;" />
+			<p:panel>
+				<p:inputTextarea
+					value="#{encuestaBean.respuestaNo8}"
+					rows="5" cols="40" maxlength="1000" />
+			</p:panel>
+		</h:panelGrid>
+		<p:separator />
+		<h:panelGrid id="ask9" columns="5">
+			<p:outputLabel value="9. " styleClass="p-mr-2 p-mb-2" />
+			<h:outputText value="&#160;" />
+			<p:outputLabel
+				value="Califique de 1 a 10 la atención recibida durante la respuesta y entrega de los datos, donde 1 es Mala Atención y 10 es Excelente Atención"
+				styleClass="p-mr-2 p-mb-2" />
+			<h:outputText value="&#160;" />
+			<p:panel>
+				<p:selectOneRadio id="opc9" value="#{encuestaBean.opcion9}"
+					layout="grid" columns="10" unselectable="true"
+					styleClass="grid-radio">
+					<f:selectItems value="#{encuestaBean.opcionesNueve}" var="opcion"
+						itemLabel="#{opcion}" itemValue="#{opcion}" />
+				</p:selectOneRadio>
+			</p:panel>
+		</h:panelGrid>
+	</p:panel>
+	<p:separator />
+
+</ui:composition>

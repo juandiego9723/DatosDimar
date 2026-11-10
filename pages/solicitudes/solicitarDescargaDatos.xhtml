@@ -1,0 +1,233 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	template="/pages/template/templateInicio.xhtml">
+	<ui:define name="body">
+
+		<h:head>
+<!-- 			<link href="/resources/theme.css" rel="stylesheet" type="text/css" /> -->
+			<meta charset="utf-8" name="viewport"
+				content="width=device-width, initial-scale=1"
+				http-equiv="X-UA-Conpatible" />
+		</h:head>
+		<h:body>
+
+			<h:form id="formListado">
+				<p:messages id="messages" showDetail="false" autoUpdate="true"
+					closable="true" />
+				<h2 >ESTADOS EN QUE SE ENCUENTRAN LOS CONJUNTOS DE DATOS QUE HA SOLICITADO</h2>
+				<p:separator />
+				<p:outputLabel
+					value="Señor Usuario: A continuación se muestran los conjuntos de Datos que Usted seleccionó para la Compra / Descarga." />
+				<p:separator />
+				<p:dataTable id="tabla" paginator="true" paginatorPosition="bottom"
+					widgetVar="dtWidgetVar" rows="10" var="datosSolicitados"
+					value="#{conjuntoDatosProcesoCargaBean.todasSolicitudes}"
+					selection="#{conjuntoDatosProcesoCargaBean.solicitudesSel}"
+					resizableColumns="false"
+                    styleClass="wrap"
+					rowKey="#{datosSolicitados.id}" emptyMessage="No existen registros">
+					<p:column selectionMode="multiple"
+						style="width:16px;text-align:center" />
+					<p:column headerText="ID">
+						<h:outputText value="#{datosSolicitados.id}" />
+					</p:column>
+					<p:column headerText="Tipo Dato">
+						<h:outputText value="#{datosSolicitados.tipoDatoId.nombre}" />
+					</p:column>
+					<p:column headerText="Tipo Conjunto">
+						<h:outputText
+							value="#{datosSolicitados.conjuntoDatosProcesoCargaId.tipoConjuntoDatosId.nombre}" />
+					</p:column>
+					<p:column headerText="Originador del Dato">
+						<h:outputText
+							value="#{datosSolicitados.conjuntoDatosProcesoCargaId.originadorDatoId}" />
+					</p:column>
+					<p:column headerText="Variable">
+						<h:outputText
+							value="#{datosSolicitados.conjuntoDatosProcesoCargaId.oidVariable}" />
+					</p:column>
+					<p:column headerText="Fecha Inicial">
+						<h:outputText
+							value="#{datosSolicitados.conjuntoDatosProcesoCargaId.fechaini}">
+							<f:convertDateTime pattern="dd-MM-yyyy" />
+						</h:outputText>
+					</p:column>
+					<p:column headerText="Fecha Final">
+						<h:outputText
+							value="#{datosSolicitados.conjuntoDatosProcesoCargaId.fechafin}">
+							<f:convertDateTime pattern="dd-MM-yyyy" />
+						</h:outputText>
+					</p:column>
+					<p:column headerText="Cantidad Datos">
+						<h:outputText
+							value="#{datosSolicitados.conjuntoDatosProcesoCargaId.cantidadDatos}" >
+							<f:convertNumber maxFractionDigits="2" locale="en_US"/>
+					    </h:outputText>
+					</p:column>
+					<p:column headerText="Valor" style="width:100px">
+						<h:outputText
+							value="#{conjuntoDatosProcesoCargaBean.UVT  * datosSolicitados.conjuntoDatosProcesoCargaId.tarifaDatosId.tarifaUnidadUvt}">
+							<f:convertNumber currencySymbol="$" groupingUsed="true" maxFractionDigits="2" type="currency" locale="en_US"/>
+						</h:outputText>
+					</p:column>
+					<p:column headerText="DESCARGAR" style="text-align: center">
+						<p:commandButton icon="pi pi-arrow-down" title="Solicitar"
+							disabled="#{datosSolicitados.solicitudEstadoId.id != 10}"
+							oncomplete="PF('dialogoSolicitar').show();">
+							<f:setPropertyActionListener
+								target="#{conjuntoDatosProcesoCargaBean.conjuntoDatosProcesoCarga}"
+								value="#{conjuntoDatosProcesoCarga}" />
+						</p:commandButton>
+					</p:column>
+					<p:column headerText="LICENCIA" style="text-align: center">
+						<p:commandButton icon="ui-icon-print" title="Aceptar Licencia"
+							disabled="#{datosSolicitados.solicitudEstadoId.id != 1}"
+							oncomplete="PF('dialogoLicencia').show();">
+							<f:setPropertyActionListener
+								target="#{conjuntoDatosProcesoCargaBean.conjuntoDatosProcesoCarga}"
+								value="#{conjuntoDatosProcesoCarga}" />
+						</p:commandButton>
+					</p:column>
+					<p:column headerText="COMPRAR" style="text-align: center">
+						<p:commandButton icon="ui-icon-cart" title="Comprar"
+							disabled="#{datosSolicitados.solicitudEstadoId.id != 2}"
+							oncomplete="PF('dialogoComprar').show();">
+							<f:setPropertyActionListener
+								target="#{conjuntoDatosProcesoCargaBean.conjuntoDatosProcesoCarga}"
+								value="#{conjuntoDatosProcesoCarga}" />
+						</p:commandButton>
+					</p:column>
+					<p:column headerText="DESCARGAR" style="text-align: center">
+						<p:commandButton icon="ui-icon-cart" title="Descargar"
+							disabled="#{datosSolicitados.solicitudEstadoId.id != 3}"
+							oncomplete="PF('dialogoDescargar').show();">
+							<f:setPropertyActionListener
+								target="#{conjuntoDatosProcesoCargaBean.conjuntoDatosProcesoCarga}"
+								value="#{conjuntoDatosProcesoCarga}" />
+						</p:commandButton>
+					</p:column>
+					<p:column headerText="ELIMINAR" style="text-align: center">
+						<p:commandButton icon="ui-icon-trash" title="Eliminar"
+							oncomplete="PF('dialogoEliminar').show();" update=":formEliminar">
+							<f:setPropertyActionListener
+								target="#{conjuntoDatosProcesoCargaBean.datosSolicitados}"
+								value="#{datosSolicitados}" />
+						</p:commandButton>
+					</p:column>
+
+				</p:dataTable>
+			</h:form>
+
+			<h:form id="formSolicitar">
+				<p:dialog id="dlgSolicitar"
+					header="Descargar este conjunto de datos"
+					widgetVar="dialogoSolicitar" resizable="false" showEffect="fade"
+					hideEffect="explode" modal="true">
+					<p:panelGrid columns="1" style="margin: 0 auto;">
+						<p:outputLabel
+							value="Se actualizará el estado de la solicitud a Pendiente por Licencia" />
+					</p:panelGrid>
+					<p:commandButton value="Solicitar"
+						actionListener="#{conjuntoDatosProcesoCargaBean.solicitarConjunto()}"
+						update=":formListado:tabla"
+						oncomplete="PF('dialogoSolicitar').hide(); PF('dtWidgetVar').unselectAllRows();" />
+					<p:commandButton value="Cancelar"
+						onclick="PF('dialogoSolicitar').hide();" />
+				</p:dialog>
+			</h:form>
+
+			<h:form id="formLicencia">
+				<p:dialog id="dlgLicencia" header="Diligencie y acepte la Licencia"
+					widgetVar="dialogoLicencia" resizable="false" showEffect="fade"
+					hideEffect="explode" modal="true" width="620" height="600"
+					closeOnEscape="true">
+					<p:panelGrid columns="1" style="margin: 0 auto;">
+						<p:outputLabel
+							value="La Dirección General Marítima (Dimar) hace entrega de los siguientes datos e información, sin ningún costo para USO NO COMERCIAL, respondiendo a la solicitud recibida mediante la página de Datos Oceanográficos. Los datos e información serán compartidos a través de correo electrónico, posterior a la entrega del presente acuerdo debidamente diligenciado y firmado." />
+					</p:panelGrid>
+					<p:panel>
+						<div align="center">
+							<p:spacer height="10" />
+							<ui:include src="licenciaSolicitud.xhtml" />
+						</div>
+					</p:panel>
+
+					<p:commandButton value="Aceptar Licencia"
+						actionListener="#{conjuntoDatosProcesoCargaBean.aceptarLicencia()}"
+						update=":formListado:tabla"
+						oncomplete="PF('dialogoLicencia').hide(); PF('dtWidgetVar').unselectAllRows();" />
+					<p:commandButton value="Cancelar"
+						onclick="PF('dialogoLicencia').hide();" />
+				</p:dialog>
+			</h:form>
+			<h:form id="formComprar">
+				<p:dialog id="dlgComprar"
+					header="Comprar conjunto de datos seleccionados"
+					widgetVar="dialogoComprar" resizable="false" showEffect="fade"
+					hideEffect="explode" modal="true">
+					<p:panelGrid columns="1" style="margin: 0 auto;">
+						<p:outputLabel value="Se dirigirá a la pasarela de pagos"/>
+					</p:panelGrid>
+					<p:panel>
+						<div align="center">
+							<p:spacer height="10" />
+							<ui:include src="pagoSolicitud.xhtml" />
+						</div>
+					</p:panel>
+					<p:commandButton value="Comprar"
+						actionListener="#{conjuntoDatosProcesoCargaBean.comprarConjunto()}"
+						update=":formListado:tabla"
+						oncomplete="PF('dialogoComprar').hide(); PF('dtWidgetVar').unselectAllRows();" />
+					<p:commandButton value="Cancelar"
+						onclick="PF('dialogoComprar').hide();" />
+				</p:dialog>
+			</h:form>
+			<h:form id="formDescargar">
+				<p:dialog id="dlgDescargar"
+					header="Descargar conjunto de datos seleccionados"
+					widgetVar="dialogoDescargar" resizable="false" showEffect="fade"
+					hideEffect="explode" modal="true">
+					<p:panelGrid columns="1" style="margin: 0 auto;">
+						<p:outputLabel
+							value="Se descargarán los archivos de la información seleccionada" />
+					</p:panelGrid>
+					<p:commandButton value="Descargar"
+						actionListener="#{conjuntoDatosProcesoCargaBean.descargarConjunto()}"
+						update=":formListado:tabla"
+						oncomplete="PF('dialogoDescargar').hide(); PF('dtWidgetVar').unselectAllRows();" />
+					<p:commandButton value="Cancelar"
+						onclick="PF('dialogoDescargar').hide();" />
+				</p:dialog>
+			</h:form>
+			<h:form id="formEliminar">
+				<p:dialog id="dlgEliminar" header="Eliminar conjunto de datos"
+					widgetVar="dialogoEliminar" resizable="false" showEffect="fade"
+					hideEffect="explode" modal="true">
+
+					<h:outputText value="Desea eliminar este conjunto de datos ?" />
+					<p:commandButton value="Si"
+						actionListener="#{conjuntoDatosProcesoCargaBean.eliminarDatosSolicitados()}"
+						update=":formListado:tabla"
+						oncomplete="PF('dialogoEliminar').hide();" />
+					<p:commandButton value="No" onclick="PF('dialogoEliminar').hide();" />
+				</p:dialog>
+			</h:form>
+
+			<h:form id="formSolEspecial">
+				<p:panel>
+					<h:outputText
+						value="Desea realizar una solicitud especial de datos no encontrados ?" />
+					<p:separator />
+					<p:commandButton id="irSolEsp"
+						value="Solicitar Datos no encontrados"
+						action="#{conjuntoDatosProcesoCargaBean.solEspecial}" />
+				</p:panel>
+			</h:form>
+		</h:body>
+
+	</ui:define>
+</ui:composition>

@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<p:panel header="Resumen de pagos"
+		styleClass="sub-header-panel" />
+	<h:form id="formResumen">
+		<p:dataTable id="tablaPago" paginator="true" paginatorPosition="bottom"
+			widgetVar="dtWidgetVar" rows="10" var="datosSolicitados"
+			value="#{conjuntoDatosProcesoCargaBean.solicitudesSel}"
+			resizableColumns="false"
+            styleClass="wrap"
+			rowKey="#{datosSolicitados.id}" emptyMessage="No existen registros">
+			<p:column
+				style="width:16px;text-align:center" />
+			<p:column headerText="ID">
+				<h:outputText value="#{datosSolicitados.id}" />
+			</p:column>
+
+			<p:column headerText="Variable" style="width:350px">
+				<h:outputText
+					value="#{datosSolicitados.conjuntoDatosProcesoCargaId.oidVariable}" />
+			</p:column>
+
+			<p:column headerText="Cantidad Datos">
+				<h:outputText
+					value="#{datosSolicitados.conjuntoDatosProcesoCargaId.cantidadDatos}" >
+							<f:convertNumber maxFractionDigits="2" locale="en_US"/>
+					  </h:outputText>
+			</p:column>
+			<p:column headerText="Valor">
+				<h:outputText
+					value="#{conjuntoDatosProcesoCargaBean.UVT  * datosSolicitados.conjuntoDatosProcesoCargaId.tarifaDatosId.tarifaUnidadUvt}">
+					<f:convertNumber currencySymbol="$" groupingUsed="true" maxFractionDigits="2" type="currency" locale="en_US"/>
+				</h:outputText>
+			</p:column>
+
+			<p:column headerText="ELIMINAR" style="text-align: center">
+				<p:commandButton icon="ui-icon-trash" title="Eliminar"
+					oncomplete="PF('dialogoEliminar').show();">
+					<f:setPropertyActionListener
+						target="#{conjuntoDatosProcesoCargaBean.datosSolicitados}"
+						value="#{datosSolicitados}" />
+				</p:commandButton>
+			</p:column>
+
+		</p:dataTable>
+
+		<p:panel>
+			<h:panelGrid id="pago" columns="2">
+				<p:outputLabel for="totPagar" value="Total a Pagar" />
+				<p:inputText id="totPagar"
+					value="#{conjuntoDatosProcesoCargaBean.totalPagar}" disabled="true" />
+			</h:panelGrid>
+		</p:panel>
+	</h:form>
+	<p:spacer height="10" />
+</ui:composition>

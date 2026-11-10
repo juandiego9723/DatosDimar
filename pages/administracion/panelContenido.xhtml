@@ -1,0 +1,98 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	template="/pages/template/templateInicio.xhtml">
+	<ui:define name="body">
+
+		<h:head>
+<!-- 			<link href="/resources/theme.css" rel="stylesheet" type="text/css" /> -->
+			<meta charset="utf-8" name="viewport"
+				content="width=device-width, initial-scale=1"
+				http-equiv="X-UA-Conpatible" />
+		</h:head>
+		<h:form id="form1">
+			<p:messages id="messages" showDetail="false" autoUpdate="true"
+				closable="true" />
+		</h:form>
+		<h:body>
+			
+
+			<h:form id="formListado">
+				<p:dataTable id="tabla" paginator="true" paginatorPosition="bottom"
+					rows="10" var="contenido" value="#{contenidoBean.listaContenido}"
+					emptyMessage="No existen registros">
+					<p:column headerText="Identificador" style="width:15%">
+						<h:outputText value="#{contenido.identificador}" />
+					</p:column>
+					<p:column headerText="Descripcion"  style="width:30%">
+						<h:outputText value="#{contenido.descripcion}" />
+					</p:column>
+					<p:column headerText="Valor" style="width:80%">
+						<h:outputText value="#{contenido.valor}" />
+					</p:column>
+					 
+					
+					<p:column headerText="MODIFICAR" style="text-align: center; width:10%">
+						<p:commandButton icon="ui-icon-pencil" title="Modificar"
+							oncomplete="PF('dialogoModificar').show();"
+							update=":formModificar">
+							<f:setPropertyActionListener target="#{contenidoBean.contenido}"
+								value="#{contenido}" />
+						</p:commandButton>
+					</p:column>
+
+				</p:dataTable>
+				<p:commandButton id="btn_vol" value="Cerrar Sesion"
+					styleClass="p-mr-2" style="width: auto; float: right;"
+					action="#{registrarseBeean.cerrarsesion}" var="loginBean" />
+
+				<p:commandButton id="btn_cr" value="Volver" ajax="false"
+					style="width: auto; float: right;"
+					action="/pages/administracion/panelAdministracion.xhtml?faces-redirect=true">
+				</p:commandButton>
+			</h:form>
+
+
+			
+
+			<h:form id="formModificar">
+				<p:dialog id="dlgModificar" header="Modificar Contenido"
+					widgetVar="dialogoModificar" resizable="false" showEffect="fade"
+					hideEffect="explode" modal="true">
+					<p:panelGrid columns="2" style="margin: 0 auto;">
+						<p:outputLabel value="Identificador:" />
+						<p:outputLabel value="#{contenidoBean.contenido.identificador}" />
+						<p:outputLabel value="Descripcion:" />
+						<p:inputText value="#{contenidoBean.contenido.descripcion}" />
+						<p:outputLabel value="Valor:" />
+						<p:inputText value="#{contenidoBean.contenido.valor}" />
+					</p:panelGrid>
+					<p:commandButton value="Guardar"
+						actionListener="#{contenidoBean.modificarContenido()}"
+						update=":formListado:tabla"
+						oncomplete="PF('dialogoModificar').hide();" />
+					<p:commandButton value="Cancelar"
+						onclick="PF('dialogoModificar').hide();" />
+				</p:dialog>
+			</h:form>
+
+			<h:form id="formEliminar">
+				<p:dialog id="dlgEliminar" header="Eliminar Genero"
+					widgetVar="dialogoEliminar" resizable="false" showEffect="fade"
+					hideEffect="explode" modal="true">
+					<h:outputText value="Desea eliminar este registro?" />
+					<p:commandButton value="Si"
+						actionListener="#{generoBean.eliminarGenero()}"
+						update=":formListado:tabla"
+						oncomplete="PF('dialogoEliminar').hide();" />
+					<p:commandButton value="No" onclick="PF('dialogoEliminar').hide();" />
+				</p:dialog>
+			</h:form>
+
+		</h:body>
+
+	</ui:define>
+</ui:composition>

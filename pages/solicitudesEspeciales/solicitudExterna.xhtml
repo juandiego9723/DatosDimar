@@ -1,0 +1,262 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	template="/pages/template/templateInicio.xhtml">
+	<ui:define name="body">
+		<h:head>
+			<title><h:outputLabel value="#{msg['SE.mensaje0']}"></h:outputLabel></title>
+		</h:head>
+		<div>
+			<p:panel id="solExterna">
+				<style type="text/css">
+.label {
+	width: 20%;
+	padding: 4px;
+}
+
+.value {
+	width: 80%;
+	padding: 4px;
+}
+
+.grid {
+	width: 100%;
+}
+
+.error {
+	color: red;
+}
+
+.outputLabel {
+	font-weight: bold;
+}
+
+.grid {
+	width: 33%;
+	padding: 4px;
+}
+</style>
+				<h:form id="form">
+
+					<p:growl id="growl" sticky="true" showDetail="true" />
+
+					<p:wizard id="w1" widgetVar = "ww1"
+						flowListener="#{solicitudExternaBean.onFlowProcess}">
+						<p:tab id="personal" title="#{msg['SE.mensaje1']}">
+							<p:panel>
+								<p:messages />
+								<h:panelGrid id="panel1" columns="2"
+									columnClasses="label, value">
+									<p:outputLabel for="fsol" value="#{msg['SE.mensaje2']}" />
+									<p:datePicker id="fsol"
+										value="#{solicitudExternaBean.solicitudExterna.fechaSolicitud}"
+										pattern="dd/MM/yyyy" />
+
+									<h:outputText value="#{msg['SE.mensaje3']}" />
+									<p:inputText
+										value="#{solicitudExternaBean.solicitudExterna.nombreSolicitante}"
+										required="true" label="#{msg['SE.mensaje3']}" />
+
+									<h:outputText for="carsol" value="#{msg['SE.mensaje4']}" />
+									<p:inputText id="carSol"
+										value="#{solicitudExternaBean.solicitudExterna.cargoSolicitante}"
+										required="true" label="#{msg['SE.mensaje4']}" />
+
+									<h:outputText value="#{msg['SE.mensaje5']}" />
+									<p:inputText id="email" required="true" label="email"
+										requiredMessage="#{msg['SE.mensaje7']}"
+										validatorMessage="#{msg['SE.mensaje8']}"
+										value="#{solicitudExternaBean.solicitudExterna.correoSolicitante}">
+
+										<f:validateRegex
+											pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+									</p:inputText>
+									<h:outputText value="#{msg['SE.mensaje9']}" />
+									<p:inputMask id="phone"
+										value="#{solicitudExternaBean.solicitudExterna.telefonoSolicitante}"
+										mask="(999) 999-9999" validateMask="true" />
+									<h:outputText value="#{msg['SE.mensaje10']}" />
+									<p:inputText
+										value="#{solicitudExternaBean.solicitudExterna.organizacion}" />
+
+
+									<p:outputLabel for="pais" value="#{msg['SE.mensaje11']}" />
+									<p:selectOneMenu styleClass="selectOneMenurem12"
+										value="#{solicitudExternaBean.miPais.id}" id="pais"
+										required="true" requiredMessage="#{msg['SE.mensaje12']}">
+										<f:selectItem itemLabel="#{msg['SE.mensaje13']}" itemValue="" />
+										<f:selectItems
+											value="#{solicitudExternaBean.paisBean.listaPais}" var="pais"
+											itemLabel="#{pais.nombre}" itemValue="#{pais.id}" />
+										<p:ajax event="change"
+											listener="#{solicitudExternaBean.obtenerIdPais()}"
+											execute="@this" update="depto ciudad"></p:ajax>
+									</p:selectOneMenu>
+
+									<p:outputLabel for="depto" value="#{msg['SE.mensaje14']}" />
+									<p:selectOneMenu id="depto" styleClass="selectOneMenurem12"
+										value="#{solicitudExternaBean.idDepto}">
+										<f:selectItem itemLabel="#{msg['SE.mensaje15']}"
+											itemValue="" noSelectionOption="true" />
+										<f:selectItems
+											value="#{solicitudExternaBean.listaDepartamento}" var="depto"
+											itemLabel="#{depto.nombre}" itemValue="#{depto.id}" />
+										<p:ajax event="change"
+											listener="#{solicitudExternaBean.obtenerIdDepto()}"
+											update="ciudad"></p:ajax>
+									</p:selectOneMenu>
+
+									<p:outputLabel for="ciudad" value="#{msg['SE.mensaje16']}" />
+									<p:selectOneMenu id="ciudad" styleClass="selectOneMenurem12">
+										<f:selectItem itemLabel="#{msg['SE.mensaje17']}" itemValue=""
+											noSelectionOption="true" />
+										<f:selectItems value="#{solicitudExternaBean.listaCiudad}"
+											var="ciudad" itemLabel="#{ciudad.nombre}"
+											itemValue="#{ciudad.id}" />
+										<p:ajax event="change"
+											listener="#{solicitudExternaBean.obtenerIdCiudad()}"></p:ajax>
+									</p:selectOneMenu>
+								</h:panelGrid>
+							</p:panel>
+						</p:tab>
+
+						<p:tab id="finalidad" title="#{msg['SE.mensaje18']}">
+							<p:panel>
+								<p:messages />
+								<h:panelGrid id="gFin" columns="2" columnClasses="label, value">
+									<p:outputLabel for="final" value="#{msg['SE.mensaje46']}" />
+									<p:selectOneMenu styleClass="selectOneMenurem12"
+										value="#{solicitudExternaBean.miFinalidad.id}" id="final"
+										required="true" requiredMessage="#{msg['SE.mensaje19']}">
+										<f:selectItem itemLabel="#{msg['SE.mensaje13']}" itemValue="" />
+										<f:selectItems
+											value="#{solicitudExternaBean.finalidadBean.listaFinalidad}"
+											var="fin" itemLabel="#{fin.nombre}" itemValue="#{fin.id}" />
+										<p:ajax event="change"
+											listener="#{solicitudExternaBean.obtenerIdFin()}"
+											execute="@this" render="otraFin" update="alcanceAc"></p:ajax>
+									</p:selectOneMenu>
+									<h:panelGroup id="otraFin">
+										<p:outputLabel for="alcanceAc" value="#{msg['SE.mensaje20']}"
+											rendered="#{solicitudExternaBean.idFin eq 1}" />
+										<p:selectOneMenu styleClass="selectOneMenurem12" id="alcanceAc"
+											requiredMessage="#{msg['SE.mensaje20']}"
+											rendered="#{solicitudExternaBean.idFin eq 1}">
+											<f:selectItem itemLabel="#{msg['SE.mensaje13']}" itemValue="" />
+											<f:selectItem itemLabel="#{msg['SE.mensaje21']}" itemValue="Pregrado" />
+											<f:selectItem itemLabel="#{msg['SE.mensaje22']}" itemValue="Maestría" />
+											<f:selectItem itemLabel="#{msg['SE.mensaje23']}" itemValue="Doctorado" />
+											<f:selectItem itemLabel="#{msg['SE.mensaje24']}"
+												itemValue="Posdoctorado" />
+										</p:selectOneMenu>
+										<h:outputText value="#{msg['SE.mensaje25']}"
+											rendered="#{solicitudExternaBean.idFin eq 9}" />
+										<p:inputText rendered="#{solicitudExternaBean.idFin eq 9}" />
+									</h:panelGroup>
+								</h:panelGrid>
+							</p:panel>
+							<p:panel header="#{msg['SE.mensaje26']}">
+								<p:messages />
+								<h:panelGrid columns="2" columnClasses="label, value">
+									<h:outputText value="#{msg['SE.mensaje27']}" />
+									<p:inputText
+										value="#{solicitudExternaBean.solicitudExterna.tituloProyecto}" />
+
+									<h:outputText value="#{msg['SE.mensaje28']}" />
+									<p:inputTextarea
+										value="#{solicitudExternaBean.solicitudExterna.descripcionProyecto}"
+										rows="5" cols="50" maxlength="1000" />
+
+									<h:outputText value="#{msg['SE.mensaje29']}" />
+									<p:inputText
+										value="#{solicitudExternaBean.solicitudExterna.director}" />
+									<p:outputLabel value="#{msg['SE.mensaje30']}" />
+									<p:datePicker id="fIni"
+										value="#{solicitudExternaBean.solicitudExterna.proyectoFechaInicio}"
+										pattern="dd/MM/yyyy" />
+									<p:outputLabel value="#{msg['SE.mensaje31']}" />
+									<p:datePicker id="fFin"
+										value="#{solicitudExternaBean.solicitudExterna.proyectoFechaFin}"
+										pattern="dd/MM/yyyy" />
+									<h:outputText value="#{msg['SE.mensaje32']}" />
+									<p:inputTextarea
+										value="#{solicitudExternaBean.solicitudExterna.aportesNacionales}"
+										rows="5" cols="50" maxlength="4000" />
+									<h:outputText value="#{msg['SE.mensaje33']}" />
+									<p:inputTextarea
+										value="#{solicitudExternaBean.solicitudExterna.observaciones}"
+										rows="5" cols="50" maxlength="4000" />
+								</h:panelGrid>
+							</p:panel>
+						</p:tab>
+
+						<p:tab id="det" title="#{msg['SE.mensaje34']}">
+							<p:panel>
+								<p:messages />
+								<h:panelGrid columns="2" columnClasses="label, value">
+									<h:outputText value="#{msg['SE.mensaje35']}" />
+									<p:inputText
+										value="#{solicitudExternaBean.solicitudExternaDetalleBean.solicitudExternaDetalle.nombreInformacion}"
+										required="true" >
+										<p:ajax event="change" update="@this" />
+									</p:inputText>
+									<p:outputLabel value="#{msg['SE.mensaje36']}" />
+									<p:datePicker id="fIniD"
+										value="#{solicitudExternaBean.solicitudExternaDetalle.fechaInicialDatos}"
+										pattern="dd/MM/yyyy" >
+										<p:ajax event="change" update="@this" />
+									</p:datePicker>	
+									<p:outputLabel value="#{msg['SE.mensaje37']}" />
+									<p:datePicker id="fFinD"
+										value="#{solicitudExternaBean.solicitudExternaDetalle.fechaFinalDatos}"
+										pattern="dd/MM/yyyy" >
+										<p:ajax event="change" update="@this" />
+									</p:datePicker>	
+									<h:outputText value="#{msg['SE.mensaje38']}" />
+									<p:inputTextarea
+										value="#{solicitudExternaBean.solicitudExternaDetalle.extencionVertical}"
+										rows="5" cols="50" maxlength="4000" >
+										<p:ajax event="change" update="@this" />
+									</p:inputTextarea>
+									<h:outputText value="#{msg['SE.mensaje39']}" />
+									<p:inputTextarea
+										value="#{solicitudExternaBean.solicitudExternaDetalle.coberturaGeografica}"
+										rows="5" cols="50" maxlength="4000" >
+										<p:ajax event="change" update="@this" />
+									</p:inputTextarea>
+									<p:outputLabel for="agre" value="#{msg['SE.mensaje40']}" />
+									<p:selectOneMenu styleClass="selectOneMenurem12"
+										value="#{solicitudExternaBean.miAgregacionTemporal.id}"
+										id="agre" required="true"
+										requiredMessage="#{msg['SE.mensaje47']}">
+										<f:selectItem itemLabel="#{msg['SE.mensaje13']}" itemValue="" />
+										<f:selectItems
+											value="#{solicitudExternaBean.agregacionTemporalBean.listaAgregacionTemporal}"
+											var="agre" itemLabel="#{agre.nombre}" itemValue="#{agre.id}" />
+										<p:ajax event="change"
+											listener="#{solicitudExternaBean.obtenerIdAgre()}"></p:ajax>
+									</p:selectOneMenu>
+								</h:panelGrid>
+							</p:panel>
+							<p:panel header="#{msg['SE.mensaje43']}">
+								<p:commandButton value="#{msg['SE.mensaje44']}"
+									action="#{solicitudExternaBean.guardarSolExterna}"
+									update="growl" process="@this" 
+									oncomplete="PF('ww1').loadStep('personal', false)"/>
+								<p:commandButton value="#{msg['SE.mensaje45']}"
+									action="#{solicitudExternaBean.limpiarFormulario()}"
+									update="growl" process="@this" 
+									oncomplete="PF('ww1').loadStep('personal', false)"/>
+							</p:panel>
+						</p:tab>
+					</p:wizard>
+
+				</h:form>
+
+			</p:panel>
+		</div>
+	</ui:define>
+</ui:composition>

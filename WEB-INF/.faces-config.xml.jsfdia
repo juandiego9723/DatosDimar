@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PROCESS model-entity="JSFProcess">
+ <PROCESS-ITEM NAME="rules:#login.xhtml" PATH="/pages/seguridad/login.xhtml"
+  SHAPE="48,17,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#login.xhtml:0" NAME="item"
+   PATH="/pages/seguridad/login.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="failure::#login.xhtml" NAME="output"
+    PATH="/pages/seguridad/login.xhtml" TARGET="rules:#login.xhtml" TITLE="failure" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="success::#success.xhtml" NAME="output1"
+    PATH="/success.xhtml" TARGET="rules:#success.xhtml" TITLE="success" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="signup::#signup.xhtml" NAME="output2"
+    PATH="/signup.xhtml" TARGET="rules:#signup.xhtml" TITLE="signup" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#signup.xhtml" PATH="/signup.xhtml"
+  SHAPE="288,209,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#signup.xhtml:0" NAME="item"
+   PATH="/signup.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="return::#login.xhtml" NAME="output"
+    PATH="/pages/seguridad/login.xhtml" TARGET="rules:#login.xhtml" TITLE="return" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#success.xhtml" PATH="/success.xhtml"
+  SHAPE="288,33,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#pages#tablasReferencia#agregacionTemporal.xhtml"
+  PATH="/pages/tablasReferencia/agregacionTemporal.xhtml"
+  SHAPE="107,216,0,0" model-entity="JSFProcessGroup" persistent="true">
+  <PROCESS-ITEM
+   ID="rules:#pages#tablasReferencia#agregacionTemporal.xhtml:0"
+   NAME="item" PATH="/pages/tablasReferencia/agregacionTemporal.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="return::agregacionTemporal.xhtml"
+    NAME="output" PATH="agregacionTemporal.xhtml"
+    TARGET="rules:agregacionTemporal.xhtml" TITLE="return" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:agregacionTemporal.xhtml"
+  PATH="agregacionTemporal.xhtml" SHAPE="240,321,0,0" model-entity="JSFProcessGroup"/>
+</PROCESS>

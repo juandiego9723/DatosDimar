@@ -1,0 +1,126 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<p:panel header="Licencia de Aceptación" styleClass="sub-header-panel" />
+	<p:panel>
+		<p:outputLabel value="Diligencie por favor los datos." />
+		<p:separator />
+		<h:panelGrid id="lic" columns="2">
+			<p:outputLabel for="tdato" value="Tipo de Dato" />
+			<p:inputText id="tdato"
+				value="#{conjuntoDatosProcesoCargaBean.miTipoDato.nombre}"
+				disabled="true" />
+
+
+			<p:outputLabel for="fsol" value="Fecha de la Solicitud" />
+			<p:datePicker id="fsol"
+				value="#{conjuntoDatosProcesoCargaBean.fechaSol}" disabled="true" />
+
+			<h:outputText value="Medio de Solicitud" />
+			<p:inputText
+				value="#{conjuntoDatosProcesoCargaBean.medioSolicitud.nombre}"
+				disabled="true" />
+			<h:outputText value="Radicado" />
+			<p:inputText value="#{conjuntoDatosProcesoCargaBean.radicado}"
+				disabled="true" />
+
+			<h:outputText value="Nombre del Licenciatario *" />
+			<h:panelGroup>
+				<p:inputText id="nomlic" required="true"
+					value="#{conjuntoDatosProcesoCargaBean.licencia.nombreLicenciatario}" />
+				<!-- 					value="#{conjuntoDatosProcesoCargaBean.licencia.nombreLicenciatario}" /> -->
+				<p:tooltip for="nomlic" value="#{msg['licencia.msg_nomlic']}"
+					position="top" />
+			</h:panelGroup>
+
+			<h:outputText value="Cargo del Licenciatario *" />
+			<h:panelGroup>
+				<p:inputText id="cargolic" required="true"
+					value="#{conjuntoDatosProcesoCargaBean.licencia.cargoLicenciatario}"
+					disabled="false" />
+				<p:tooltip for="cargolic" value="#{msg['licencia.msg_cargolic']}"
+					position="top" />
+			</h:panelGroup>
+			<h:outputText value="Institución del Proyecto *" />
+			<h:panelGroup>
+				<p:inputText id="insp" required="true"
+					value="#{conjuntoDatosProcesoCargaBean.licencia.institucionProyecto}" />
+				<p:tooltip for="insp" value="#{msg['licencia.msg_instproy']}" />
+			</h:panelGroup>
+			<h:outputText value="Título del Proyecto *" />
+			<h:panelGroup>
+				<p:inputText id="titp" required="true"
+					value="#{conjuntoDatosProcesoCargaBean.licencia.tituloProyecto}" />
+				<p:tooltip for="titp" value="#{msg['licencia.msg_titproyecto']}" />
+			</h:panelGroup>
+			<h:outputText value="Correo del Licenciatario *" />
+			<h:panelGroup>
+				<p:inputText id="email" required="true" label="email"
+					requiredMessage="Digite su correo electrónico"
+					validatorMessage="El formato del correo electrónico es inválido"
+					value="#{conjuntoDatosProcesoCargaBean.licencia.correoLicenciatario}">
+					<!-- 					value="#{conjuntoDatosProcesoCargaBean.licencia.correoLicenciatario}"> -->
+					<f:validateRegex
+						pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+				</p:inputText>
+				<p:tooltip for="email" value="#{msg['licencia.msg_emaillic']}" />
+			</h:panelGroup>
+			<h:outputText value="Teléfono del Licenciatario" />
+			<h:panelGroup>
+				<p:inputMask id="phone" required="true"
+					value="#{conjuntoDatosProcesoCargaBean.licencia.telefonoLicenciatario}"
+					mask="(999) 999-9999" validateMask="true" />
+				<p:tooltip for="phone" value="#{msg['licencia.msg_phonelic']}" />
+			</h:panelGroup>
+			
+			<h:outputText value="Fecha Firma" />
+			<h:panelGroup>
+				<p:datePicker id="ffu2"
+					value="#{conjuntoDatosProcesoCargaBean.fechaSol}" disabled="true"
+					pattern="dd/MM/yyyy" />
+				<p:tooltip for="ffu2" value="#{msg['licencia.msg_ffirmalic']}" />
+			</h:panelGroup>
+			<p:outputLabel for="pais" value="#{msg['SE.mensaje11']}" />
+			<h:panelGroup>
+				<p:selectOneMenu styleClass="selectOneMenurem12"
+					value="#{conjuntoDatosProcesoCargaBean.miPais.id}" id="pais"
+					required="true" requiredMessage="#{msg['SE.mensaje12']}">
+					<f:selectItem itemLabel="#{msg['SE.mensaje13']}" itemValue="" />
+					<f:selectItems
+						value="#{conjuntoDatosProcesoCargaBean.paisBean.listaPais}"
+						var="pais" itemLabel="#{pais.nombre}" itemValue="#{pais.id}" />
+
+					<p:ajax event="change" execute="@this" update="depto ciudad"></p:ajax>
+				</p:selectOneMenu>
+			</h:panelGroup>
+			<p:outputLabel for="depto" value="#{msg['SE.mensaje14']}" />
+			<h:panelGroup>
+				<p:selectOneMenu id="depto" required="true" styleClass="selectOneMenurem12"
+					value="#{conjuntoDatosProcesoCargaBean.idDepto}">
+					<f:selectItem itemLabel="#{msg['SE.mensaje15']}" itemValue=""
+						noSelectionOption="true" />
+					<f:selectItems
+						value="#{conjuntoDatosProcesoCargaBean.listaDepartamento}"
+						var="depto" itemLabel="#{depto.nombre}" itemValue="#{depto.id}" />
+					<p:ajax event="change" update="ciudad"></p:ajax>
+				</p:selectOneMenu>
+			</h:panelGroup>
+			<p:outputLabel for="ciudad" value="#{msg['SE.mensaje16']}" />
+			<h:panelGroup>
+				<p:selectOneMenu id="ciudad" required="true" styleClass="selectOneMenurem12"
+					value="#{conjuntoDatosProcesoCargaBean.idCiu}">
+					<f:selectItem itemLabel="#{msg['SE.mensaje17']}" itemValue=""
+						noSelectionOption="true" />
+					<f:selectItems value="#{conjuntoDatosProcesoCargaBean.listaCiudad}"
+						var="ciudad" itemLabel="#{ciudad.nombre}" itemValue="#{ciudad.id}" />
+					<p:ajax event="change"></p:ajax>
+				</p:selectOneMenu>
+			</h:panelGroup>
+		</h:panelGrid>
+	</p:panel>
+	<p:spacer height="10" />
+</ui:composition>

@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	template="/pages/template/templateInicio.xhtml">
+	<ui:define name="body">
+
+		<h:head>
+<!-- 			<link href="/resources/theme.css" rel="stylesheet" type="text/css" /> -->
+		</h:head>
+		<h:form id="form1">
+			<p:messages id="messages" showDetail="false" autoUpdate="true"
+				closable="true" />
+		</h:form>
+		<h:body>
+			<script type="text/javascript">
+				function handleLoginRequest(xhr, status, args) {
+					if (args.validationFailed || !args.loggedIn) {
+						jQuery('#form').effect("shake", {
+							times : 3
+						}, 100);
+					} else {
+						PF('dlg').hide();
+						$('#loginLink').fadeOut();
+					}
+				}
+			</script>
+			<h:outputLabel value="#{bienvenida.bienvenida}" /> <br></br><br></br>
+			<h:form id="form">
+								<p:panel header="Activacion de Usuario" footer="" id="panelActivacionUsuario"
+						style="width:50%;">
+						<p:outputPanel> para finalizar  el procesos  ya ctivar el usuario  por favor  escriba  su numero de  cedula  </p:outputPanel>
+						<br></br>
+						<br></br>
+						<p:outputLabel for="cedula" value="Numero de Documento" />&nbsp; &nbsp; &nbsp;
+						<p:inputText id="cedula"
+							value="#{registrarseBeean.persona.numeroDocumento}"
+							required="true" />
+						<p:message for="cedula" />
+						<br></br>
+						<br></br>
+						<p:commandButton id="login_btn" value="continuar"
+									styleClass="p-mr-2" style="width: auto"
+									action="#{registrarseBeean.enviarActivar}" var="loginBean"
+									update="panelActivacionUsuario" />
+					</p:panel>
+			</h:form>
+		</h:body>
+
+	</ui:define>
+</ui:composition>

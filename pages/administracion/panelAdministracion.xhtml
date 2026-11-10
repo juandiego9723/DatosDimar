@@ -1,0 +1,185 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	template="/pages/template/templateInicio.xhtml">
+	<ui:define name="body">
+
+		<h:head>
+<link rel="stylesheet" href="https://cecoldo.dimar.mil.co/datosDimar/themecupertino3.css"  />
+<link rel="stylesheet" href="https://cecoldo.dimar.mil.co/datosDimar/pages/themedimar.css"  />
+		</h:head>
+		<h:form id="form1">
+			<p:messages id="messages" showDetail="false" autoUpdate="true"
+				closable="true" />
+		</h:form>
+		<h:body>
+			<h:form id="form">
+<!-- 				<h:messages id="mensaje" autoUpdate="true" /> -->
+
+				<p:panelGrid columns="4" class="loginpanelgrid1">
+					<p:commandButton id="login_btn" value="#{msg['panelAdmin.BotCerrSes']}"
+						styleClass="p-mr-2" class="loginbottom"
+						action="#{registrarseBeean.cerrarsesion}" var="loginBean" />
+				</p:panelGrid>
+
+				<p:panel
+					header="#{msg['panelAdmin.modAdmin']} - #{msg['panelAdmin.usuario']}: #{panelAdministracionBean.usuarioSeccion} - #{msg['panelAdmin.perfil']}: #{panelAdministracionBean.usarioRol}"
+					footer=" " id="panel">
+					<p:panelGrid columns="4" class="panelAdminpanelgrid1">
+
+						<p:panelGrid columns="1"
+							class="panelgridpaneladmon"
+							rendered="#{panelAdministracionBean.panelusuario}">
+							<p:link id="usuario" href="#{panelAdministracionBean.usuario}">
+								<i class="pi pi-user iconfontpaneladmon" ></i>
+							</p:link>
+							<p:link id="usuariotext"
+								href="#{panelAdministracionBean.usuario}">
+
+								<p:outputLabel value="#{msg['panelAdmin.RegUsu']}" />
+
+							</p:link>
+
+						</p:panelGrid>
+
+
+						<p:panelGrid columns="1"
+							class="panelgridpaneladmon"
+							rendered="#{panelAdministracionBean.panelroles}">
+							<p:link id="roles" href="#{panelAdministracionBean.roles}">
+								<i class="pi pi-check-circle iconfontpaneladmon" ></i>
+							</p:link>
+							<p:link id="rolestxt" href="#{panelAdministracionBean.roles}">
+
+								<p:outputLabel value="#{msg['panelAdmin.GestRoles']}" />
+							</p:link>
+
+						</p:panelGrid>
+
+						<p:panelGrid columns="1"
+							class="panelgridpaneladmon"
+							rendered="#{panelAdministracionBean.panelcategorias}">
+							<p:link href="#{panelAdministracionBean.categorias}">
+
+								<i class="pi pi-folder-open iconfontpaneladmon" ></i>
+							</p:link>
+							<p:link href="#{panelAdministracionBean.categorias}">
+
+								<p:outputLabel value="#{msg['panelAdmin.GestCate']}" />
+							</p:link>
+
+						</p:panelGrid>
+
+						<p:panelGrid columns="1"
+							class="panelgridpaneladmon"
+							rendered="#{panelAdministracionBean.panelencuestas}">
+							<p:link href="#{panelAdministracionBean.encuestas}">
+
+								<i class="pi pi-chart-bar iconfontpaneladmon" ></i>
+							</p:link>
+							<p:link href="#{panelAdministracionBean.encuestas}">
+
+								<p:outputLabel value="#{msg['panelAdmin.GestEncu']}" />
+							</p:link>
+
+						</p:panelGrid>
+
+
+						<p:panelGrid columns="1"
+							class="panelgridpaneladmon"
+							rendered="#{panelAdministracionBean.panelsolicitudes}">
+							<p:link href="#{panelAdministracionBean.solicitudes}">
+
+								<i class="pi pi-inbox iconfontpaneladmon" ></i>
+							</p:link>
+							<p:link href="#{panelAdministracionBean.solicitudes}">
+
+								<p:outputLabel value="#{msg['panelAdmin.GestSoli']}" />
+							</p:link>
+
+						</p:panelGrid>
+
+						<p:panelGrid columns="1"
+							class="panelgridpaneladmon"
+							rendered="#{panelAdministracionBean.panelsubir}">
+							<p:link href="#{panelAdministracionBean.subir}">
+
+								<i class="pi pi-cloud-upload iconfontpaneladmon" ></i>
+							</p:link>
+							<p:link href="#{panelAdministracionBean.subir}">
+
+								<p:outputLabel value="#{msg['panelAdmin.SubirDatos']}" />
+							</p:link>
+
+						</p:panelGrid>
+
+						<p:panelGrid columns="1"
+							class="panelgridpaneladmon"
+							rendered="#{panelAdministracionBean.panelreportes}">
+							<p:link href="#{panelAdministracionBean.reportes}">
+
+								<i class="pi pi-file-pdf iconfontpaneladmon" ></i>
+							</p:link>
+							<p:link href="#{panelAdministracionBean.reportes}">
+
+								<p:outputLabel value="#{msg['panelAdmin.Reportes']}" />
+							</p:link>
+
+						</p:panelGrid>
+
+						<p:panelGrid columns="1"
+							class="panelgridpaneladmon"
+							rendered="#{panelAdministracionBean.panelaudotria}">
+							<p:link href="#{panelAdministracionBean.audotria}">
+
+								<i class="pi pi-clock iconfontpaneladmon" ></i>
+							</p:link>
+							<p:link href="#{panelAdministracionBean.audotria}">
+
+								<p:outputLabel value="Auditorias" />
+							</p:link>
+
+						</p:panelGrid>
+
+						<p:panelGrid columns="1"
+							class="panelgridpaneladmon"
+							rendered="#{panelAdministracionBean.revisar2}">
+							<p:link href="#{panelAdministracionBean.revisar}">
+
+								<i class="pi pi-search iconfontpaneladmon" ></i>
+							</p:link>
+							<p:link href="#{panelAdministracionBean.revisar}">
+
+								<p:outputLabel value="#{msg['panelAdmin.Revisar']}" />
+							</p:link>
+
+						</p:panelGrid>
+						
+						<p:panelGrid columns="1"
+							class="panelgridpaneladmon"
+							rendered="#{panelAdministracionBean.panelsolicitudes}">
+							<p:link href="#{panelAdministracionBean.solicitudExterna}">
+
+<!-- 								<i class="pi pi-folder-open iconfontpaneladmon" ></i> -->
+								<h:graphicImage><img src="https://cecoldo.dimar.mil.co/datosDimar/images/ISolicitudExterna.svg" width="80" height="80"></img></h:graphicImage>
+							</p:link>
+							<p:link href="#{panelAdministracionBean.solicitudExterna}">
+
+								<p:outputLabel value="#{msg['panelAdmin.mensaje1']}" />
+							</p:link>
+
+						</p:panelGrid>
+
+					</p:panelGrid>
+
+				</p:panel>
+
+
+			</h:form>
+		</h:body>
+
+	</ui:define>
+</ui:composition>

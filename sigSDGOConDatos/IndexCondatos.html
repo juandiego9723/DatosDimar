@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Repositorio Digital Conjunto de Datos</title>
+<link
+	href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&family=PT+Sans:wght@400;700&display=swap"
+	rel="stylesheet">
+<link rel="shortcut icon" href="images/logo-IDEicon.ico"
+	type="image/x-icon">
+
+
+<link rel="stylesheet"
+	href="https://js.arcgis.com/4.26/esri/themes/light/main.css">
+<link rel="stylesheet" href="css/style.css">
+<!--     <link href="../resources/theme.css" rel="stylesheet" type="text/css" /> -->
+
+<script type="module"
+	src=https://js.arcgis.com/calcite-components/1.4.3/calcite.esm.js></script>
+
+<link rel="stylesheet" type="text/css"
+	href=https://js.arcgis.com/calcite-components/1.4.3/calcite.css />
+
+<script
+	src="https://js.arcgis.com/calcite-components/1.0.0-beta.95/calcite.js"></script>
+<script src="https://js.arcgis.com/4.26/"></script>
+<script src="scripts/sigSDGOConDatos.js"></script>
+
+</head>
+
+<body>
+
+	<div class="panel-container">
+
+		<calcite-modal class="modal" aria-labelledby="modal-title"
+			id="example-modal">
+		<div slot="header" id="modal-title">Términos y condiciones</div>
+
+		<div slot="content">
+			<div>
+				<p>
+<!-- 				<figure> -->
+<!-- 					<img class="imageini" src="../images/DATAOCEAN_1.png"> -->
+<!-- 				</figure> -->
+				<h3 style="text-align: center;">
+					<a
+						href="https://www.dimar.mil.co/sites/default/files/informes/Avisodeprivacidad.pdf"
+						target="_blank"><span style="color: hsl(240, 75%, 60%);"><strong>Términos
+								y Condiciones</strong></span></a>
+				</h3>
+					<div>
+					<input type="checkbox" id="ckbtnaceptarcondatos" value="aceptar_terminos" />
+					Acepto términos y condiciones </calcite-label>
+					<calcite-button slot="primary" id="btncontinuar">
+					Continuar </calcite-button>
+				</div>
+				</p>
+			</div>
+		</div>
+		<calcite-button slot="primary" width="full" id="btncontinuar">
+		Continuar </calcite-button> </calcite-modal>
+
+		<button class="esri-widget--button esri-icon-review query-button"
+			id="atributesButton" value="atributos" title="Consulta por atributos"></button>
+
+
+
+
+		<div id="queryDiv" class="esri-widget">
+			<p class="Title">Filtro Conjunto de Datos</p>
+
+			<div class="field">
+				<label for="tipodatos">Tipo de datos:</label> <select id="tipodatos">
+					<option value="">Todos</option>
+					<!--disabled selected-->
+
+				</select>
+			</div>
+			<div class="field">
+				<label for="tipodisciplina">Disciplina:</label> <select
+					id="tipodisciplina">
+					<option value="">Todos</option>
+					<!--disabled selected-->
+
+				</select>
+			</div>
+			<div class="fieldlim">
+				<label for="tipoparametros">Variable:</label> <select
+					class="maxwidth" id="tipoparametros">
+					<option value="">Todos</option>
+					<!--disabled selected-->
+
+				</select>
+			</div>
+			<div class="field">
+				<label for="tipoplataforma">Plataforma:</label> <select
+					id="tipoplataforma">
+					<option value="">Todos</option>
+					<!--disabled selected-->
+
+				</select>
+			</div>
+			<div class="field">
+				<label for="tipopropietarios">Propietario:</label> <select
+					id="tipopropietarios">
+					<option value="">Todos</option>
+					<!--disabled selected-->
+
+				</select>
+			</div>
+			<div class="field">
+				<label for="tipoproyectos">Proyecto o iniciativa:</label> <select
+					id="tipoproyectos">
+					<option value="">Todos</option>
+					<!--disabled selected-->
+
+				</select>
+			</div>
+			<div class="field">
+				<label for="tipopais">País de origen:</label> <select id="tipopais">
+					<option value="">Todos</option>
+					<!--disabled selected-->
+
+				</select>
+			</div>
+			<div class="field">
+				<label for="tipoestacion">Estación de muestreo:</label> <select
+					id="tipoestacion">
+					<option value="">Todos</option>
+					<!--disabled selected-->
+
+				</select>
+			</div>
+			<div class="field">
+				<label for="tipofechaini">Fecha inicial:</label> <select
+					id="tipofechaini">
+					<option value="">Todos</option>
+					<!--disabled selected-->
+
+				</select>
+			</div>
+			<div class="field">
+				<label for="tipofechafin">Fecha final:</label> <select
+					id="tipofechafin">
+					<option value="">Todos</option>
+					<!--disabled selected-->
+
+				</select>
+			</div>
+			<form enctype="multipart/form-data" method="post" id="uploadForm">
+				<table>
+					<tbody>
+						<div class="field">
+							<tr>
+								<input id="chkAreshp" name="chkAreshp" type="checkbox" value="" />
+								<label>Archivo ShaPeFile (.Zip) </label>
+							</tr>
+							<tr>
+								<label class="file-upload"> <input type="file"
+									name="file" id="inFile" />
+								</label>
+						</div>
+						</tr>
+					</tbody>
+				</table>
+			</form>
+			<!-- 			<table> -->
+			<!-- 				<tbody> -->
+			<!-- 					<tr> -->
+			<!-- 						<input id="chkAreKml" name="chkAreKml" type="checkbox" value="" /> -->
+			<!-- 						<label>Definido por archivo KML</label> -->
+			<!-- 					</tr> -->
+			<!-- 			<div class="field"> -->
+			<!--                <div id="uploadButton"> -->
+			<!--                   <input type="file" id="fileInputKml" accept=".kml"> -->
+			<!--                </div> -->
+			<!--            </div> -->
+			<!--            </tbody> -->
+			<!-- 			</table> -->
+			<table>
+				<tbody>
+					<tr>
+						<input id="chkAreGeo" name="chkAreGeo" type="checkbox" value="" />
+						<label>Rectángulo geográfico envolvente</label>
+					</tr>
+					<tr class="tr1">
+						<td class="td1"><label>Xmin</label></td>
+						<td class="td1"><label>Ymax</label> <input class="input1"
+							type="text" name="CoorYmax" value=""
+							data-dojo-type="dijit/form/ValidationTextBox"
+							data-dojo-props="trim:true" id="CoorYmax" /></td>
+						<td><label>Xmax</label></td>
+					</tr>
+					<tr class="tr1">
+						<td class="td1"><input type="text" name="CoorXmin" value=""
+							data-dojo-type="dijit/form/ValidationTextBox"
+							data-dojo-props="trim:true" id="CoorXmin" class="input1" /></td>
+						<td class="td1"><label>Ymin</label></td>
+						<td class="td1""><input class="input1" type="text"
+							name="CoorXmax" value=""
+							data-dojo-type="dijit/form/ValidationTextBox"
+							data-dojo-props="trim:true" id="CoorXmax" /></td>
+					</tr>
+					<tr class="tr1">
+						<td class="td1"></td>
+						<td class="td1"><input class="input1" type="text"
+							name="CoorYmin" value=""
+							data-dojo-type="dijit/form/ValidationTextBox"
+							data-dojo-props="trim:true" id="CoorYmin" /></td>
+						<td class="td1"></td>
+					</tr>
+					<tr>
+					</tr>
+				</tbody>
+			</table>
+			<table>
+				<tr>
+					<td>
+						<button class="esri-button" id="applyQuery" type="button">Mostrar
+							detalles</button>
+
+					</td>
+					<td>
+						<button class="esri-button" id="clearQuery" type="button">Limpiar</button>
+					</td>
+					<!--             <td> -->
+					<!--               <button class="esri-button" id="applySolicitar" type="button">Descargar</button> -->
+					<!--             </td> -->
+				</tr>
+			</table>
+		</div>
+		<button class="esri-widget--button esri-icon-sketch-rectangle"
+			id="spatialButton" value="spatial" title="Consulta espacial"></button>
+		<div id="queryLocDiv" class="esri-widget">
+			<p class="Title">Búsqueda Geográfica</p>
+			<div class="geometry-options">
+				<button
+					class="esri-widget--button esri-icon-map-pin geometry-button"
+					id="point-geometry-button" value="point" title="Consulta por punto"></button>
+				<button
+					class="esri-widget--button esri-icon-polyline geometry-button"
+					id="line-geometry-button" value="polyline"
+					title="Consulta por línea"></button>
+				<button
+					class="esri-widget--button esri-icon-polygon geometry-button"
+					id="polygon-geometry-button" value="polygon"
+					title="Consulta por polígono"></button>
+			</div>
+			<table>
+				<tr>
+					<td>
+						<button class="esri-button" id="applyQueryLoc" type="button">Buscarr</button>
+					</td>
+					<td>
+						<button class="esri-button" id="clearQueryLoc" type="button">Limpiar
+							Geometria</button>
+
+					</td>
+				</tr>
+			</table>
+		</div>
+		<calcite-tooltip label="Example label" reference-element="tablePager">
+		<span> Al hacer click en la paginación, aparece en el panel
+			superior derecho los resultados de la búsqueda de datos abiertos, y
+			se resaltan en la mapa los resultados correspondientes a la pagina
+			seleccionada.</span> </calcite-tooltip>
+		<div id="List" class="panel-side esri-widget">
+			<div slot="header">
+				<calcite-pagination id="tablePager" start="1" num="20">
+				</calcite-pagination>
+			</div>
+			<ul id="articulosRel">
+				<li>Cargando&hellip;</li>
+			</ul>
+
+		</div>
+
+
+
+
+
+
+		<div id="resumen">
+			<div>
+				<h3 class="text-resumen margin-five" id="text-counttotal">Ubicaciones
+					geográficas totales:</h3>
+				<p class="text-resumen" id="counttotal"></p>
+			</div>
+			<div>
+				<h3 class="text-resumen margin-five" id="text-countdatostotal">Datos
+					totales:</h3>
+				<p class="text-resumen" id="countdatostotal"></p>
+			</div>
+			<div>
+				<h3 class="text-resumen margin-five" id="text-count">Ubicaciones
+					geográficas (filtro):</h3>
+				<p class="text-resumen" id="count"></p>
+			</div>
+			<div>
+				<h3 class="text-resumen margin-five" id="text-countdatos">Datos
+					totales (filtro):</h3>
+				<p class="text-resumen" id="countdatos"></p>
+			</div>
+			<div>
+				<h3 class="text-resumen margin-five" id="label-selec">Datos
+					Seleccionados:</h3>
+
+				<p class="text-resumen" id="numselected"></p>
+				<label><input type="checkbox" id="chkselall" name="selall"
+									value="Todos"> Todos </label>
+			</div>
+			<div>
+				<button class="esri-button" id="applySolicitar" type="button">Descargar</button>
+			</div>
+		</div>
+		<div id="viewDiv"></div>
+		<div id="sketchDiv"></div>
+		<div slot="footer"></div>
+
+		<div id="btn_export"
+			class="esri-widget esri-widget--button esri-widget esri-interactive"
+			title="Export to CSV">
+
+			<span class="esri-icon-documentation"></span>
+		</div>
+		<img id="loadingImg" src="images/ajax-loader-2.gif"
+			class="logocargando" />
+
+	</div>
+
+
+
+
+</body>
+
+</html>

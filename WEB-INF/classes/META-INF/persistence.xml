@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence
+             http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd"
+  version="2.1">
+
+  <persistence-unit name="pdimar">
+    <description>Persistencia Dimar</description>
+    <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+
+<!-- Tablas de Referencia -->
+    <class>datosDimar.model.AgregacionTemporal</class>
+    <class>datosDimar.model.Finalidad</class>
+    <class>datosDimar.model.NivelEscolaridad</class>
+    <class>datosDimar.model.RangoEdad</class>
+    <class>datosDimar.model.PersonaTipo</class>
+    <class>datosDimar.model.Genero</class>
+    <class>datosDimar.model.TipoDocumento</class>
+    <class>datosDimar.model.TipoRespuesta</class>
+    <class>datosDimar.model.ConjuntoDatos</class>
+    <class>datosDimar.model.TipoSeleccionGeografica</class>
+    <class>datosDimar.model.EstadoProcesoCargaDatos</class>
+    <class>datosDimar.model.MedioEntrega</class>
+    <class>datosDimar.model.Encuesta</class>
+    <class>datosDimar.model.ZonaGeografica</class>
+    <class>datosDimar.model.TipoDato</class>
+    <class>datosDimar.model.SolicitudEstado</class>
+    <class>datosDimar.model.TipoIniciativaAcademica</class>
+    <class>datosDimar.model.TipoUsuarioSolicitud</class>                                                      
+    <!-- Personas, Seguridad y Usuarios -->
+    <class>datosDimar.model.Rol</class>
+    <class>datosDimar.model.Opcion</class>
+    <class>datosDimar.model.Persona</class>
+    <class>datosDimar.model.Funcionario</class>
+    <class>datosDimar.model.Dependencia</class>
+    <class>datosDimar.model.OriginadorDato</class>
+    <class>datosDimar.model.OpcionXRol</class>
+    <class>datosDimar.model.Usuario</class>
+    <class>datosDimar.model.UsuarioXRol</class>
+    <class>datosDimar.model.UsuarioTipo</class>
+    <!-- Ubicación -->
+    <class>datosDimar.model.Departamento</class>
+    <class>datosDimar.model.Pais</class>
+    <class>datosDimar.model.Ciudad</class>
+    <class>datosDimar.model.AreaGeografica</class>
+    <!-- Encuestas -->
+    <class>datosDimar.model.EncuestaXLicencia</class>
+    <class>datosDimar.model.EncuestaPregunta</class>
+    <class>datosDimar.model.EncuestaRespuesta</class>
+    <class>datosDimar.model.Respuesta</class>
+    <class>datosDimar.model.EncuestaSatisfaccion</class>
+    <!-- Solicitudes -->
+    <class>datosDimar.model.SolicitudExternaDisponible</class>
+    <class>datosDimar.model.SolicitudExternaDetalle</class>
+    <class>datosDimar.model.SolicitudProcesoCarga</class>
+    <class>datosDimar.model.ConjuntoDatosProcesoCarga</class>
+    <class>datosDimar.model.SolicitudExterna</class>
+    <class>datosDimar.model.SolicitudInternaDisponible</class>
+	<class>datosDimar.model.SolicitudInternaDetalle</class>
+    <class>datosDimar.model.SolicitudInterna</class>
+    <class>datosDimar.model.SolicitudExternaEntidades</class>
+    <class>datosDimar.model.MedioSolicitud</class>
+    <class>datosDimar.model.DatosSolicitados</class>
+    <class>datosDimar.model.Transacciones</class>
+    <!-- Licencias -->
+    <class>datosDimar.model.Licencia</class>
+    <class>datosDimar.model.LicenciaDetalle</class>
+    <class>datosDimar.model.TarifaDatos</class> 
+
+     <!-- Otros -->
+	<class>datosDimar.model.Contenido</class>
+     <!-- audiotria -->
+    <class>datosDimar.model.Aditoria</class>   
+	
+    <properties>
+<!--     desarrollo -->
+<!--       <property name="javax.persistence.jdbc.url" value="jdbc:sqlserver://localhost:1433;databaseName=SDGODimar"/>  -->
+<!--       <property name="javax.persistence.jdbc.user" value="sa"/> -->
+<!--       <property name="javax.persistence.jdbc.password" value="unbit"/>   -->
+<!--       <property name="javax.persistence.jdbc.driver" value="com.microsoft.sqlserver.jdbc.SQLServerDriver"/> -->
+
+<!-- produccion -->
+      <property name="javax.persistence.jdbc.url" value="jdbc:sqlserver://172.25.1.186:1433;databaseName=SDGODimar"/>    
+      <property name="javax.persistence.jdbc.user" value="sa"/>
+      <property name="javax.persistence.jdbc.password" value="Dimar_UN*"/> 
+      <property name="javax.persistence.jdbc.driver" value="com.microsoft.sqlserver.jdbc.SQLServerDriver"/>
+      
+      
+<!--       <property name="javax.persistence.jdbc.url" value="jdbc:sqlserver://DMRPMIS\DIMAR_UN;databaseName=SDGODimar"/> -->
+<!--       <property name="javax.persistence.jdbc.password" value="D1m4r_UN22*"/> -->
+
+      <property name="hibernate.show_sql" value="false" />
+      <property name="hibernate.hbm2ddl.auto" value="" />
+      <property name="hibernate.dialect" value="org.hibernate.dialect.SQLServerDialect"/>       
+    </properties>
+
+  </persistence-unit>
+  
+  
+  
+  
+  <persistence-unit name="pdimarsde">
+    <description>Persistencia Dimar SDE</description>
+    <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+
+	
+    
+        <!-- geodatabase sde -->
+    <class>datosDimar.model.sde.Cruise</class>
+    <class>datosDimar.model.sde.Dmdataclassement</class>
+    <class>datosDimar.model.sde.Parameter</class>
+    <class>datosDimar.model.sde.Surveyinfo</class>
+    <class>datosDimar.model.sde.Timesery</class>
+    <class>datosDimar.model.sde.Track</class>
+    <class>datosDimar.model.sde.Tstype</class>
+    <class>datosDimar.model.sde.Vehicle</class>
+    <class>datosDimar.model.sde.Discipline</class>
+    <class>datosDimar.model.sde.DisciplineVocabulary</class>
+    <class>datosDimar.model.sde.Vocabulary</class>
+    <class>datosDimar.model.sde.VocabularyParameter</class>
+    <class>datosDimar.model.sde.views.V_DisciplinaVocabulario</class>
+    <class>datosDimar.model.sde.Measureddata</class>
+    <class>datosDimar.model.sde.Measurement</class>
+	
+    <properties>
+<!--     desarrollo -->
+<!--        <property name="javax.persistence.jdbc.url" value="jdbc:sqlserver://localhost:1433;databaseName=dimar1"/>     -->
+<!--        <property name="javax.persistence.jdbc.user" value="sde"/>           -->
+<!--        <property name="javax.persistence.jdbc.password" value="sde"/>  -->
+<!--        <property name="javax.persistence.jdbc.driver" value="com.microsoft.sqlserver.jdbc.SQLServerDriver"/> -->
+ 
+<!--  produccion -->
+       <property name="javax.persistence.jdbc.url" value="jdbc:sqlserver://172.25.1.186:1433;databaseName=dimarUN"/>
+      <property name="javax.persistence.jdbc.user" value="sde"/>
+      <property name="javax.persistence.jdbc.password" value="Dimar_UN*"/>
+      <property name="javax.persistence.jdbc.driver" value="com.microsoft.sqlserver.jdbc.SQLServerDriver"/> 
+
+<!--       <property name="javax.persistence.jdbc.url" value="jdbc:sqlserver://DMRPMIS\DIMAR_UN;databaseName=Dimar_UN"/> -->
+<!--       <property name="javax.persistence.jdbc.password" value="DIMARUNSDE"/> -->
+      <property name="javax.persistence.jdbc.user" value="sde"/>
+
+      <property name="hibernate.show_sql" value="false" />
+      <property name="hibernate.hbm2ddl.auto" value="" />
+      <property name="hibernate.dialect" value="org.hibernate.dialect.SQLServerDialect"/>       
+    </properties>
+
+  </persistence-unit>
+  
+
+</persistence>

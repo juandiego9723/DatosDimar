@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+	<h:head>
+ 	<link rel="stylesheet" href="https://cecoldo.dimar.mil.co/datosDimar/pages/themedimar.css" />
+ 	 	    	    <link rel="stylesheet" media="all" href="https://cecoldo.dimar.mil.co/web/sites/default/files/css/css_WXskbdquPSoqkR8B4aW7rQe8LMZSa9tFzjCFEGloYTA.css" />
+    	    <link rel="stylesheet" media="all" href="https://cecoldo.dimar.mil.co/web/sites/default/files/css/css_2kvns-qj72UyVNwSdkMhO3fPU1t6ecngPl7ENdNRu9U.css" />
+            <link rel="stylesheet" media="all" href="https://cecoldo.dimar.mil.co/web/sites/default/files/css/css_GxDCaQKohfMpNPMIMF7YsCw9LNnv6YpJPz0CbV54c0c.css" /> 
+    
+<f:facet name="first">
+            <meta http-equiv="X-UA-Compatible" content="edge, chrome=1" />
+            <meta name="_csrf" content="4bfd1575-3ad1-4d21-96c7-4ef2d9f86721"/>
+	        <meta name="_csrf_header" content="X-CSRF-TOKEN"/>
+            <title> Portal de Datos Oceanográficos Dimar</title>
+		</f:facet>
+	</h:head>
+  <style>
+body{
+        padding: 0;
+        margin: 0;
+    }
+.header-govco {
+background: #1C3D71;
+padding: 10px 60px 10px 0px;
+}
+.header-govco > img {
+height: 20px;
+vertical-align: middle;
+border: 0;
+}
+   @media all and (max-width: 1024px) {
+      .header-govco {
+padding-left: 20px;
+      }
+   }
+  </style>	
+<!-- <a href="" target="_blank"> -->
+<div class="header-govco">
+<img src="https://cecoldo.dimar.mil.co/web/sites/default/files/2024-08/logo_gov_co.png 
+" alt="Imagen logo GovCo" >
+</img>
+</div>
+<!-- </a> -->
+<h:body>
+
+	<div class = "center1" align="center"   >
+		<div class="rounded1" >
+			<ui:include src="encabezado.xhtml" />
+			<div class= "div1">
+				<ui:insert name="body" />
+			</div>
+		</div>
+			<div>
+             <footer>
+
+				<div>
+					<ui:include src="/pages/template/piePagina.xhtml" />
+				</div>
+			</footer>
+			</div>
+	</div>
+
+</h:body>
+
+</html>

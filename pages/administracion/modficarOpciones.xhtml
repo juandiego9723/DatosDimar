@@ -1,0 +1,104 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	template="/pages/template/templateInicio.xhtml">
+	<ui:define name="body">
+
+		<h:head>
+<!-- 			<link href="/resources/theme.css" rel="stylesheet" type="text/css" /> -->
+			<meta charset="utf-8" name="viewport"
+				content="width=device-width, initial-scale=1"
+				http-equiv="X-UA-Conpatible" />
+		</h:head>
+		<h:form id="form1">
+			<p:messages id="messages" showDetail="false" autoUpdate="true"
+				closable="true" />
+		</h:form>
+		<h:body>
+
+
+			<h:form id="form">
+				
+					<p:panel header="Datos Del Usuario" style=" width: 80%;">
+						<p:panelGrid columns="2" id="panelUsuario">
+
+							<h:panelGrid style=" width:100%;">
+								<p:outputLabel value="Nombre " />
+								<br></br>
+								<p:inputText id="nombre1"  disabled="true"
+									value="#{usuarioBean.usuarioXRol.usuarioId.persona.primerNombre  } #{ usuarioBean.usuarioXRol.usuarioId.persona.segundoNombre} #{ usuarioBean.usuarioXRol.usuarioId.persona.primerApellido} #{ usuarioBean.usuarioXRol.usuarioId.persona.segundoApellido}"  
+                                           style="width:100%;"
+									required="false" />
+								
+							</h:panelGrid>
+
+							<h:panelGrid style=" width:100%;">
+								<p:outputLabel value="Nombre Usuario" />
+								<br></br>
+								<p:inputText id="nombre" disabled="true"
+									value="#{usuarioBean.usuarioXRol.usuarioId.usuario}"  style="width:100%;"
+									required="false" />
+							
+							</h:panelGrid>
+							
+							<h:panelGrid style=" width:100%;">
+								<p:outputLabel value="Tipo de Usuario" />
+								<br></br>
+								<p:inputText id="tipoUsuario"  disabled="true"
+									value="#{usuarioBean.usuarioXRol.usuarioId.usuarioTipo.nombre}"  style="width:100%;"
+									required="false" />
+							</h:panelGrid>
+
+							<h:panelGrid style=" width:100%;">
+								<p:outputLabel for="activo" value="usuario Activo" />
+								<br></br>
+
+								<p:selectOneMenu id="activo"
+									value="#{usuarioBean.usuarioXRol.rolId.id}" required="true"
+									style="width:100%;">
+									
+									<f:selectItem itemLabel="#{usuarioBean.usuarioXRol.rolId.nombre}"
+										itemValue="#{usuarioBean.usuarioXRol.rolId.id}"
+										noSelectionOption="false" />
+									<f:selectItems value="#{usuarioBean.listaRol}" var="g"
+									itemLabel="#{g.nombre}" itemValue="#{g.id}" />
+								</p:selectOneMenu>
+								<h:messages for="activo" />
+							</h:panelGrid>
+
+
+
+						</p:panelGrid>
+
+					</p:panel>
+
+
+		
+
+
+
+
+				<br></br>
+				<br></br>
+				<p:commandButton id="modificar_btn" value="Modificar"
+					styleClass="p-mr-2" style="width: auto"  
+					action="#{usuarioBean.modificarUsuarioRol}" var="usuarioBean" />
+								&nbsp; &nbsp; &nbsp;
+				<p:commandButton id="btn_cr" value="Volver" ajax="false"
+					
+					action="/pages/tablasReferencia/usuarioXrol.xhtml?faces-redirect=true">
+				</p:commandButton>
+
+
+			</h:form>
+
+
+
+
+		</h:body>
+
+	</ui:define>
+</ui:composition>

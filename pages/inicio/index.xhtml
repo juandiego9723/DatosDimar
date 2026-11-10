@@ -1,0 +1,211 @@
+<!DOCTYPE html><!--  This site was created in Webflow. https://webflow.com  --><!--  Last Published: Wed Aug 21 2024 10:15:38 GMT+0000 (Coordinated Universal Time)  -->
+<html data-wf-page="662ab8a931791f8301576699" data-wf-site="662ab8a931791f830157668d">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<!-- 	template="/pages/template/templateInicio.xhtml" -->
+
+	<ui:define name="body">
+
+<h:head>
+  <meta charset="utf-8">
+  <title>Portal de datos oceanográficos</title>
+  <meta content="width=device-width, initial-scale=1" name="viewport">
+  <meta content="Webflow" name="generator">
+  <link href="css/normalize.css" rel="stylesheet" type="text/css">
+  <link href="css/webflow.css" rel="stylesheet" type="text/css">
+  <link href="css/audiometro.webflow.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin="anonymous">
+  <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js" type="text/javascript"></script>
+  <script type="text/javascript">WebFont.load({  google: {    families: ["Varela:400"]  }});</script>
+  <script type="text/javascript">!function(o,c){var n=c.documentElement,t=" w-mod-";n.className+=t+"js",("ontouchstart"in o||o.DocumentTouch&&c instanceof DocumentTouch)&&(n.className+=t+"touch")}(window,document);</script>
+  <link href="images/favicon.ico" rel="shortcut icon" type="image/x-icon">
+  <link href="images/webclip.png" rel="apple-touch-icon">
+</h:head>
+
+
+<h:body onload="datosiniciales();">
+<h:form id="formInicio" >
+<p:remoteCommand name="datosiniciales"  action="#{reportesBean.datosIniciales()}" process="@this" onstart=true />
+<p:messages id="messages" showDetail="false" autoUpdate="true"
+					closable="true" />
+
+  <h:header>
+    <div class="div-block"></div>
+    <div data-animation="default" data-collapse="medium" data-duration="400" data-easing="ease" data-easing2="ease" role="banner" class="navbar w-nav">
+      <div class="div-block-3">
+        <a href="https://www.gov.co/" target="_blank" class="w-inline-block"><img src="images/gov.webp" loading="lazy" alt="" class="logo"></a>
+      </div>
+      <div class="div-block-4">
+        <nav role="navigation" class="nav-menu w-nav-menu">
+          <a href="#" class="navelement w-nav-link">Última actualización: 2024-08-21</a><img src="images/Silla-de-ruedas.webp" loading="lazy" alt="" height="Auto" class="image-3">
+          <div class="form-block w-form">
+            <form id="email-form" name="email-form" data-name="Email Form" method="get" class="form" data-wf-page-id="662ab8a931791f8301576699" data-wf-element-id="e1d4555b-2f0b-f52d-95b3-d973fac95f37"><select id="field" name="field" data-name="Field" class="select-field w-select">
+                <option value="es">Español</option>
+                <option value="en">English</option>
+              </select></form>
+            <div class="w-form-done">
+              <div>Thank you! Your submission has been received!</div>
+            </div>
+            <div class="w-form-fail">
+              <div>Oops! Something went wrong while submitting the form.</div>
+            </div>
+          </div>
+          <a href="https://cecoldo.dimar.mil.co/web/sitemap" class="navelement w-nav-link">Mapa del sitio</a>
+          <a href="https://cecoldo.dimar.mil.co/web/user/login" class="navelement w-nav-link">Iniciar sesión</a>
+        </nav>
+      </div>
+      <div class="menu-button-3 w-nav-button">
+        <div class="w-icon-nav-menu"></div>
+      </div>
+    </div>
+  </h:header>
+  
+  
+  <div data-animation="default" data-collapse="medium" data-duration="400" data-easing="ease" data-easing2="ease" role="banner" class="navbar-2 w-nav">
+    <div class="div-block-5"><img src="images/Logos-Cecoldo-IDE.png" loading="lazy" sizes="(max-width: 479px) 100vw, (max-width: 767px) 40vw, (max-width: 991px) 42vw, (max-width: 4276px) 46vw, 1967px" srcset="images/Logos-Cecoldo-IDE-p-500.png 500w, images/Logos-Cecoldo-IDE-p-800.png 800w, images/Logos-Cecoldo-IDE-p-1080.png 1080w, images/Logos-Cecoldo-IDE-p-1600.png 1600w, images/Logos-Cecoldo-IDE.png 1967w" alt="" class="image-4"></div>
+    <div class="div-block-6">
+      <div class="form-block-2 w-form">
+        <form id="email-form-2" name="email-form-2" data-name="Email Form 2" method="get" class="form-2" data-wf-page-id="662ab8a931791f8301576699" data-wf-element-id="a1616539-361f-396f-fd0b-97880c305044"><input class="text-field w-input" maxlength="256" name="field-2" data-name="Field 2" placeholder="Buscar" type="text" id="field-2" required=""></form>
+        <div class="w-form-done">
+          <div>Thank you! Your submission has been received!</div>
+        </div>
+        <div class="w-form-fail">
+          <div>Oops! Something went wrong while submitting the form.</div>
+        </div>
+      </div>
+    </div>
+    <div class="w-nav-button">
+      <div class="w-icon-nav-menu"></div>
+    </div>
+  </div>
+  <div class="navbar-logo-center-3">
+    <div data-animation="default" data-collapse="medium" data-duration="400" data-easing="ease" data-easing2="ease" role="banner" class="navbar-logo-center-container-3 shadow-three w-nav">
+      <ul role="list" class="nav-menu-block-3 w-list-unstyled">
+        <li>
+          <a href="https://cecoldo.dimar.mil.co/web/" class="nav-link-5">Inicio</a>
+        </li>
+        <li>
+          <a href="https://cecoldo.dimar.mil.co/web/" class="nav-link-5">Cecoldo</a>
+        </li>
+        <li>
+          <div data-hover="false" data-delay="0" class="nav-dropdown-3 w-dropdown">
+            <div class="nav-dropdown-toggle-3 w-dropdown-toggle">
+              <div class="nav-dropdown-icon-3 w-icon-dropdown-toggle"></div>
+              <div>Datos abiertos</div>
+            </div>
+            <nav class="nav-dropdown-list-3 shadow-three mobile-shadow-hide w-dropdown-list">
+              <a href="https://cecoldo.dimar.mil.co/datosDimar/sigSDGOAbiertos/index.xhtml" target="_blank" class="nav-dropdown-link-3 w-dropdown-link">Búsqueda geográfica</a>
+              <a href="https://cecoldo.dimar.mil.co/geonetwork/srv/spa/catalog.search;jsessionid=6F18101D2772BDA708DF8C9DA96E5705#/home" target="_blank" class="nav-dropdown-link-3 w-dropdown-link">Búsqueda temática</a>
+              <a href="https://cecoldo.dimar.mil.co/web/licencia_datosabiertos" target="_blank" class="nav-dropdown-link-3 w-dropdown-link">Licencia de uso de datos </a>
+              <a href="https://cecoldo.dimar.mil.co/web/solicitudes" target="_blank" class="nav-dropdown-link-3 w-dropdown-link">Solicitud de datos</a>
+            </nav>
+          </div>
+        </li>
+        <li>
+          <div data-hover="false" data-delay="0" class="nav-dropdown-3 w-dropdown">
+            <div class="nav-dropdown-toggle-3 w-dropdown-toggle">
+              <div class="nav-dropdown-icon-3 w-icon-dropdown-toggle"></div>
+              <div>Acerca de</div>
+            </div>
+            <nav class="nav-dropdown-list-3 shadow-three mobile-shadow-hide w-dropdown-list">
+              <a href="https://cecoldo.dimar.mil.co/web/terminos_sitioweb" class="nav-dropdown-link-3 w-dropdown-link">Términos de uso</a>
+            </nav>
+          </div>
+        </li>
+      </ul>
+      <div class="menu-button-4 w-nav-button">
+        <div class="w-icon-nav-menu"></div>
+      </div>
+    </div>
+  </div>
+  <h:section>
+    <div class="div-block-8"><img src="images/antares_small_3.jpg" loading="lazy" sizes="100vw" height="Auto" alt="" srcset="images/antares_small_3-p-500.jpg 500w, images/antares_small_3-p-800.jpg 800w, images/antares_small_3-p-1080.jpg 1080w, images/antares_small_3-p-1600.jpg 1600w, images/antares_small_3-p-2000.jpg 2000w, images/antares_small_3-p-2600.jpg 2600w, images/antares_small_3-p-3200.jpg 3200w, images/antares_small_3.jpg 3800w" class="image-5"></div>
+  </h:section>
+  <h:section>
+    <div class="div-block-9">
+      <div class="div-block-10">
+        <!-- Enlace 1 en este href -->
+        <a href="#" class="w-inline-block"><img src="images/Infraestructura_de_Datos_Espaciales.png" loading="lazy" width="100" height="100" alt=""></a>
+         <!-- Variable para la estadistica de posiciones geográficas  -->
+         <p:outputLabel value="Conjunto de datos disponible"  />
+         <p:outputLabel value="#{reportesBean.valAbiertos}" />
+        <div class="text-block-3">Posiciones geográficas</div>
+      </div>
+      <div class="div-block-11">
+        <!-- Enlace 2 en este href -->
+        <a href="#" class="w-inline-block"><img src="images/Botones_cecoldo_Mesa-de-trabajo.png" loading="lazy" width="100" height="100" alt="" srcset="images/Botones_cecoldo_Mesa-de-trabajo-p-500.png 500w, images/Botones_cecoldo_Mesa-de-trabajo-p-800.png 800w, images/Botones_cecoldo_Mesa-de-trabajo.png 1276w" sizes="(max-width: 479px) 100vw, 100px"></a>
+       <!-- Variable para la estadistica de Conjuntos de datos  -->
+        <div class="text-block-2">2000</div>
+        <div class="text-block-3">Conjuntos de datos</div>
+      </div>
+      <div class="div-block-12">
+        <!-- Enlace 3 en este href -->
+        <a href="#" class="w-inline-block"><img src="images/botones_geoportal_datos_Mesa.jpg" loading="lazy" width="100" height="100" alt="" class="image-6"></a>
+        <!-- Variable para la estadistica de Series de tiempo  -->
+        <div class="text-block-2">3000</div>
+        <div class="text-block-3">Series de tiempo</div>
+      </div>
+      <div class="div-block-13">
+        <!-- Enlace 4 en este href -->
+        <a href="#" class="w-inline-block"><img src="images/botones_geoportal_datos_Mesa-de-trabajo.jpg" loading="lazy" width="100" height="100" alt="" class="image-7"></a>
+         <!-- Variable para la estadistica de Perfiles -->
+        <div class="text-block-2">4000</div>
+        <div class="text-block-3">Perfiles</div>
+      </div>
+    </div>
+  </h:section>
+  <h;section>
+    <footer class="footer">
+      <div class="div-block-14">
+        <a href="https://www.gov.co/" class="logosf w-inline-block"><img src="images/GOV.jpg" loading="lazy" width="50" alt=""></a>
+        <a href="https://www.colombia.co/" class="logosf w-inline-block"><img src="images/CO.jpg" loading="lazy" width="50" alt=""></a>
+        <a href="https://petro.presidencia.gov.co/" class="logosf w-inline-block"><img src="images/PRESIDENCIA.jpg" loading="lazy" width="50" alt=""></a>
+        <a href="https://www.mindefensa.gov.co/irj/portal/Mindefensa" class="logosf w-inline-block"><img src="images/MINDEFENSA.jpg" loading="lazy" width="50" alt=""></a>
+        <a href="https://www.cgfm.mil.co/es" class="logosf w-inline-block"><img src="images/FUERZAS_MILITARES.jpg" loading="lazy" width="50" alt=""></a>
+        <a href="https://www.armada.mil.co/" class="logosf w-inline-block"><img src="images/ARC.jpg" loading="lazy" width="50" alt=""></a>
+        <a href="https://cco.gov.co/" class="logosf w-inline-block"><img src="images/CCO.jpg" loading="lazy" width="50" alt=""></a>
+      </div>
+    </footer>
+    <footer class="footer2">
+      <div class="div-block-14">
+        <a href="https://ioc.unesco.org/" class="logosf w-inline-block"><img src="images/unesco_decenio2.png" loading="lazy" width="100" height="Auto" alt="" srcset="images/unesco_decenio2-p-500.png 500w, images/unesco_decenio2.png 640w" sizes="(max-width: 479px) 75vw, 100px"></a>
+        <a href="https://www.iode.org/" class="logosf w-inline-block"><img src="images/IODE.png" loading="lazy" width="100" alt=""></a>
+        <a href="https://public.wmo.int/en" class="logosf w-inline-block"><img src="images/hub-image-card-crop-ivkaaboju.png" loading="lazy" width="50" height="50" alt="" srcset="images/hub-image-card-crop-ivkaaboju-p-500.png 500w, images/hub-image-card-crop-ivkaaboju-p-800.png 800w, images/hub-image-card-crop-ivkaaboju.png 817w" sizes="(max-width: 479px) 63vw, 50px"></a>
+        <a href="http://cpps-int.org/index.php" class="logosf w-inline-block"><img src="images/CCPS.png" loading="lazy" width="50" alt=""></a>
+        <a href="https://cco.gov.co/comite-tecnico-nacional-de-coordinacion-de-datos-e-informacion-oceanica-ctn-diocean.html" class="logosf w-inline-block"><img src="images/DIOCEAN.png" loading="lazy" width="100" alt=""></a>
+        <a href="https://www.armada.mil.co/" class="logosf w-inline-block"><img src="images/icono_datos_abiertos.png" loading="lazy" width="100" alt=""></a>
+        <a href="https://cco.gov.co/" class="logosf w-inline-block"></a>
+      </div>
+    </footer>
+  </h>
+  <h:section>
+    <div class="div-block-15">
+      <div class="text-block-4">Contáctenos</div>
+      <a href="mailto:cecoldo@dimar.mil.co" class="link">cecoldo@dimar.mil.co</a>
+    </div>
+  </h>
+  <h:section>
+    <div class="div-block-16">
+      <div class="text-block-5">Contacto:<br>Dirección General Marítima<br>Subdirección de Desarrollo Marítimo<br>Carrera 54 # 26-50 CAN Bogotá D. C., Colombia<br>Línea gratuita de atención al ciudadano 018000115966<br>Línea Anticorrupción y Antisoborno 018000911670<br>Conmutador (+57) 601 2200490 Extensión 2503, 2506<br>Horario: Bogotá D.C. (UTC-5) Lunes a viernes de 8:00 a.m. a 05:00 p.m.<br>Correo de contacto: cecoldo@dimar.mil.coNit Dimar 830.027.904-1</div>
+      <div class="text-block-6">Enlaces de interés:<br>‍<a href="https://www.dimar.mil.co/transparencia/transparencia-0" target="_blank">Transparencia</a><br>
+        <a href="https://www.dimar.mil.co/transparencia/datos-de-contacto" target="_blank">Datos de contacto funcionarios</a><br>
+        <a href="https://www.dimar.mil.co/sites/default/files/informes/Politicaavisodeprivacidadterminosycondicionesdeusodelsitiowebaplicacionesomediosdigitales.pdf" target="_blank">Política de privacidad<br>‍</a>
+        <a href="https://www.dimar.mil.co/sites/default/files/informes/PDFAA3_00_POL_002_%20Politica%20de%20protecci%C3%B3n%20de%20datos%20personales%20V2_30%20junio%20de%202022.pdf" target="_blank">Política de tratamiento de datos personales<br>‍</a>
+        <a href="https://www.dimar.mil.co/sites/default/files/informes/A3-00-POL-001%20Politica%20Seguridad%20Informatica%20v1.pdf" target="_blank">Política de seguridad informática<br>‍</a>
+        <a href="https://www.dimar.mil.co/sites/default/files/informes/G3-00-POL-001%20Sistema%20de%20Gesti%C3%B3n%20Institucional%20v1..pdf" target="_blank">Política de seguridad de la información<br>‍</a>
+        <a href="http://www.convertic.gov.co/641/w3-channel.html" target="_blank">Software para personas en situación de discapacidad<br>‍</a>
+        <a href="https://mail.dimar.mil.co/owa/auth/logon.aspx?replaceCurrent=1&amp;url=https%3A//mail.dimar.mil.co/owa/" target="_blank">Correo instituciona<br>l</a>
+        <a href="https://www.dimar.mil.co/intranet" target="_blank">Intranet de Dimar</a>
+      </div>
+    </div>
+  </h:section>
+  <script src="https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js?site=662ab8a931791f830157668d" type="text/javascript" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+  <script src="js/webflow.js" type="text/javascript"></script>
+  </h:form>
+</h:body> 
+	</ui:define>
+</ui:composition>

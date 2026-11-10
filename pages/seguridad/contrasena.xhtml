@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	template="/pages/template/templateInicio2.xhtml">
+	<ui:define name="body">
+
+		<h:head>
+<!-- 			<link href="/resources/theme.css" rel="stylesheet" type="text/css" /> -->
+		</h:head>
+		<h:form id="form1">
+		<input type="hidden" name="csrf" value="true"></input>
+			<p:messages id="messages" showDetail="false" autoUpdate="true"
+				closable="true" />
+		</h:form>
+		<h:body>
+			<h:outputLabel value="#{bienvenida.bienvenida}" /> <br></br><br></br>
+			<h:form id="form">
+			<input type="hidden" name="csrf" value="true"></input>
+
+					<p:panel header="#{msg['recu.recu']}" footer="" id="panel_contraseña"
+						style="width:50%;">
+						<p:outputPanel value="#{msg['recu.recu2']}"></p:outputPanel>
+						<br></br>
+						<br></br>
+						<p:outputLabel for="cedula" value="#{msg['recu.numIdent']}" />&nbsp; &nbsp; &nbsp;
+						<p:inputText id="cedula"
+							value="#{passwordBean.persona.numeroDocumento}" required="true" />
+						<p:message for="cedula" />
+						<br></br>
+						<br></br>
+						<p:outputLabel for="username" value="#{msg['recu.usuario']}" /> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;
+						<p:inputText id="username" value="#{passwordBean.usuario.usuario}"
+							required="true" />
+						<p:message for="username" />
+						<br></br>
+						<br></br>
+						<p:outputLabel for="correo" value="#{msg['recu.correo']}" /> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;
+						<p:inputText id="correo"
+							value="#{passwordBean.persona.correoElectronico}" required="true" />
+						<p:message for="correo" />
+
+						<br></br>
+						<br></br>
+						<p:commandButton id="login_btn" value="#{msg['recu.ingresar']}"
+							styleClass="p-mr-2" style="width: auto"
+							action="#{passwordBean.enviar}" var="loginBean"
+							update="panel_contraseña" /> &nbsp; &nbsp; &nbsp;
+
+						<p:commandButton id="cancelar_btn" value="#{msg['recu.cancelar']}" 
+							action="#{passwordBean.cancelar()}" />
+
+					</p:panel>
+					
+				
+			</h:form>
+		</h:body>
+
+	</ui:define>
+</ui:composition>

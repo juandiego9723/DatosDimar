@@ -1,0 +1,103 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	template="/pages/template/templateInicio.xhtml">
+	<ui:define name="body">
+
+		<h:head>
+<!-- 			<link href="/resources/theme.css" rel="stylesheet" type="text/css" /> -->
+			<meta charset="utf-8" name="viewport"
+				content="width=device-width, initial-scale=1"
+				http-equiv="X-UA-Conpatible" />
+		</h:head>
+		<h:form id="form1">
+			<p:messages id="messages" showDetail="false" autoUpdate="true"
+				closable="true" />
+		</h:form>
+		<h:body>
+
+
+
+
+			<p:panel header="Asignar Opciones" style=" width: 80%;">
+				<h:form id="formRol">
+
+					<h:panelGrid style=" width:100%;">
+						<p:outputLabel for="rol"
+							value="Elige El Rol al que se va asignar Permisos" />
+						<br></br>
+						<p:selectOneMenu id="rol" value="#{opcionBean.rol.id}"
+							style="width:100%;" required="true" update="panelopciones">
+							<f:selectItem itemLabel="Seleccione el Rol" itemValue=""
+								noSelectionOption="true" />
+							<f:selectItems value="#{opcionBean.listaRol}" var="g"
+								itemLabel="#{g.nombre}" itemValue="#{g.id}" />
+							<p:ajax event="change" listener="#{opcionBean.cambioRol()}"
+								update="form2:panelopcoines"></p:ajax>
+
+						</p:selectOneMenu>
+
+						<h:messages for="rol" />
+
+					</h:panelGrid>
+
+
+				</h:form>
+				<h:form id="form2">
+					<h:panelGrid style=" width:100%;" id="paneltext">
+						<p:outputLabel value="Opciones Rol: Administrador" rendered="#{opcionBean.administrador}" />
+						<p:outputLabel value="Opciones Rol: Revisor" rendered="#{opcionBean.revisor}" />
+						<p:outputLabel value="Opciones Rol: Editor" rendered="#{opcionBean.editor}" />
+						<p:outputLabel value="Opciones Rol: Auditor" rendered="#{opcionBean.auditor}" />
+						<p:outputLabel value="Opciones Rol: Externor" rendered="#{opcionBean.externo}" />
+						<p:outputLabel value="Opciones Rol: Interno" rendered="#{opcionBean.interno}" />
+					</h:panelGrid>
+					<br></br>
+					<h:panelGrid style=" width:100%;" id="panelopcoines">
+						<p:selectBooleanCheckbox value="#{opcionBean.USUARIOS}" itemLabel="Modulo de Usuario" disabled="#{opcionBean.USUARIOS}"/>
+						<p:selectBooleanCheckbox value="#{opcionBean.ROLES}" itemLabel="Modulo de Roles" disabled="#{opcionBean.ROLES}"/>
+						<p:selectBooleanCheckbox value="#{opcionBean.CATEGORIAS}" itemLabel="Modulo de categorias" disabled="#{opcionBean.CATEGORIAS}"/>
+						<p:selectBooleanCheckbox value="#{opcionBean.ENCUESTAS}" itemLabel="Modulo de Encuestas" disabled="#{opcionBean.ENCUESTAS}"/>
+						<p:selectBooleanCheckbox value="#{opcionBean.SOLCITUDES}" itemLabel="Modulo de Solicitudes" disabled="#{opcionBean.SOLCITUDES}"/>
+						<p:selectBooleanCheckbox value="#{opcionBean.DATOS}" itemLabel="Modulo de Subir Datos" disabled="#{opcionBean.DATOS}"/>
+						<p:selectBooleanCheckbox value="#{opcionBean.REPORTES}" itemLabel="Modulo de Reportes" disabled="#{opcionBean.REPORTES}"/>
+						<p:selectBooleanCheckbox value="#{opcionBean.AUDITORIA}" itemLabel="Modulo de Auditoria" disabled="#{opcionBean.AUDITORIA}"/>
+						<p:selectBooleanCheckbox value="#{opcionBean.REVISAR}" itemLabel="Modulo de Revisar" disabled="#{opcionBean.REVISAR}"/>
+						<p:selectBooleanCheckbox value="#{opcionBean.DEFAULT}" itemLabel="Modulo por Defeautl" disabled="#{opcionBean.DEFAULT}"/>
+					</h:panelGrid>
+					
+					
+					<p:commandButton id="login_btn" value="Registrarse"
+									styleClass="p-mr-2" style="width: auto"
+									action="#{opcionBean.enviarint}" var="loginBean"
+									 />
+								&nbsp; &nbsp; &nbsp;
+								<p:commandButton id="cancelar_btn" value="Cancelar"
+									action="#{registrarseBeean.cancelar}" />
+					
+				</h:form>
+
+			</p:panel>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		</h:body>
+
+	</ui:define>
+</ui:composition>

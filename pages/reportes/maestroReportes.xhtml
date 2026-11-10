@@ -1,0 +1,130 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	template="/pages/template/templateInicio.xhtml">
+	<ui:define name="body">
+		<h:head>
+<!-- 			<link href="/resources/theme.css" rel="stylesheet" type="text/css" /> -->
+			<meta charset="utf-8" name="viewport"
+				content="width=device-width, initial-scale=1"
+				http-equiv="X-UA-Conpatible" />
+		</h:head>
+		<h:body>
+			<h:form id="formListado">
+				<p:messages id="messages" showDetail="false" autoUpdate="true"
+					closable="true" />
+				<h2 >MENU DE REPORTES</h2>
+				<p:separator />
+				<p:outputLabel
+					value="Bienvenido a la consulta de Reportes del Sistema de Datos Geográficos y Oceanográficos de la DIMAR. Podrá visualizar en pantalla y/o descargarlo en formato PDF" />
+				<p:separator />
+				<h:panelGrid id="panel1" columns="3">
+					<p:outputLabel value="Seleccione por favor el reporte a generar:" />
+					<h:outputText value="&#160;" />
+					<p:selectOneMenu id="reporte" value="#{reportesBean.reporte}">
+						<f:selectItems value="#{reportesBean.reportes}" var="reporte"
+							itemLabel="#{reporte}" itemValue="#{reporte}" />
+						<f:ajax process=":formListado:misReportes :formListado:fechas"
+							update=":formListado:misReportes :formListado:fechas"
+							render=":formListado:misReportes :formListado:fechas" />
+					</p:selectOneMenu>
+				</h:panelGrid>
+				<p:separator />
+				<h:panelGrid id="fechas" columns="9">
+					<p:outputLabel value="Fecha Inicial del Reporte" />
+					<h:outputText value="&#160;" />
+					<h:panelGroup>
+						<p:datePicker id="fechaI" value="#{reportesBean.fechaInicial}"
+							pattern="dd/MM/yyyy">
+							<p:ajax event="change" update="@this" />
+						</p:datePicker>
+						<p:tooltip for="fechaI" value="#{msg['reportes.msg_fechaI']}" />
+					</h:panelGroup>
+					<h:outputText value="&#160;" />
+					<p:outputLabel value="Fecha Final del Reporte" />
+					<h:outputText value="&#160;" />
+					<h:panelGroup>
+						<p:datePicker id="fechaF" value="#{reportesBean.fechaFinal}"
+							pattern="dd/MM/yyyy">
+							<p:ajax event="change" update="@this" />
+						</p:datePicker>
+						<p:tooltip for="fechaF" value="#{msg['reportes.msg_fechaF']}" />
+					</h:panelGroup>
+					<h:outputText value="&#160;" />
+					<p:commandButton id ="btnRep1" value="Generar Reporte"
+					    rendered="#{reportesBean.reporte eq 'Cantidad de datos cargados'}"
+						disabled="#{!reportesBean.reporte eq 'Cantidad de datos cargados'}"
+						action="#{reportesBean.generaTabla1()}" process="@this"
+						update="tabla1 resumen1" />
+					<p:commandButton value="Generar Reporte 2"
+					    rendered="#{reportesBean.reporte eq 'Finalidad de los datos descargados'}"
+						disabled="#{!reportesBean.reporte eq 'Finalidad de los datos descargados'}"
+						action="#{reportesBean.generaTabla1()}" process="@this"
+						update="tabla1  :formListado:resumen1" />
+					<p:commandButton value="Generar Reporte 3"
+					    rendered="#{reportesBean.reporte eq 'Reportes asociados a ventas'}"
+						disabled="#{!reportesBean.reporte eq 'Reportes asociados a ventas'}"
+						action="#{reportesBean.generaTabla3()}" process="@this"
+						update="tabla3" />
+					<p:commandButton value="Generar Reporte Transaccines"
+					    rendered="#{reportesBean.reporte eq 'Reportes de transacciones'}"
+						disabled="#{!reportesBean.reporte eq 'Reportes de transacciones'}"
+						action="#{reportesBean.generaTablatransacciones()}" process="@this"
+						update="tabla4" />
+					<p:commandButton value="Generar Reporte Descargas"
+					    rendered="#{reportesBean.reporte eq 'Reportes asociados a las descargas del catálogo'}"
+						disabled="#{!reportesBean.reporte eq 'Reportes asociados a las descargas del catálogo'}"
+						action="#{reportesBean.generaDescargas()}" process="@this"
+						update="descargas" />						
+				</h:panelGrid>
+				<h:panelGroup id="misReportes">
+					<p:panel
+						rendered="#{reportesBean.reporte eq 'Reportes asociados a ventas'}">
+						<div align="center">
+							<p:spacer height="10" />
+							<ui:include src="ventaDatos.xhtml" />
+						</div>
+					</p:panel>
+					<p:panel
+						rendered="#{reportesBean.reporte eq 'Cantidad de datos cargados'}">
+						<div align="center">
+							<p:spacer height="10" />
+							<ui:include src="cantidadDatosCargados.xhtml" />
+						</div>
+					</p:panel>
+					<p:panel
+						rendered="#{reportesBean.reporte eq 'Reportes de transacciones'}">
+						<div align="center">
+							<p:spacer height="10" />
+							<ui:include src="transacciones.xhtml" />
+						</div>
+					</p:panel>
+					<p:panel
+						rendered="#{reportesBean.reporte eq 'Reportes asociados a las descargas del catálogo'}">
+						<div align="center">
+							<p:spacer height="10" />
+							<ui:include src="descargas.xhtml" />
+						</div>
+					</p:panel>
+
+					<p:panel
+						rendered="#{reportesBean.reporte eq 'Finalidad de los datos descargados'}">
+						<div align="center">
+							<p:spacer height="10" />
+							<ui:include src="finalidadDatosDescargados.xhtml" />
+						</div>
+						<p:panel>
+							<p:commandButton value="Descargar PDF3"
+								action="#{reportesBean.descargaFinalidad()}" process="@this" />
+						</p:panel>
+					</p:panel>
+
+				</h:panelGroup>
+
+			</h:form>
+		</h:body>
+	</ui:define>
+</ui:composition>
